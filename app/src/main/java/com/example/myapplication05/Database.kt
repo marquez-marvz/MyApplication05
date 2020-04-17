@@ -196,10 +196,6 @@ class Database : AppCompatActivity() {
 
     fun ReadCSV(filename:String) {
         val FILENAME = filename
-
-
-
-
         val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         val myFile = File(folder, FILENAME)
 

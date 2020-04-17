@@ -39,14 +39,6 @@ class Database : AppCompatActivity() {
                     // Msgbox(filename)
                 ReadCSV(filename)
             }
-//
-//                mAlertDialog.dismiss()
-                //get text from EditTexts of custom layout
-//
-//                val email = mDialogView.dialogEmailEt.text.toString()
-//                val password = mDialogView.dialogPasswEt.text.toString()
-//                //set the input text in TextView
-               // mainInfoTv.setText("Name:"+ name +"\nEmail: "+ email +"\nPassword: "+ password)
          //   }
             //cancel button click of custom layout
 //            mDialogView.dialogCancelBtn.setOnClickListener {

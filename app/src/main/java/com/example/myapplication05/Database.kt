@@ -15,7 +15,7 @@ import java.io.*
 
 class Database : AppCompatActivity() {
     var list = arrayListOf<StudentModel>()
-
+    ///////////////////////////////////////////
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.database)

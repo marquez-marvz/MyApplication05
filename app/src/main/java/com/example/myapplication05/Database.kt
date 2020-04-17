@@ -40,11 +40,6 @@ class Database : AppCompatActivity() {
                 ReadCSV(filename)
             }
          //   }
-            //cancel button click of custom layout
-//            mDialogView.dialogCancelBtn.setOnClickListener {
-//                //dismiss dialog
-//                mAlertDialog.dismiss()
-//            }
         }
 
         btnEdit.setOnClickListener {

@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Student Record</string>
+    <string name="student_prompt">Choose a Group</string>
+
+    <string-array name="grpNumber">
+        <item>G-1</item>
+        <item>G-2</item>
+        <item>G-3</item>
+        <item>G-4</item>
+        <item>G-5</item>
+        <item>G-6</item>
+        <item>G-7</item>
+        <item>G-8</item>
+        <item>G-9</item>
+
+    </string-array>
+
+
+    <string name="section_prompt">Choose a Section</string>
+
+    <string-array name="section_choice">
+        <item>11-PROG-1</item>
+        <item>12-PROG-1</item>
+        <item>MANZANERO</item>
+        <item>CADORES</item>
+        <item>RIVERA</item>
+    </string-array>
 </resources>

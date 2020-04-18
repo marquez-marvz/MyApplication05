@@ -2,16 +2,22 @@ package com.example.myapplication05
 
 
 
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import android.content.Context
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteDatabaseLockedException
 import android.database.sqlite.SQLiteException
+import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import android.widget.Toast
 
-class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",null, 1) {
+
+
+
+
+
+class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",null, 7) {
     companion object {
         private val DATABASE_VERSION = 1
         private val DATABASE_NAME = "EmployeeDatabase"
@@ -19,19 +25,49 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
         private val KEY_STUDENTNO = "studentno"
         private val KEY_FIRST = "firstname"
         private val KEY_LAST = "lastname"
+
+    }
+
+
+
+
+    var context: Context? = null
+
+        init {
+        this.context = context
+
+    }
+
+    fun ShowField(){
+        var db:SQLiteDatabase;
+        db = getReadableDatabase();
+        var cursor: Cursor? =  db.query("tbstudent", null, null, null, null, null, null);
+        val col:Array<String> = cursor!!.getColumnNames()
+        var s: String = ""
+        for (c in col) {
+            s = s + " " + c
+        }
+        Toast.makeText(this.context,  s,  Toast.LENGTH_LONG).show();
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-
-        val sql= ("CREATE TABLE tbstudent (studentno INTEGER PRIMARY KEY,firstname text, lastname text)")
+        val sql= ("CREATE TABLE tbstudent (studentno INTEGER PRIMARY KEY,firstname text, lastname text,grpnumber text, section text )")
         db?.execSQL(sql)
-        Log.d("myTag", "This is my create");
+        Log.d("myTag", "This is my delete");
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        Log.d("myTag", "This is my delete");
+      var    sql =  "DROP TABLE tbstudent";
+        db?.execSQL(sql)
+         sql= ("CREATE TABLE tbstudent (studentno INTEGER PRIMARY KEY,firstname text, lastname text,grpnumber text, section text )")
+
+       db?.execSQL(sql)
+        Toast.makeText(this.context, " database is upgraded", Toast.LENGTH_LONG).show()
 
     }
+
+
+
 
     fun addStudent(studentno: String, fnanme: String, lastname: String): Long {
         val db = this.writableDatabase

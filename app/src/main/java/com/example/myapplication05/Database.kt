@@ -1,6 +1,12 @@
+
+//git archive -o "D:\Google Drive\Android App Backup\April17-701pm.tgz"   dcb7f2fef8e618d13eee120a8997680920bb1f86
+
+
 package com.example.myapplication05
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -19,7 +25,14 @@ class Database : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.database)
-        ViewRecord()
+        print("Hello World!!!!!!")
+        Log.i("myTag", "Hello World@@@@@");
+      //  ViewRLogecord()
+        val db: DatabaseHandler = DatabaseHandler(this)
+        //db.getWritableDatabase()
+        db.ShowField()
+
+
 
         btnExport.setOnClickListener {
             WriteCSV()
@@ -36,7 +49,6 @@ class Database : AppCompatActivity() {
             mDialogView.btnDialogOK.setOnClickListener {
                      val filename = mDialogView.txtDialogFileName.text.toString() + ".csv"
                      mAlertDialog.dismiss()
-                    // Msgbox(filename)
                 ReadCSV(filename)
             }
 //
@@ -55,88 +67,57 @@ class Database : AppCompatActivity() {
 //            }
         }
 
-        btnEdit.setOnClickListener {
-            txtstudentnumber.isEnabled = false
-            txtfirstname.isEnabled = true;
-            txtlastname.isEnabled = true;
-            btnAdd.setText("SAVE CHANGES")
-            btnDelete.setVisibility(View.VISIBLE);
-            btnEdit.setVisibility(View.INVISIBLE);
-            btnDelete.setText("CANCEL")
-        }
+    //    btnEdit.setOnClickListener {
+//            txtstudentnumber.isEnabled = false
+//            txtfirstname.isEnabled = true;
+//            txtlastname.isEnabled = true;
+//            btnAdd.setText("SAVE CHANGES")
+//            btnDelete.setVisibility(View.VISIBLE);
+//            btnEdit.setVisibility(View.INVISIBLE);
+//            btnDelete.setText("CANCEL")
+     //   }
 
-        btnDelete.setOnClickListener {
-            val buttonText: String = btnDelete.getText().toString()
-            if (buttonText == "CANCEL") {
-                TextBoxClear()
-                TextBoxStatus(false)
-                btnAdd.setText("ADD")
-                btnDelete.setVisibility(View.INVISIBLE);
-                btnDelete.setText("DELETE")
-            } else if (buttonText == "DELETE") {
-                btnAdd.setText("ADD")
-                btnDelete.setVisibility(View.INVISIBLE);
-                btnEdit.setVisibility(View.INVISIBLE);
-                btnDelete.setText("DELETE")
-                val studentNumber = txtstudentnumber.text.toString()
-                val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-                var status = databaseHandler.DeleteStudent(studentNumber)
-                TextBoxClear()
-                TextBoxStatus(false)
-                ViewRecord();
-            }
-
-        }
+//     //   btnDelete.setOnClickListener {
+//          //  val buttonText: String = btnDelete.getText().toString()
+//            if (buttonText == "CANCEL") {
+//                TextBoxClear()
+//                TextBoxStatus(false)
+//                btnAdd.setText("ADD")
+////                btnDelete.setVisibility(View.INVISIBLE);
+////                btnDelete.setText("DELETE")
+//            } else if (buttonText == "DELETE") {
+//                btnAdd.setText("ADD")
+////                btnDelete.setVisibility(View.INVISIBLE);
+////                btnEdit.setVisibility(View.INVISIBLE);
+////                btnDelete.setText("DELETE")
+//              // val studentNumber = txtstudentnumber.text.toString()
+//                val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+//                var status = databaseHandler.DeleteStudent(studentNumber)
+//                TextBoxClear()
+//                TextBoxStatus(false)
+//                ViewRecord();
+//            }
+//
+//        }
 
         btnAdd.setOnClickListener {
-            val buttonText: String = btnAdd.getText().toString()
-            //  Msgbox(buttonText)
-            if (buttonText == "ADD") {
-                TextBoxStatus(true)
-                TextBoxClear()
-                btnAdd.setText("SAVE RECORD")
-                btnDelete.setVisibility(View.VISIBLE);
-                btnDelete.setText("CANCEL")
-            } else {
-                val studentNumber = txtstudentnumber.text.toString()
-                val firstName = txtfirstname.text.toString()
-                val lastName = txtlastname.text.toString()
-                val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-                var myStat: Long = 0;
-                if (buttonText == "SAVE RECORD") {
-                    Msgbox("Hello")
-                    var status = databaseHandler.addStudent(studentNumber, firstName, lastName)
-                    myStat = status;
-                } else if (buttonText == "SAVE CHANGES") {
-                    var status = databaseHandler.EditStudent(studentNumber, firstName, lastName)
-                    myStat = status.toLong();
-                }
 
-                if (myStat > -1) {
-                    btnAdd.setText("ADD")
-                    btnDelete.setVisibility(View.INVISIBLE);
-                    btnDelete.setText("DELETE")
-                    ViewRecord();
-                    TextBoxStatus(true)
-                    TextBoxClear()
-                }
-
-            }
-        } //btnadd
-
+            ShowDialog("ADD", -1)
+        }
 
         lvwstudent.setOnItemClickListener { adapterView: AdapterView<*>?,
                                             view: View?, position: Int, l: Long ->
-            var studentnum = list[position].sn
-            txtstudentnumber.setText(list[position].sn)
-            txtfirstname.setText(list[position].fname)
-            txtlastname.setText(list[position].lname)
-            TextBoxStatus(false)
-
-            btnAdd.setText("ADD")
-            btnDelete.setVisibility(View.VISIBLE);
-            btnEdit.setVisibility(View.VISIBLE);
-            btnDelete.setText("DELETE")
+//            var studentnum = list[position].sn
+////            txtstudentnumber.setText(list[position].sn)
+////            txtfirstname.setText(list[position].fname)
+////            txtlastname.setText(list[position].lname)
+////            TextBoxStatus(false)
+////
+////            btnAdd.setText("ADD")
+////            btnDelete.setVisibility(View.VISIBLE);
+////            btnEdit.setVisibility(View.VISIBLE);
+////            btnDelete.setText("DELETE")
+            ShowDialog("VIEW", position);
 
         }
     }
@@ -158,15 +139,15 @@ class Database : AppCompatActivity() {
     }
 
     fun TextBoxStatus(stat: Boolean) {
-        txtstudentnumber.isEnabled = stat
-        txtfirstname.isEnabled = stat
-        txtlastname.isEnabled = stat
+//        txtstudentnumber.isEnabled = stat
+//        txtfirstname.isEnabled = stat
+//        txtlastname.isEnabled = stat
     }
 
     fun TextBoxClear() {
-        txtstudentnumber.setText("")
-        txtfirstname.setText("")
-        txtlastname.setText("")
+//        txtstudentnumber.setText("")
+//        txtfirstname.setText("")
+//        txtlastname.setText("")
     }
 
 
@@ -207,16 +188,77 @@ class Database : AppCompatActivity() {
         val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
         var text: String = ""
         var line = bufferedReader.readLine()
-        while(line != null) {
+        while (line != null) {
             text = line.toString()
             line = bufferedReader.readLine()
-            var token= text.split(",").toTypedArray()
+            var token = text.split(",").toTypedArray()
             val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-            var status = databaseHandler.addStudent(token[0],token[1], token[2])
-            }
+            var status = databaseHandler.addStudent(token[0], token[1], token[2])
+        }
         fileInputStream.close()
         ViewRecord()
-     }
+    }
+
+        fun ShowDialog(status:String, position:Int){
+//            val dlgstudent = LayoutInflater.from(this).inflate(R.layout.dialog_student, null)
+//            val mBuilder = AlertDialog.Builder(this)
+//                .setView(dlgstudent)
+//                .setTitle("Filename to be imported")
+//            val  mAlertDialog = mBuilder.show()
+//            mAlertDialog.setCanceledOnTouchOutside(false);
+//            if (status=="ADD") {
+//                dlgstudent.txtstudentnumber.setText("")
+//                dlgstudent.txtfirstname.setText("")
+//                dlgstudent.txtlastname.setText("")
+//                dlgstudent.btnDelete
+//            } else if(status =="VIEW") {
+//                dlgstudent.txtstudentnumber.setText("")
+//                dlgstudent.txtfirstname.setText("")
+//                dlgstudent.txtlastname.setText("")
+//                dlgstudent.btnDelete
+//            }
+//
+
+//            mDialogView.btnDialogOK.setOnClickListener {
+//                val filename = mDialogView.txtDialogFileName.text.toString() + ".csv"
+//                mAlertDialog.dismiss()
+//                ReadCSV(filename)
+//            }
+//            val buttonText: String = btnAdd.getText().toString()
+//            //  Msgbox(buttonText)
+//            if (buttonText == "ADD") {
+//                TextBoxStatus(true)
+//                TextBoxClear()
+//                btnAdd.setText("SAVE RECORD")
+//                btnDelete.setVisibility(View.VISIBLE);
+//                btnDelete.setText("CANCEL")
+//            } else {
+//                val studentNumber = txtstudentnumber.text.toString()
+//                val firstName = txtfirstname.text.toString()
+//                val lastName = txtlastname.text.toString()
+//                val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+//                var myStat: Long = 0;
+//                if (buttonText == "SAVE RECORD") {
+//                    Msgbox("Hello")
+//                    var status = databaseHandler.addStudent(studentNumber, firstName, lastName)
+//                    myStat = status;
+//                } else if (buttonText == "SAVE CHANGES") {
+//                    var status = databaseHandler.EditStudent(studentNumber, firstName, lastName)
+//                    myStat = status.toLong();
+//                }
+//
+//                if (myStat > -1) {
+//                    btnAdd.setText("ADD")
+//                    btnDelete.setVisibility(View.INVISIBLE);
+//                    btnDelete.setText("DELETE")
+//                    ViewRecord();
+//                    TextBoxStatus(true)
+//                    TextBoxClear()
+//                }
+//
+//            }
+    } //btnadd
+
 
 
 

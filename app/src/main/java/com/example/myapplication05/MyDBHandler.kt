@@ -17,15 +17,15 @@ import android.widget.Toast
 
 
 
-class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",null, 7) {
+class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",null, 11) {
     companion object {
         private val DATABASE_VERSION = 1
-        private val DATABASE_NAME = "EmployeeDatabase"
         private val TABLE_NAME = "tbstudent"
-        private val KEY_STUDENTNO = "studentno"
-        private val KEY_FIRST = "firstname"
-        private val KEY_LAST = "lastname"
-
+        private val TBSTUDENT_STUDENTNO = "StudentNo"
+        private val TBSTUDENT_FIRST = "FirstName"
+        private val TBSTUDENT_LAST = "LastName"
+        private val TBSTUDENT_GRP = "GrpNumber"
+        private val TBSTUDENT_SECTION = "Section"
     }
 
 
@@ -34,9 +34,9 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
     var context: Context? = null
 
         init {
-        this.context = context
+            this.context = context
 
-    }
+        }
 
     fun ShowField(){
         var db:SQLiteDatabase;
@@ -51,7 +51,8 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val sql= ("CREATE TABLE tbstudent (studentno INTEGER PRIMARY KEY,firstname text, lastname text,grpnumber text, section text )")
+
+        val sql= ("CREATE TABLE tbstudent (StudentNo INTEGER PRIMARY KEY,FirstName text, Lastname text,GrpNumber text, Section text )")
         db?.execSQL(sql)
         Log.d("myTag", "This is my delete");
     }
@@ -59,7 +60,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
       var    sql =  "DROP TABLE tbstudent";
         db?.execSQL(sql)
-         sql= ("CREATE TABLE tbstudent (studentno INTEGER PRIMARY KEY,firstname text, lastname text,grpnumber text, section text )")
+         sql= ("CREATE TABLE tbstudent (StudentNo INTEGER PRIMARY KEY,FirstName text, LastName text,GrpNumber text, Section text )")
 
        db?.execSQL(sql)
         Toast.makeText(this.context, " database is upgraded", Toast.LENGTH_LONG).show()
@@ -69,37 +70,43 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
 
 
 
-    fun addStudent(studentno: String, fnanme: String, lastname: String): Long {
+    fun ManageStudent(crudStatus:String,  studentno: String, fnanme: String="", lastname: String="", grpnumber: String="", section: String=""):Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(KEY_STUDENTNO, studentno)
-        contentValues.put(KEY_FIRST, fnanme) // EmpModelClass Name
-        contentValues.put(KEY_LAST, lastname) // EmpModelClass Phone
+        contentValues.put(TBSTUDENT_STUDENTNO, studentno)
+        contentValues.put(TBSTUDENT_FIRST, fnanme) // EmpModelClass Name
+        contentValues.put(TBSTUDENT_LAST, lastname) // EmpModelClass Phone
+        contentValues.put(TBSTUDENT_GRP, grpnumber) // EmpModelClass Phone
+        contentValues.put(TBSTUDENT_SECTION, section) // EmpModelClass Phone
+        var status:Boolean;
+        when (crudStatus) {
+            "ADD" -> {
+                val success = db.insert("tbstudent", null, contentValues)
+                if (success<0)
+                      status = false
+                else
+                      status =  true
+            }//add
 
-        val success = db.insert(TABLE_NAME, null, contentValues)
-        //2nd argument is String containing nullColumnHack
-        db.close() // Closing database connection
-      //  var pp=""
-     //  print("Hello")
-        return success;
-    }
+            "EDIT" -> {
+                val editstat = db.update(TABLE_NAME, contentValues, TBSTUDENT_STUDENTNO+ "=" + studentno, null)
+                if (editstat<0)
+                   status = false
+                else
+                    status = true
+            }//edit
 
-    fun EditStudent(studentno: String, fnanme: String, lastname: String): Int {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(KEY_STUDENTNO, studentno)
-        contentValues.put(KEY_FIRST, fnanme) // EmpModelClass Name
-        contentValues.put(KEY_LAST, lastname) // EmpModelClass Phone
-        val success = db.update(TABLE_NAME, contentValues, KEY_STUDENTNO+ "=" +studentno,null)
-        db.close() // Closing database connection
-        return success;
-    }
+            "DELETE" -> {
+                val success = db.delete(TABLE_NAME, TBSTUDENT_STUDENTNO+ "=" +studentno,null)
+                if (success<0)
+                    status = false
+                else
+                    status = true
+            }//edit
 
-    fun DeleteStudent(studentno: String): Int {
-        val db = this.writableDatabase
-        val success = db.delete(TABLE_NAME, KEY_STUDENTNO+ "=" +studentno,null)
+        }//when
+        return false;
         db.close()
-        return success;
     }
 
 
@@ -107,7 +114,9 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
 
 
 
-    fun viewEmployee():List<StudentModel>{
+
+
+    fun  GetStudentList():List<StudentModel>{
         val studentList:ArrayList<StudentModel> = ArrayList<StudentModel>()
         val selectQuery = "SELECT  * FROM $TABLE_NAME"
         val db = this.readableDatabase
@@ -118,15 +127,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
             db.execSQL(selectQuery)
             return ArrayList()
         }
-        var sn = ""
-        var fname= ""
-        var lname = ""
+
         if (cursor.moveToFirst()) {
             do {
-                sn = cursor.getString(cursor.getColumnIndex(KEY_STUDENTNO))
-                fname = cursor.getString(cursor.getColumnIndex(KEY_FIRST))
-                lname= cursor.getString(cursor.getColumnIndex(KEY_LAST))
-                val emp= StudentModel(sn, fname, lname)
+                var sn = cursor.getString(cursor.getColumnIndex(TBSTUDENT_STUDENTNO))
+                var fname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_FIRST))
+                var lname= cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
+                var grp= cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
+                var section= cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
+                val emp= StudentModel(sn, fname, lname,  grp, section)
                 studentList.add(emp)
             } while (cursor.moveToNext())
         }

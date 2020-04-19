@@ -5,32 +5,41 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="75dp"
+        android:layout_width="30dp"
         android:layout_height="30dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_margin="5dp"
         android:id="@+id/rowStudentNo">
     </TextView>
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_margin="5dp"
         android:id="@+id/rowFirstName">
     </TextView>
 
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:text="Hello"
-        android:textSize="20sp"
         android:layout_margin="5dp"
+        android:textSize="15sp"
         android:id="@+id/rowLastName">
     </TextView>
 
-
+    <Button
+        android:id="@+id/rowBtnDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="10sp"
+        android:visibility="visible"
+        android:drawableLeft="@drawable/delete"
+        android:text="" />
 
 
 

@@ -8,8 +8,9 @@ import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,6 +24,7 @@ class Database : AppCompatActivity() {
     companion object {
         var list = arrayListOf<StudentModel>()
     }
+
 
 //
 //    private var buttonaddticket: Button? = null
@@ -121,8 +123,8 @@ class Database : AppCompatActivity() {
 
         lvwstudent.setOnItemClickListener { adapterView: AdapterView<*>?,
                                             view: View?, position: Int, l: Long ->
-            ShowDialog("VIEW", position, this);
-        //    Msgbox("Hello World")
+           //  ShowDialog("VIEW", position, this);
+             Msgbox("Hello World")
         }
     }
 
@@ -276,7 +278,8 @@ class Database : AppCompatActivity() {
                             section
                         )
                         studentDialog.dismiss()
-                        ViewRecord(context)
+                       // ViewRecord(context)
+
                     }
                 }//end when
             }    //clickl

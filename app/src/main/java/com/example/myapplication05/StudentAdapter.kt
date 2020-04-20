@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.*
 
 
-class StudentAdapter (var myContext: Context, var resources:Int, var myItems:List<StudentModel>):
+class StudentAdapter (var myContext: Context , var resources:Int, var myItems:List<StudentModel>):
     ArrayAdapter<StudentModel>(myContext, resources, myItems) {
+
 
     var lcontext: Context? = null
 
@@ -28,16 +29,14 @@ class StudentAdapter (var myContext: Context, var resources:Int, var myItems:Lis
         //Button  = (Button) row.findViewById(R.id.DeleteImageView);
         val delete: Button = view.findViewById(R.id.rowBtnDelete)
 
-//        delete.setOnClickListener {
-//            Toast.makeText(this.context, position.toString(),  Toast.LENGTH_LONG).show();
-//            var db:Database = Database();
-//           db.ShowDialog("VIEW", position, myContext)
-//        //    db.ViewRecord(myContext)
-//           // db.Sample("VIEW", position)
-//
-//        }
+        delete.setOnClickListener {
+            Toast.makeText(this.context, position.toString(), Toast.LENGTH_LONG).show();
+            var db: Database = Database();
+            db.ShowDialog("VIEW", position, myContext)
 
-
+            // db.Sample("VIEW", position)
+            this.notifyDataSetChanged()
+        }
             var theItem = myItems[position]
         sn.text = theItem.sn
         fname.text = theItem.fname

@@ -129,20 +129,20 @@ class Database : AppCompatActivity() {
     }
 
     fun ViewRecord(context:Context = this) {
-        val databaseHandler: DatabaseHandler = DatabaseHandler(context)
-        val student: List<StudentModel> = databaseHandler.GetStudentList()
+//        val databaseHandler: DatabaseHandler = DatabaseHandler(context)
+//        val student: List<Person> = databaseHandler.GetStudentList()
+//
+//        list.clear()
+//        for (e in student) {
+//            list.add(Person( e.firstname, e.lastname))
+//
 
-        list.clear()
-        for (e in student) {
-            list.add(StudentModel(e.sn, e.fname, e.lname, e.grpNumber, e.section))
+//            }
 
-
-            }
-
-        Log.e("Hello11", context.toString())
-        Log.e("Hello11", list.toString())
-        Log.e("Hello11", R.layout.studentrow.toString())
-        lvwstudent.adapter = StudentAdapter(context, R.layout.studentrow, list)
+//        Log.e("Hello11", context.toString())
+//        Log.e("Hello11", list.toString())
+//        Log.e("Hello11", R.layout.studentrow.toString())
+//        lvwstudent.adapter = StudentAdapter(context, R.layout.studentrow, list)
     }
 
 

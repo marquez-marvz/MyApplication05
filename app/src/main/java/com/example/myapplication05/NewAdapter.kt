@@ -42,15 +42,18 @@ class NewAdapter (val context:Context, val person:List<Person>):RecyclerView.Ada
                 Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
             }
 
-            itemView.rowBtnDelete.setOnClickListener {
-                // Toast.makeText(context, currentPerson!!.firstname + "", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
-            }
+//            itemView.rowBtnDelete.setOnClickListener {
+//                // Toast.makeText(context, currentPerson!!.firstname + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+//            }
         }//init
 
         fun setData(pp: Person?, pos: Int) {
-            itemView.txtfirstName.text = pp!!.lastname
-             itemView.txtLastName.text =pp!!.firstname
+            itemView.txtStudentNo.text = pp!!.studentno
+            itemView.txtFirstName.text = pp!!.firstname
+            itemView.txtLastName.text =pp!!.lastname
+       itemView.txtSectionCode.text =pp!!.sectioncode
+          itemView.txtGroup.text =pp!!.grp
             this.currentPerson= pp;
             this.currentPosition = pos
         }

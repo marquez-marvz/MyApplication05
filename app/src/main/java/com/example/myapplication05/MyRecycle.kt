@@ -10,23 +10,29 @@ class MyRecycle : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.myrecycle)
+        ViewRecord()
 
+
+    }
+
+    fun ViewRecord(){
         val layoutmanager = LinearLayoutManager(this)
         layoutmanager.orientation = LinearLayoutManager.VERTICAL;
         recPerson.layoutManager = layoutmanager
         var list = arrayListOf<Person>()
-//
-        list.add(Person("MARVIN", "MARQUEZ"))
-         list.add(Person("BING", "SANTOS"))
-//        list.add(Person("BOY" , "AGTA")
 
-     //      list.add(Person("MARVIN"))
-////                list.add(Person("BING"))
-////                list.add(Person("BOY"))
+        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+        val student: List<Person> = databaseHandler.GetStudentList()
+
+
+        for (e in student) {
+            list.add(Person(e.studentno,  e.firstname, e.lastname, e.sectioncode, e.grp))
+
+        }
+
+
 
         val adapter = NewAdapter(this, list)
         recPerson.adapter = adapter
-
-
     }
 }

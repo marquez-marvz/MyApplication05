@@ -116,8 +116,8 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
 
 
 
-    fun  GetStudentList():List<StudentModel>{
-        val studentList:ArrayList<StudentModel> = ArrayList<StudentModel>()
+    fun  GetStudentList():List<Person>{
+        val studentList:ArrayList<Person> = ArrayList<Person>()
         val selectQuery = "SELECT  * FROM $TABLE_NAME"
         val db = this.readableDatabase
         var cursor: Cursor? = null
@@ -135,7 +135,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
                 var lname= cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
                 var grp= cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
                 var section= cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
-                val emp= StudentModel(sn, fname, lname,  grp, section)
+                val emp= Person(sn, fname, lname, section, grp)
                 studentList.add(emp)
             } while (cursor.moveToNext())
         }

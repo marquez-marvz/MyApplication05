@@ -117,9 +117,6 @@ class Database : AppCompatActivity() {
 //
 //        }
 
-        btnAdd.setOnClickListener {
-            ShowDialog("ADD", -1, this)
-        }
 
         lvwstudent.setOnItemClickListener { adapterView: AdapterView<*>?,
                                             view: View?, position: Int, l: Long ->
@@ -205,125 +202,23 @@ class Database : AppCompatActivity() {
         ViewRecord()
     }
 
-        fun ShowDialog(status:String, position:Int, context: Context) {
-            val dlgstudent = LayoutInflater.from(context).inflate(R.layout.dialog_student, null)
-            val mBuilder = AlertDialog.Builder(context )
-                .setView(dlgstudent)
-                .setTitle("Filename to be imported")
-            val studentDialog = mBuilder.show()
-            studentDialog.setCanceledOnTouchOutside(false);
 
 
-            if (status == "ADD") {
-                dlgstudent.txtstudentnumber.setText("")
-                dlgstudent.txtfirstname.setText("")
-                dlgstudent.txtlastname.setText("")
-                StatusTextBox(true, dlgstudent)
-
-                // dlgstudent.btnDelete
-            } else if (status == "VIEW") {
-                dlgstudent.txtstudentnumber.setText(list[position].sn)
-                dlgstudent.txtfirstname.setText(list[position].fname)
-                dlgstudent.txtlastname.setText(list[position].lname)
-                //Msgbox(list[position].section)
-         dlgstudent.cbogroup.setSelection(GetGroupIndex(list[position].grpNumber, context))
-                dlgstudent.cbosection.setSelection(GetSectionIndex(list[position].section, context))
-                dlgstudent.btnSaveRecord.setText("EDIT")
-
-////            txtfirstname.setText(list[position].fname)
-////            txtlastname.setText(list[position].lname)
-                //dlgstudent.btnDelete
-            }
-
-
-
-
-
-            dlgstudent.btnSaveRecord.setOnClickListener {
-                val buttonText: String = dlgstudent.btnSaveRecord.getText().toString()
-
-                val studentNumber = dlgstudent.txtstudentnumber.text.toString()
-                val firstName = dlgstudent.txtfirstname.text.toString()
-                val lastName = dlgstudent.txtlastname.text.toString()
-                val grpNumber = dlgstudent.cbogroup.getSelectedItem().toString();
-                val section = dlgstudent.cbosection.getSelectedItem().toString();
-                val db: DatabaseHandler = DatabaseHandler(context)
-                when (buttonText) {
-                    "SAVE RECORD" -> {
-                        var status = db.ManageStudent(
-                            "ADD",
-                            studentNumber,
-                            firstName,
-                            lastName,
-                            grpNumber,
-                            section
-                        )
-                        studentDialog.dismiss()
-                        ViewRecord()
-                    }
-
-                    "EDIT" -> {
-                        StatusTextBox(true, dlgstudent)
-                        dlgstudent.btnSaveRecord.setText("SAVE CHANGES")
-                        dlgstudent.txtstudentnumber.isEnabled = false;
-                    }
-
-                    "SAVE CHANGES" -> {
-                        var status = db.ManageStudent(
-                            "EDIT",
-                            studentNumber,
-                            firstName,
-                            lastName,
-                            grpNumber,
-                            section
-                        )
-                        studentDialog.dismiss()
-                       // ViewRecord(context)
-
-                    }
-                }//end when
-            }    //clickl
-
-
-            dlgstudent.btnDelete.setOnClickListener {
-                val studentNumber = dlgstudent.txtstudentnumber.text.toString()
-                val firstName = dlgstudent.txtfirstname.text.toString()
-                val lastName = dlgstudent.txtlastname.text.toString()
-                val db: DatabaseHandler = DatabaseHandler(context)
-                var status = db.ManageStudent("DELETE", studentNumber)
-                studentDialog.dismiss()
-                ViewRecord()
-            }//btndelete
-        }//btnadd
+//            dlgstudent.btnDelete.setOnClickListener {
+//                val studentNumber = dlgstudent.txtstudentnumber.text.toString()
+//                val firstName = dlgstudent.txtfirstname.text.toString()
+//                val lastName = dlgstudent.txtlastname.text.toString()
+//                val db: DatabaseHandler = DatabaseHandler(context)
+//                var status = db.ManageStudent("DELETE", studentNumber)
+//                studentDialog.dismiss()
+//                ViewRecord()
+//            }//btndelete
+//        }//btnadd
 
     fun DatabaseUtility(context: Context){
         val db: DatabaseHandler = DatabaseHandler(context)
         //db.getWritableDatabase()
         //db.ShowField()
-    }
-    fun StatusTextBox(stat:Boolean, dlgstudent:View) {
-        dlgstudent.txtstudentnumber.isEnabled = stat
-        dlgstudent.txtfirstname.isEnabled = stat
-        dlgstudent.txtlastname.isEnabled = stat
-        dlgstudent.cbogroup.isClickable = stat
-        dlgstudent.cbosection.isClickable = stat
-    }
-
-    fun GetGroupIndex(search:String, context:Context):Int{
-           // val res: Resources = resources
-            val arrGroup:Array<String> = context.getResources().getStringArray(R.array.grpNumber)
-            val index = arrGroup.indexOf(search)
-           // Msgbox(p.toString() + "")
-        //getResources().getStringArray(R.array.your_string_array)
-        return index
-
-    }
-
-    fun GetSectionIndex(search:String, context:Context):Int{
-        val arrSection:Array<String> =  context.getResources().getStringArray(R.array.section_choice)
-        val index = arrSection.indexOf(search)
-        return index
-
     }
 
 

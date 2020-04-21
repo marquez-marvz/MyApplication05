@@ -78,7 +78,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
         contentValues.put(TBSTUDENT_LAST, lastname) // EmpModelClass Phone
         contentValues.put(TBSTUDENT_GRP, grpnumber) // EmpModelClass Phone
         contentValues.put(TBSTUDENT_SECTION, section) // EmpModelClass Phone
-        var status:Boolean;
+        var status:Boolean=false;
         when (crudStatus) {
             "ADD" -> {
                 val success = db.insert("tbstudent", null, contentValues)
@@ -105,7 +105,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
             }//edit
 
         }//when
-        return false;
+        return status
         db.close()
     }
 

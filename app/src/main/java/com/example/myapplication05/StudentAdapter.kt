@@ -32,7 +32,7 @@ class StudentAdapter (var myContext: Context , var resources:Int, var myItems:Li
         delete.setOnClickListener {
             Toast.makeText(this.context, position.toString(), Toast.LENGTH_LONG).show();
             var db: Database = Database();
-            db.ShowDialog("VIEW", position, myContext)
+            //db.ShowDialog("VIEW", position, myContext)
 
             // db.Sample("VIEW", position)
             this.notifyDataSetChanged()
@@ -43,6 +43,8 @@ class StudentAdapter (var myContext: Context , var resources:Int, var myItems:Li
         lname.text = theItem.lname
         return view
     }
+
+
 
     }
 

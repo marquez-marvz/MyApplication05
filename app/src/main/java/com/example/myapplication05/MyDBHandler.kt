@@ -116,15 +116,22 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
 
 
 
-    fun  GetStudentList():List<Person>{
-        val studentList:ArrayList<Person> = ArrayList<Person>()
-        val selectQuery = "SELECT  * FROM $TABLE_NAME"
+    fun  GetStudentList(category:String,section:String="",grp:String="", name:String="" ):List<Person> {
+        val studentList: ArrayList<Person> = ArrayList<Person>()
+        var sql: String=""
+        when (category) {
+            "ALL" -> sql = "SELECT  * FROM $TABLE_NAME"
+            "SECTION" -> sql = "SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section'"
+        }
+
+
+
         val db = this.readableDatabase
         var cursor: Cursor? = null
         try{
-            cursor = db.rawQuery(selectQuery, null)
+            cursor = db.rawQuery(sql, null)
         }catch (e: SQLiteException) {
-            db.execSQL(selectQuery)
+            db.execSQL(sql)
             return ArrayList()
         }
 
@@ -135,7 +142,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
                 var lname= cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
                 var grp= cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
                 var section= cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
-                val emp= Person(sn, fname, lname, section, grp)
+                val emp= Person(sn, fname, lname, grp, section)
                 studentList.add(emp)
             } while (cursor.moveToNext())
         }

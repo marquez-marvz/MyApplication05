@@ -2,17 +2,24 @@ package com.example.myapplication05
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.database.*
 import kotlinx.android.synthetic.main.dialog_student.view.*
+import kotlinx.android.synthetic.main.filename.view.*
 import kotlinx.android.synthetic.main.myrecycle.*
 import kotlinx.android.synthetic.main.myrecycle.btnAdd
+import java.io.*
+import kotlinx.android.synthetic.main.myrecycle.btnExport as btnExport1
+import kotlinx.android.synthetic.main.myrecycle.btnImport as btnImport1
 
 class MyRecycle : AppCompatActivity() {
     companion object {
@@ -30,16 +37,161 @@ class MyRecycle : AppCompatActivity() {
         }
 
 
+        btnExport.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.filename, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("Filename to be imported")
+            val mAlertDialog = mBuilder.show()
+
+            mDialogView.btnDialogOK.setOnClickListener {
+                val filename = mDialogView.txtDialogFileName.text.toString() + ".csv"
+                mAlertDialog.dismiss()
+                WriteCSV(filename)
+            }
+
+
+        }
+
+        btnImport.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.filename, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("Filename to be imported")
+            val mAlertDialog = mBuilder.show()
+
+            mDialogView.btnDialogOK.setOnClickListener {
+                val filename = mDialogView.txtDialogFileName.text.toString()
+                mAlertDialog.dismiss()
+                ReadCSV(filename)
+
+            }
+        }
+
+        cboSectionSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                UpdateListContent("SECTION")
+                adapter!!.notifyDataSetChanged()
+            }
+
+        }
+
+
+
+
 
     }
 
-    fun UpdateListContent() {
+
+    fun WriteCSV(filename:String) {
+        val FILENAME = filename
+        val heading = "SN,FirstNane,LastName"
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+            23
+        )
+
+        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val myFile = File(folder, FILENAME)
+        val fstream = FileOutputStream(myFile)
+        fstream.write(heading.toByteArray())
+        fstream.write("\n".toByteArray())
+        for (mylist in list) {
+            var myData = mylist.studentno + "," + mylist.firstname + "," + mylist.lastname
+            myData = myData + "," + mylist.sectioncode + "," + mylist.grp
+            fstream.write(myData.toByteArray())
+            fstream.write("\n".toByteArray())
+        }
+        fstream.close()
+    }
+
+    fun ReadCSV(filename:String) {
+        val FILENAME = filename
+        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val myFile = File(folder, FILENAME)
+
+        Toast.makeText(this, filename,   Toast.LENGTH_SHORT).show();
+
+        var fileInputStream = FileInputStream(myFile)
+
+
+        var inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
+        val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
+       var text: String = ""
+        var line = bufferedReader.readLine()
+        while (line != null) {
+            text = line.toString()
+            line = bufferedReader.readLine()
+            var token = text.split(",").toTypedArray()
+            var saveStatus = true
+
+
+
+            if (token.size <5)
+                saveStatus = false;
+            if (token[0] == "")
+                saveStatus = false;
+            if (token[1] == "")
+                saveStatus = false;
+            if (token[2] == "")
+                saveStatus = false;
+            if (GetGroupIndex(token[3],this) <0)
+                saveStatus = false;
+            if (GetSectionIndex(token[4],this) < 0 )
+                saveStatus = false;
+
+            if (saveStatus == true) {
+                val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+                var status = databaseHandler.ManageStudent(
+                    "ADD",
+                    token[0],
+                    token[1],
+                    token[2],
+                    token[3],
+                    token[4]
+                )
+                if (status == true)
+                    list.add(Person(token[0], token[1], token[2], token[3],  token[4]))
+
+
+            }
+
+//            //ViewRecord()
+        }
+        fileInputStream.close()
+        adapter!!.notifyDataSetChanged()
+        Toast.makeText(this, "SUCESS",   Toast.LENGTH_SHORT).show();
+
+      }
+
+
+
+
+
+    fun UpdateListContent(category:String= "ALL") {
         val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-        val student: List<Person> = databaseHandler.GetStudentList()
+        val student: List<Person>
+
+        list.clear()
+        when (category) {
+            "SECTION" -> {
+                var section = cboSectionSearch.getSelectedItem().toString();
+                student = databaseHandler.GetStudentList("SECTION", section)
+                Toast.makeText(getBaseContext(),"Hello World123",   Toast.LENGTH_SHORT).show();
+            }
+             else -> student = databaseHandler.GetStudentList(category)
+        }
 
 
         for (e in student) {
-            list.add(Person(e.studentno,  e.firstname, e.lastname, e.sectioncode, e.grp))
+            list.add(Person(e.studentno,  e.firstname, e.lastname,  e.grp, e.sectioncode))
         }
 
     }
@@ -130,17 +282,8 @@ class MyRecycle : AppCompatActivity() {
 
 
 
-        dlgstudent.btnDelete.setOnLongClickListener {
-            val studentNumber = dlgstudent.txtstudentnumber.text.toString()
-            val firstName = dlgstudent.txtfirstname.text.toString()
-                val lastName = dlgstudent.txtlastname.text.toString()
-                val db: DatabaseHandler = DatabaseHandler(context)
-                var status = db.ManageStudent("DELETE", studentNumber)
-            //list.add(Person(studentNumber, firstName, lastName, grpNumber,  section))
-            list.removeAt(position)
-            adapter!!.notifyDataSetChanged()
+        dlgstudent.btnClose.setOnClickListener {
             studentDialog.dismiss()
-            true
         }
 
 

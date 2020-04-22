@@ -88,7 +88,7 @@ class NewAdapter (val context:Context, val person:List<Person>):RecyclerView.Ada
                 itemView.txtFirstName.text = pp!!.firstname
                 itemView.txtLastName.text =pp!!.lastname
                 itemView.txtSectionCode.text =pp!!.sectioncode
-                itemView.txtGroup.text =pp!!.grp
+            itemView.txtGroup.text =pp!!.grp
                 this.currentPerson= pp;
                 this.currentPosition = pos
         }

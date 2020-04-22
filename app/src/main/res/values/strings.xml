@@ -3,6 +3,7 @@
     <string name="student_prompt">Choose a Group</string>
 
     <string-array name="grpNumber">
+        <item>NONE</item>
         <item>G-1</item>
         <item>G-2</item>
         <item>G-3</item>

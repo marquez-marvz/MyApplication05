@@ -116,13 +116,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context,"dbstudent",nu
 
 
 
-    fun  GetStudentList(category:String,section:String="",grp:String="", name:String="" ):List<Person> {
+    fun  GetStudentList(category:String,section:String="",grp:String="", lastname:String="" ):List<Person> {
         val studentList: ArrayList<Person> = ArrayList<Person>()
         var sql: String=""
         when (category) {
             "ALL" -> sql = "SELECT  * FROM $TABLE_NAME"
-            "SECTION" -> sql = "SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section'"
+            "SECTION" -> sql = "SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section' and $TBSTUDENT_GRP like '$grp%'"
+            "NAME" -> sql = "SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section' and $TBSTUDENT_LAST like '$lastname%'"
         }
+       // Toast.makeText(this.context,  sql,  Toast.LENGTH_LONG).show();
 
 
 

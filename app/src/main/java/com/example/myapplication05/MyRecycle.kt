@@ -3,23 +3,23 @@ package com.example.myapplication05
 import android.content.Context
 import android.os.Bundle
 import android.os.Environment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.widget.AdapterView
-import android.widget.LinearLayout
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.database.*
 import kotlinx.android.synthetic.main.dialog_student.view.*
 import kotlinx.android.synthetic.main.filename.view.*
 import kotlinx.android.synthetic.main.myrecycle.*
-import kotlinx.android.synthetic.main.myrecycle.btnAdd
 import java.io.*
-import kotlinx.android.synthetic.main.myrecycle.btnExport as btnExport1
-import kotlinx.android.synthetic.main.myrecycle.btnImport as btnImport1
+
 
 class MyRecycle : AppCompatActivity() {
     companion object {
@@ -31,6 +31,25 @@ class MyRecycle : AppCompatActivity() {
         setContentView(R.layout.myrecycle)
         UpdateListContent();
         ViewRecord()
+        val arrGroup:Array<String> = this.getResources().getStringArray(R.array.grpNumber)
+        val arrSection:Array<String> =  this.getResources().getStringArray(R.array.section_choice)
+
+
+        var  groupAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrGroup)
+        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cboGroupSearch.setAdapter(groupAdapter);
+
+        var  sectionAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrSection)
+        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cboSectionSearch.setAdapter(sectionAdapter);
+
+//        cboGroupSearch.setSelection(0)
+//        cboGroupSearch.setSelection(spinnerArrayAdapter.getCount()); //set the hint the default selection so it appears on launch.
+
+
+
+
+
 
         btnAdd.setOnClickListener {
             ShowDialog("ADD",this )
@@ -69,9 +88,7 @@ class MyRecycle : AppCompatActivity() {
         }
 
         cboSectionSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
@@ -80,6 +97,46 @@ class MyRecycle : AppCompatActivity() {
             }
 
         }
+
+
+        cboGroupSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                UpdateListContent("SECTION")
+                adapter!!.notifyDataSetChanged()
+            }
+        }
+
+        txtSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+//
+
+
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                UpdateListContent("NAME")
+                adapter!!.notifyDataSetChanged()
+            }
+        })
+
+        txtSearch.setOnFocusChangeListener(OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                var group = cboGroupSearch.getSelectedItem().toString();
+                if (group != "NONE")
+                    cboGroupSearch.setSelection(0)
+
+            } else {
+
+            }
+        })
 
 
 
@@ -171,22 +228,35 @@ class MyRecycle : AppCompatActivity() {
 
       }
 
-
-
-
-
     fun UpdateListContent(category:String= "ALL") {
         val databaseHandler: DatabaseHandler = DatabaseHandler(this)
         val student: List<Person>
 
-        list.clear()
+ list.clear()
         when (category) {
-            "SECTION" -> {
+           "SECTION" -> {
                 var section = cboSectionSearch.getSelectedItem().toString();
-                student = databaseHandler.GetStudentList("SECTION", section)
-                Toast.makeText(getBaseContext(),"Hello World123",   Toast.LENGTH_SHORT).show();
+                var group = cboGroupSearch.getSelectedItem().toString();
+                if (group== "NONE")
+                    student = databaseHandler.GetStudentList("SECTION", section)
+                else
+                    student = databaseHandler.GetStudentList("SECTION", section,group)
+
+                Toast.makeText(getBaseContext(),"$section $group",   Toast.LENGTH_SHORT).show();
             }
-             else -> student = databaseHandler.GetStudentList(category)
+
+            "NAME" -> {
+                var section = cboSectionSearch.getSelectedItem().toString();
+                var lastname = txtSearch.text.toString();
+
+                student = databaseHandler.GetStudentList("NAME", section, "", lastname)
+
+               // Toast.makeText(getBaseContext(),"$section $lastname",   Toast.LENGTH_SHORT).show();
+            }
+
+
+
+            else -> student = databaseHandler.GetStudentList(category)
         }
 
 
@@ -204,9 +274,6 @@ class MyRecycle : AppCompatActivity() {
         adapter = NewAdapter(this, list)
         recPerson.adapter = adapter
     }
-
-
-
 
     fun ShowDialog(status:String, context: Context,  person:Person?=null, position:Int=-1) {
         val dlgstudent = LayoutInflater.from(context).inflate(R.layout.dialog_student, null)
@@ -289,7 +356,6 @@ class MyRecycle : AppCompatActivity() {
 
     }//ShowDialog
 
-
     fun StatusTextBox(stat:Boolean, dlgstudent: View) {
         dlgstudent.txtstudentnumber.isEnabled = stat
         dlgstudent.txtfirstname.isEnabled = stat
@@ -315,6 +381,10 @@ class MyRecycle : AppCompatActivity() {
 
     }
 
+    fun Msgbox(msg: String ){
+        Toast.makeText(this, "$msg",   Toast.LENGTH_SHORT).show();
+
+    }
 
 
 

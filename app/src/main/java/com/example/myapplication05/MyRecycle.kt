@@ -31,20 +31,19 @@ class MyRecycle : AppCompatActivity() {
         setContentView(R.layout.myrecycle)
         UpdateListContent();
         ViewRecord()
-        val arrGroup:Array<String> = this.getResources().getStringArray(R.array.grpNumber)
-        val arrSection:Array<String> =  this.getResources().getStringArray(R.array.section_choice)
-
-
-        var  groupAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrGroup)
-        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cboGroupSearch.setAdapter(groupAdapter);
-
-        var  sectionAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrSection)
-        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cboSectionSearch.setAdapter(sectionAdapter);
 
 //        cboGroupSearch.setSelection(0)
-//        cboGroupSearch.setSelection(spinnerArrayAdapter.getCount()); //set the hint the default selection so it appears on launch.
+//        cboGroupSearcval arrGroup:Array<String> = this.getResources().getStringArray(R.array.grpNumber)
+//        val arrSection:Array<String> =  this.getResources().getStringArray(R.array.section_choice)
+//
+//
+//        var  groupAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrGroup)
+//        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        cboGroupSearch.setAdapter(groupAdapter);
+//
+//        var  sectionAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrSection)
+//        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        cboSectionSearch.setAdapter(sectionAdapter);h.setSelection(spinnerArrayAdapter.getCount()); //set the hint the default selection so it appears on launch.
 
 
 

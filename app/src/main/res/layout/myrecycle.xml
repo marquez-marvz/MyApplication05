@@ -76,10 +76,6 @@
 
             android:prompt="@string/section_prompt" />
 
-
-
-
-
     </RelativeLayout>
 
 

@@ -41,7 +41,6 @@ class NewAdapter (val context:Context, val person:List<Person>):RecyclerView.Ada
         init {
             itemView.setOnClickListener {
                 // Toast.makeText(context, currentPerson!!.firstname + "", Toast.LENGTH_SHORT).show();
-                // Toast.makeText(context, position.toString() + "", Toast.LENGTH_SHORT).show();
                 var A: MyRecycle = MyRecycle()
                 A.ShowDialog("VIEW", context, currentPerson, position)
             }
@@ -53,7 +52,7 @@ class NewAdapter (val context:Context, val person:List<Person>):RecyclerView.Ada
 
                // Toast.makeText(context, position.toString() + "", Toast.LENGTH_SHORT).show();
 
-                val dlgconfirm = LayoutInflater.from(context).inflate(R.layout.confirm, null)
+                val dlgconfirm = LayoutInflater.from(context).inflate(R.layout.inputbox, null)
                 val mBuilder = AlertDialog.Builder(context)
                     .setView(dlgconfirm)
                     .setTitle("Do you like to delete $firstName  $lastName  ?")
@@ -61,11 +60,11 @@ class NewAdapter (val context:Context, val person:List<Person>):RecyclerView.Ada
                 confirmDialog.setCanceledOnTouchOutside(false);
 
                 dlgconfirm.btnYes.setOnClickListener {
-                    val db: DatabaseHandler = DatabaseHandler(context)
-                    var status = db.ManageStudent("DELETE", studentNumber)
-                    MyRecycle.list.removeAt(currentPosition)
-                    notifyDataSetChanged()
-                    confirmDialog.dismiss()
+//                    val db: DatabaseHandler = DatabaseHandler(context)
+//                    var status = db.ManageStudent("DELETE", studentNumber)
+//                    MyRecycle.list.removeAt(currentPosition)
+//                    notifyDataSetChanged()
+//                    confirmDialog.dismiss()
                 }
 
                 dlgconfirm.btnNo.setOnClickListener {

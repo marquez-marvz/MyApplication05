@@ -24,34 +24,40 @@ import kotlin.text.Typography.section
 class SchedMain : AppCompatActivity() {
     companion object {
         var adapter: ScheduleAdapter? = null;
-        var list = arrayListOf<ScheduleModel>()
+        var  scheduleList = arrayListOf<ScheduleModel>()
 
-        fun UpdateListContent(section: String, myDate:String,  context: Context) {
+        fun UpdateListContent(context: Context) {
+            var section: String = Util.CURRENT_SECTION
+            var myDate: String = Util.CURRENT_DATE
             val databaseHandler: DatabaseHandler = DatabaseHandler(context)
-            val monthname =  myDate.substring(0, 3)
+            val monthname = myDate.substring(0, 3)
             val schedlist: List<ScheduleModel>
-            schedlist = databaseHandler.GetScheduleList(section,  monthname)
+            schedlist = databaseHandler.GetScheduleList(section, monthname)
 
-            list.clear()
+            scheduleList.clear()
 
             for (sched in schedlist) {
-                list.add(ScheduleModel(sched.ampm, sched.myDate, sched.sectioncode, sched.renark))
+                scheduleList.add(ScheduleModel(sched.ampm, sched.myDate, sched.sectioncode, sched.renark))
             }
         }
 
     }
 
     private var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
-    val myContext:Context = this;
+    val myContext: Context = this;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sched_main)
 
-        //Util.DatabaseUpGrade(this)
-        //Util.ShowTableField(this, "tbsched")
+       Util.DatabaseUpGrade(this)
+      Util.ShowTableField(this, "TBATTENDANCE_QUERY")
         SetDate()
 
         ViewRecord()
+
+
+        val db: DatabaseHandler = DatabaseHandler(this);
+        db.ShowAllRecord("TBATTENDANCE_QUERY")
 
 
         //DatabaseUtility(this)
@@ -103,8 +109,10 @@ class SchedMain : AppCompatActivity() {
             val section = cboSectionSched.getSelectedItem().toString();
             val db: DatabaseHandler = DatabaseHandler(this);
             var status = db.ManageSched("ADD", ampm, myDate, section)
-            UpdateListContent(section,myDate, this);
+            db.AddStudetAttendance(myDate, ampm, section)
+            UpdateListContent( this);
             adapter!!.notifyDataSetChanged()
+
 
         }
 
@@ -113,14 +121,20 @@ class SchedMain : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val section = cboSectionSched.getSelectedItem().toString();
+                Util.CURRENT_SECTION = section;
                 val myDate = txtDate.text.toString()
-                UpdateListContent(section,myDate, mycontext);
+                UpdateListContent(mycontext);
                 adapter!!.notifyDataSetChanged()
+
             }
         }
-
 
 
     }
@@ -145,6 +159,7 @@ class SchedMain : AppCompatActivity() {
         //  Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year)
         val date = monthName[myMonth] + " " + Util.ZeroPad(myDay, 2)
 
+
         txtDate.setText(date)
         btnAmPm
         if (ampm == 1)
@@ -152,9 +167,10 @@ class SchedMain : AppCompatActivity() {
         else
             btnAmPm.setText("AM")
 
-        val section = cboSectionSched.getSelectedItem().toString();
-        val myDate = txtDate.text.toString()
-        UpdateListContent(section, myDate, this)
+        Util.CURRENT_DATE = txtDate.text.toString()
+        Util.CURRENT_SECTION = cboSectionSched.getSelectedItem().toString();
+
+        UpdateListContent(this)
 
     }
 
@@ -164,7 +180,7 @@ class SchedMain : AppCompatActivity() {
         layoutmanager.orientation = LinearLayoutManager.VERTICAL;
         listSched.layoutManager = layoutmanager
 
-        adapter = ScheduleAdapter(this, list)
+        adapter = ScheduleAdapter(this, scheduleList)
         listSched.adapter = adapter
     }
 

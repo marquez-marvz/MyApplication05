@@ -1,12 +1,15 @@
 package com.example.myapplication05
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.confirm.view.*
+import kotlinx.android.synthetic.main.inputbox.view.*
 import kotlinx.android.synthetic.main.sched_main.view.*
 import kotlinx.android.synthetic.main.sched_main.view.cboSectionSched
 import kotlinx.android.synthetic.main.sched_row.view.*
@@ -39,38 +42,42 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
         var currentPosition: Int = 0
 
         init {
-            val mymain = LayoutInflater.from(context).inflate(R.layout.sched_main, null)
-            val myDate = currentSched!!.myDate
-            val ampm = currentSched!!.ampm
-            val section = mymain.cboSectionSched.getSelectedItem().toString();
-//            itemView.setOnClickListener {
-//                // Toast.makeText(context, currentPerson!!.firstname + "", Toast.LENGTH_SHORT).show();
-//                // Toast.makeText(context, position.toString() + "", Toast.LENGTH_SHORT).show();
-//                var A: MyRecycle = MyRecycle()
-//                A.ShowDialog("VIEW", context, currentSched, position)
-//            }
-//
-//            itemView.setOnLongClickListener {
-//
-//
-//
-//                true
-//            }
-//
+
+            itemView.setOnClickListener {
+                val intent = Intent(context, AttendanceMain::class.java)
+                context.startActivity(intent)
+                 Util.ATT_CURRENT_DATE = currentSched!!.myDate
+                 Util.ATT_CURRENT_SECTION = Util.CURRENT_SECTION
+                 Util.ATT_CURRENT_AMPM=currentSched!!.ampm
+            }
+//            val intent = Intent(this, NextActivity::class.java)
+//            (this@CurrentClassNam
+
             itemView.rowBtnDelete.setOnClickListener {
+                val mymain = LayoutInflater.from(context).inflate(R.layout.sched_main, null)
+                // LayoutInflater layoutInflater = getLayoutInflater(null);
+                //  View total=layoutInflater.inflate(fragment_shopping_cart, parent, false);
+
+                val myDate = currentSched!!.myDate
+                val ampm = currentSched!!.ampm
+                val section = Util.CURRENT_SECTION
+
+                // val thedate  = txtDate.text;
 
                 val txtDate = mymain.txtDate.text.toString()
                 val dlgconfirm = LayoutInflater.from(context).inflate(R.layout.confirm, null)
                 val mBuilder = AlertDialog.Builder(context)
                     .setView(dlgconfirm)
-                    .setTitle("Do you like to delete $myDate  $ampm  ?")
+                    .setTitle("Do you like to delete $myDate  $ampm  in $section ")
                 val confirmDialog = mBuilder.show()
                 confirmDialog.setCanceledOnTouchOutside(false);
 
                 dlgconfirm.btnYes.setOnClickListener {
+
+
                     val db: DatabaseHandler = DatabaseHandler(context)
-                    var status = db.ManageSched("DELETE", ampm, txtDate, section)
-                    SchedMain.UpdateListContent(section, myDate,  context)
+                    var status = db.ManageSched("DELETE", ampm, myDate, section)
+                    SchedMain.UpdateListContent(context)
                     notifyDataSetChanged()
                     confirmDialog.dismiss()
                 }
@@ -83,6 +90,10 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
 
 
             itemView.setOnLongClickListener {
+                val myDate = currentSched!!.myDate
+                val ampm = currentSched!!.ampm
+
+                val section = Util.CURRENT_SECTION
 
                 val dlgInputBox = LayoutInflater.from(context).inflate(R.layout.inputbox, null)
                 val mBuilder = AlertDialog.Builder(context)
@@ -90,13 +101,17 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
                     .setTitle("Input remark for  $myDate $ampm?")
                 val inputBoxDialog = mBuilder.show()
                 inputBoxDialog.setCanceledOnTouchOutside(false);
+                dlgInputBox.txtremark.setText(currentSched!!.renark)
 
-                dlgInputBox.btnOk.setOnClickListener {
+
+                dlgInputBox.btnOK.setOnClickListener {
+                    val remark = dlgInputBox.txtremark.text.toString()
                     val db: DatabaseHandler = DatabaseHandler(context)
-                    var status = db.ManageSched("EDIT",ampm, myDate,section, remsrk)
-                    MyRecycle.list.removeAt(currentPosition)
+                    var status = db.ManageSched("EDIT", ampm, myDate, section, remark)
+                    SchedMain.UpdateListContent(context)
                     notifyDataSetChanged()
                     inputBoxDialog.dismiss()
+
                 }
 
                 dlgInputBox.btnCancel.setOnClickListener {
@@ -113,6 +128,7 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
         fun setData(mysched: ScheduleModel?, pos: Int) {
             itemView.rowDate.text = mysched!!.ampm
             itemView.rowAmPm.text = mysched!!.myDate
+            itemView.rowremark.text = mysched!!.renark
             this.currentSched = mysched;
             this.currentPosition = pos
         }

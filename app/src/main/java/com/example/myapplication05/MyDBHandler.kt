@@ -42,13 +42,9 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
         private val QRATTENDANCE_STUDENTNO = "StudentNumber"
         private val QRATTENDANCE_STATUS = "AttendanceStatus"
         private val QRATTENDANCE_REMARK = "Remark"
-        private val QRATTENDANCE_FIRST= "FirstName"
-        private val QRATTENDANCE_LAST= "LastName"
+        private val QRATTENDANCE_FIRST = "FirstName"
+        private val QRATTENDANCE_LAST = "LastName"
         private val QRATTENDANCE_GRP = "GrpNumber"
-
-
-
-
 
 
     }
@@ -61,7 +57,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
 
     }
 
-    fun ShowField(tableName: String):String {
+    fun ShowField(tableName: String): String {
         var db: SQLiteDatabase;
         db = getReadableDatabase();
         var cursor: Cursor? = db.query(tableName, null, null, null, null, null, null);
@@ -72,7 +68,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
         //arraylist.add("Geeks")
 
         for (c in col) {
-         field.add(c)
+            field.add(c)
         }
         val fields = arrayOfNulls<String>(field.size)
         field.toArray(fields)
@@ -303,14 +299,79 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
     }
 
 
-    fun GetAttendanceList(mydate: String, ampm: String, section: String): List<AttendanceModel> {
+    fun CountAttendance(attStatus: String): String {
+        var mydate: String = Util.ATT_CURRENT_DATE
+        var ampm: String = Util.ATT_CURRENT_AMPM
+        var section: String = Util.ATT_CURRENT_SECTION
+        var sql = """
+                SELECT * FROM TBATTENDANCE_QUERY 
+                WHERE $TBATTENDANCE_DATE='$mydate' 
+                and $TBATTENDANCE_TIME='$ampm' 
+                and $TBATTENDANCE_SECTION='$section'
+                and $TBATTENDANCE_STATUS='$attStatus'
+            """
 
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(sql, null)
+        val count = cursor.count
+        cursor.close()
+        Util.Msgbox(context,  count.toString())
+        return count.toString()
+
+    }
+
+    fun GetAttendanceList(category: String = "ALL", str: String = ""): List<AttendanceModel> {
+        var mydate: String = Util.ATT_CURRENT_DATE
+        var ampm: String = Util.ATT_CURRENT_AMPM
+        var section: String = Util.ATT_CURRENT_SECTION
         val attendanceList: ArrayList<AttendanceModel> = ArrayList<AttendanceModel>()
-
-         var sql = "SELECT * FROM TBATTENDANCE_QUERY WHERE $TBATTENDANCE_DATE='$mydate' and $TBATTENDANCE_TIME='$ampm' and $TBSCHED_SECTION='$section'"
-//        val success = db.delete("TBATTENDANCR",  where,null)
+        val sql: String
 
 
+
+        when (category) {
+            "GROUP" -> {
+                sql = """
+                SELECT * FROM TBATTENDANCE_QUERY 
+                WHERE $QRATTENDANCE_DATE='$mydate' 
+                and $QRATTENDANCE_TIME='$ampm' 
+                and $QRATTENDANCE_SECTION='$section'
+                and $QRATTENDANCE_GRP like'$str%'
+                """
+            }//group
+
+            "NAME" -> {
+                sql = """
+                SELECT * FROM TBATTENDANCE_QUERY 
+                WHERE $QRATTENDANCE_DATE='$mydate' 
+                and $QRATTENDANCE_TIME='$ampm' 
+                and $QRATTENDANCE_SECTION='$section'
+                and $QRATTENDANCE_LAST like'$str%'
+                """
+            }//group
+
+            "ATTENDANCE" -> {
+                sql = """
+                SELECT * FROM TBATTENDANCE_QUERY 
+                WHERE $QRATTENDANCE_DATE='$mydate' 
+                and $QRATTENDANCE_TIME='$ampm' 
+                and $QRATTENDANCE_SECTION='$section'
+                and $QRATTENDANCE_STATUS ='$str'
+                """
+            }//group
+
+
+            else -> {
+                sql = """
+                SELECT * FROM TBATTENDANCE_QUERY 
+                WHERE $TBATTENDANCE_DATE='$mydate' 
+                and $TBATTENDANCE_TIME='$ampm' 
+                and $TBATTENDANCE_SECTION='$section'
+                """
+            } //else
+        }//when
+
+        //Util.Msgbox(context, sql)
 
         val db = this.readableDatabase
         var cursor: Cursor? = null
@@ -328,23 +389,59 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
                 var sectionCode = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_SECTION))
                 var remark = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_REMARK))
                 var studentNo = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STUDENTNO))
-                var attendanceStatus= cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
-                var fname= cursor.getString(cursor.getColumnIndex(QRATTENDANCE_FIRST))
-                var lname= cursor.getString(cursor.getColumnIndex(QRATTENDANCE_LAST))
-                var grp= cursor.getString(cursor.getColumnIndex(QRATTENDANCE_GRP))
-                var completeName = lname + ","  + fname
-                val att = AttendanceModel(ampm, myDate, sectionCode, studentNo, completeName, grp,   attendanceStatus, remark)
+                var attendanceStatus = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
+                var fname = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_FIRST))
+                var lname = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_LAST))
+                var grp = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_GRP))
+                var completeName = lname + "," + fname
+                val att = AttendanceModel(
+                    ampm,
+                    myDate,
+                    sectionCode,
+                    studentNo,
+                    completeName,
+                    grp,
+                    attendanceStatus,
+                    remark
+                )
+                Log.e("stud", "$completeName $attendanceStatus $category")
                 attendanceList.add(att)
             } while (cursor.moveToNext())
         }
-        Util.Msgbox(context, sql)
-        Log.e("RECORD", sql)
-        Log.e("RECORD", attendanceList.size.toString())
+//        Util.Msgbox(context, sql)
+      Log.e("RECORD", sql)
+      Log.e("RECORD", attendanceList.size.toString())
 
         return attendanceList
     }
 
 
+    fun UpdateStudentAttendance(  attStatus: String, studentNo: String ="" )  {
+        var myDate: String = Util.ATT_CURRENT_DATE
+        var ampm: String = Util.ATT_CURRENT_AMPM
+        var section: String = Util.ATT_CURRENT_SECTION
+
+        var sql:String
+             if (studentNo == "") {
+                 sql = """
+              update tbattendance set $TBATTENDANCE_STATUS = '$attStatus'
+              where $TBATTENDANCE_DATE='$myDate' 
+              and $TBATTENDANCE_TIME='$ampm' 
+              and $TBATTENDANCE_SECTION ='$section'
+              """
+             }
+            else{
+                 sql = """
+              update tbattendance set $TBATTENDANCE_STATUS = '$attStatus'
+              where $TBATTENDANCE_DATE='$myDate' 
+              and $TBATTENDANCE_TIME='$ampm' 
+              and $TBATTENDANCE_SECTION ='$section'
+              and $TBATTENDANCE_STUDENTNO ='$studentNo'
+              """
+             }
+        val db = this.writableDatabase
+        db.execSQL(sql)
+    }
 
 
     fun AddStudetAttendance(mydate: String, mytime: String, section: String) {
@@ -370,11 +467,6 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
     }
 
 
-
-
-
-
-
     fun ShowAllRecord(tableName: String) {
         var sql: String = "SELECT  * FROM $tableName"
         val db = this.readableDatabase
@@ -383,7 +475,6 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
 
         val FILENAME = tableName + ".csv"
         val heading = ShowField(tableName)
-
 
 
         val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -397,42 +488,54 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
 //        }
 
 
-
-
-
-         var p:String = ""
+        var p: String = ""
         if (cursor.moveToFirst()) {
             do {
                 when (tableName) {
-                     "TBSTUDENT" -> {
-                        p = cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_STUDENTNO))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_FIRST))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_LAST))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_GRP))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_SECTION))
-                      }
+                    "TBSTUDENT" -> {
+                        p =
+                            cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_STUDENTNO))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_FIRST))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_LAST))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_GRP))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_SECTION))
+                    }
 
                     "TBSCHED" -> {
                         p = cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_TIME))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_DATE))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_SECTION))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_REMARK))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_DATE))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_SECTION))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_REMARK))
                     }
 
                     "TBATTENDANCE" -> {
-                        p = cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_TIME))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_DATE))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_SECTION))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STUDENTNO))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STATUS))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_REMARK))
+                        p =
+                            cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_TIME))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_DATE))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_SECTION))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STUDENTNO))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STATUS))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_REMARK))
                     }
 
                     "TBATTENDANCE_QUERY" -> {
                         p = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_TIME))
                         p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_DATE))
                         p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_SECTION))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STUDENTNO))
+                        p =
+                            p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STUDENTNO))
                         p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
                         p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_REMARK))
                         p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_FIRST))
@@ -441,18 +544,18 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
                     }
                 }
 
-                Util.Msgbox(context, p )    // val emp = Person(sn, fname, lname, grp, section)
+                Util.Msgbox(context, p)    // val emp = Person(sn, fname, lname, grp, section)
                 fstream.write(p.toByteArray())
                 fstream.write("\n".toByteArray())
-                Log.e("RECORD", p )
+                Log.e("RECORD", p)
             } while (cursor.moveToNext())
 
         }
         fstream.close()
     }
 
-
 }
+
 
 
 class ScheduleModel(
@@ -460,10 +563,7 @@ class ScheduleModel(
     var myDate: String,
     var sectioncode: String,
     var renark: String
-) {
-    // class Person (var firstname:String){
-}
-
+)
 
 class AttendanceModel(
     var ampm: String,
@@ -474,7 +574,6 @@ class AttendanceModel(
     var groupNumber:String,
     var attendanceStatus: String,
     var remark: String
-) {
-    // class Person (var firstname:String){
-}
+)
+
 

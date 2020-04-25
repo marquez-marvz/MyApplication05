@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.attendance_main.view.*
 import kotlinx.android.synthetic.main.attendance_row.view.*
+import kotlinx.android.synthetic.main.attendance_main.*
 import kotlin.random.Random
 
 
@@ -20,7 +22,9 @@ class AttendanceAdapter(val context: Context, val attendance: List<AttendanceMod
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val myView = LayoutInflater.from(context).inflate(R.layout.attendance_row, parent, false)
+
         return MyViewHolder((myView))
+
     }
 
     override fun getItemCount(): Int {
@@ -37,52 +41,68 @@ class AttendanceAdapter(val context: Context, val attendance: List<AttendanceMod
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var currentSched: AttendanceModel? = null
+        var currentAttendance: AttendanceModel? = null
         var currentPosition: Int = 0
 
         init {
             itemView.rowBtnPresent.setOnClickListener {
                 DefaultColor();
                 itemView.rowBtnPresent.setBackgroundColor(Color.parseColor("#64B5F6"))
+                AttendanceData("P" )
+                AttendanceMain.AttenceCount(context)
             }
 
             itemView.rowBtnLate.setOnClickListener {
                 DefaultColor();
                 itemView.rowBtnLate.setBackgroundColor(Color.parseColor("#69F0AE"))
+                AttendanceData("L" )
+                AttendanceMain.AttenceCount(context)
             }
 
             itemView.rowBtnAbsent.setOnClickListener {
                 DefaultColor();
                 itemView.rowBtnAbsent.setBackgroundColor(Color.parseColor("#FFB74D"))
+                AttendanceData("A" )
+                AttendanceMain.AttenceCount(context)
             }
 
 
             itemView.rowBtnExcuse.setOnClickListener {
-
                 DefaultColor();
                 itemView.rowBtnExcuse.setBackgroundColor(Color.parseColor("#BA68C8"))
+                AttendanceData("E" )
+                AttendanceMain.AttenceCount(context)
             }
-
-
-
-
-
-
         }
 
         fun DefaultColor(){
             itemView.rowBtnPresent.setBackgroundResource(android.R.drawable.btn_default);
             itemView.rowBtnAbsent.setBackgroundResource(android.R.drawable.btn_default);
             itemView.rowBtnExcuse.setBackgroundResource(android.R.drawable.btn_default);
-            itemView.rowBtnPresent.setBackgroundResource(android.R.drawable.btn_default);
+            itemView.rowBtnLate.setBackgroundResource(android.R.drawable.btn_default);
+        }
+
+        fun AttendanceData(attStatus:String ){
+            var sectionCode = currentAttendance!!.sectionCode
+            var studentNo = currentAttendance!!.studentNo
+            var ampm = currentAttendance!!.ampm
+            var myDate = currentAttendance!!.myDate
+
+            val databaseHandler: DatabaseHandler = DatabaseHandler(context)
+            databaseHandler.UpdateStudentAttendance(  attStatus, studentNo)
         }
 
 
         fun setData(myatt: AttendanceModel?, pos: Int) {
             itemView.rowtxtName.text = myatt!!.completeName
-            //itemView.rowremark.text = myatt!!.remark
-//            itemView.rowremark.text = mysched!!.renark
-            this.currentSched = myatt;
+            DefaultColor()
+            when(myatt!!.attendanceStatus) {
+                "P" -> itemView.rowBtnPresent.setBackgroundColor(Color.parseColor("#64B5F6"))
+                "L" -> itemView.rowBtnLate.setBackgroundColor(Color.parseColor("#69F0AE"))
+                "A" -> itemView.rowBtnAbsent.setBackgroundColor(Color.parseColor("#FFB74D"))
+                "E" ->  itemView.rowBtnExcuse.setBackgroundColor(Color.parseColor("#BA68C8"))
+            }
+            this.currentAttendance = myatt;
             this.currentPosition = pos
         }
     }

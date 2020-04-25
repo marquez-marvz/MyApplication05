@@ -63,8 +63,7 @@ class SchedMain : AppCompatActivity() {
         //DatabaseUtility(this)
         val arrSection: Array<String> = this.getResources().getStringArray(R.array.section_choice)
 
-        var sectionAdapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(this, R.layout.spinner_choice, arrSection)
+        var sectionAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.spinner_choice, arrSection)
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cboSectionSched.setAdapter(sectionAdapter);
 

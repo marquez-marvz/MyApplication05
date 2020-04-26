@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.dialog_student.view.*
-import kotlinx.android.synthetic.main.myrecycle.*
 import kotlinx.android.synthetic.main.sched_main.*
 import kotlinx.android.synthetic.main.sched_main.btnAdd
 import java.util.*
@@ -63,7 +61,7 @@ class SchedMain : AppCompatActivity() {
         //DatabaseUtility(this)
         val arrSection: Array<String> = this.getResources().getStringArray(R.array.section_choice)
 
-        var sectionAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.spinner_choice, arrSection)
+        var sectionAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.util_spinner, arrSection)
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cboSectionSched.setAdapter(sectionAdapter);
 

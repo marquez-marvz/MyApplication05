@@ -30,9 +30,5 @@
             android:layout_marginLeft="200dp"
             android:visibility="visible"
             android:text="NO" />
-
-
     </RelativeLayout>
-
-
 </LinearLayout>

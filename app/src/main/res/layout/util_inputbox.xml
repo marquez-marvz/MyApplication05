@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <EditText
-        android:id="@+id/txtremark"
+        android:id="@+id/txtdata"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
@@ -17,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="75dp"
         android:layout_marginLeft="100dp"
         android:visibility="visible"
         android:text="OK" />
@@ -28,11 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="75dp"
         android:layout_marginLeft="200dp"
         android:visibility="visible"
         android:text="CANCEL" />
-
-
-
-</LinearLayout>
+</RelativeLayout>

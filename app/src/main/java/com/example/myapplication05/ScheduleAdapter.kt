@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.confirm.view.*
-import kotlinx.android.synthetic.main.inputbox.view.*
+
+
 import kotlinx.android.synthetic.main.sched_main.view.*
 import kotlinx.android.synthetic.main.sched_main.view.cboSectionSched
 import kotlinx.android.synthetic.main.sched_row.view.*
+import kotlinx.android.synthetic.main.util_confirm.view.*
+import kotlinx.android.synthetic.main.util_inputbox.view.*
 
 class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
     RecyclerView.Adapter<ScheduleAdapter.MyViewHolder>() {
@@ -65,7 +67,7 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
                 // val thedate  = txtDate.text;
 
                 val txtDate = mymain.txtDate.text.toString()
-                val dlgconfirm = LayoutInflater.from(context).inflate(R.layout.confirm, null)
+                val dlgconfirm = LayoutInflater.from(context).inflate(R.layout.util_confirm, null)
                 val mBuilder = AlertDialog.Builder(context)
                     .setView(dlgconfirm)
                     .setTitle("Do you like to delete $myDate  $ampm  in $section ")
@@ -95,17 +97,17 @@ class ScheduleAdapter(val context: Context, val sched: List<ScheduleModel>) :
 
                 val section = Util.CURRENT_SECTION
 
-                val dlgInputBox = LayoutInflater.from(context).inflate(R.layout.inputbox, null)
+                val dlgInputBox = LayoutInflater.from(context).inflate(R.layout.util_inputbox, null)
                 val mBuilder = AlertDialog.Builder(context)
                     .setView(dlgInputBox)
                     .setTitle("Input remark for  $myDate $ampm?")
                 val inputBoxDialog = mBuilder.show()
                 inputBoxDialog.setCanceledOnTouchOutside(false);
-                dlgInputBox.txtremark.setText(currentSched!!.renark)
+                dlgInputBox.txtdata.setText(currentSched!!.renark)
 
 
                 dlgInputBox.btnOK.setOnClickListener {
-                    val remark = dlgInputBox.txtremark.text.toString()
+                    val remark = dlgInputBox.txtdata.text.toString()
                     val db: DatabaseHandler = DatabaseHandler(context)
                     var status = db.ManageSched("EDIT", ampm, myDate, section, remark)
                     SchedMain.UpdateListContent(context)

@@ -157,6 +157,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
 
             "DELETE" -> {
                 val success = db.delete(TABLE_NAME, TBSTUDENT_STUDENTNO + "=" + studentno, null)
+                db.delete("TBATTENDANCE", TBATTENDANCE_STUDENTNO + "=" + studentno, null)
                 if (success < 0)
                     status = false
                 else
@@ -225,17 +226,18 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
         section: String = "",
         grp: String = "",
         lastname: String = ""
-    ): List<Person> {
+    ): List<StudentModel> {
 
-        val studentList: ArrayList<Person> = ArrayList<Person>()
+        val studentList: ArrayList<StudentModel> = ArrayList<StudentModel>()
+
         var sql: String = ""
         when (category) {
             "ALL" -> sql = "SELECT  * FROM $TABLE_NAME"
             "SECTION" -> sql =
                 """
-                "SELECT  * FROM $TABLE_NAME 
+                SELECT  * FROM $TABLE_NAME 
                 where $TBSTUDENT_SECTION='$section' 
-                and $TBSTUDENT_GRP like '$grp%'"
+                and $TBSTUDENT_GRP like '$grp%'
                 """
             "NAME" -> sql =
                 "SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section' and $TBSTUDENT_LAST like '$lastname%'"
@@ -259,7 +261,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
                 var lname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
                 var grp = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
                 var section = cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
-                val emp = Person(sn, fname, lname, grp, section)
+                val emp = StudentModel(sn, fname, lname, grp, section)
                 studentList.add(emp)
             } while (cursor.moveToNext())
         }
@@ -409,8 +411,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
             } while (cursor.moveToNext())
         }
 //        Util.Msgbox(context, sql)
-      Log.e("RECORD", sql)
-      Log.e("RECORD", attendanceList.size.toString())
+        Log.e("RECORD", sql)
+        Log.e("RECORD", attendanceList.size.toString())
 
         return attendanceList
     }
@@ -422,23 +424,23 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
         var section: String = Util.ATT_CURRENT_SECTION
 
         var sql:String
-             if (studentNo == "") {
-                 sql = """
+        if (studentNo == "") {
+            sql = """
               update tbattendance set $TBATTENDANCE_STATUS = '$attStatus'
               where $TBATTENDANCE_DATE='$myDate' 
               and $TBATTENDANCE_TIME='$ampm' 
               and $TBATTENDANCE_SECTION ='$section'
               """
-             }
-            else{
-                 sql = """
+        }
+        else{
+            sql = """
               update tbattendance set $TBATTENDANCE_STATUS = '$attStatus'
               where $TBATTENDANCE_DATE='$myDate' 
               and $TBATTENDANCE_TIME='$ampm' 
               and $TBATTENDANCE_SECTION ='$section'
               and $TBATTENDANCE_STUDENTNO ='$studentNo'
               """
-             }
+        }
         val db = this.writableDatabase
         db.execSQL(sql)
     }
@@ -555,25 +557,5 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent",
     }
 
 }
-
-
-
-class ScheduleModel(
-    var ampm: String,
-    var myDate: String,
-    var sectioncode: String,
-    var renark: String
-)
-
-class AttendanceModel(
-    var ampm: String,
-    var myDate: String,
-    var sectionCode: String,
-    var studentNo: String,
-    var completeName:String,
-    var groupNumber:String,
-    var attendanceStatus: String,
-    var remark: String
-)
 
 

@@ -9,76 +9,24 @@
 
 
     <Button
-        android:id="@+id/btnCompute"
+        android:id="@+id/btnStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="250dp"
         android:layout_marginLeft="30dp"
-        android:text="Compute" />
+        android:text="Student" />
 
     <Button
-        android:id="@+id/btnClear"
+        android:id="@+id/btnAttendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="250dp"
         android:layout_marginLeft="200dp"
-        android:text="Clear" />
-
-    <EditText
-        android:id="@+id/txtfirst"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:hint="First Number"
-        android:inputType="number"
-        android:layout_marginTop="25dp" />
-
-    <EditText
-        android:id="@+id/txtsecond"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:hint="Second Number"
-        android:inputType="number"
-        android:layout_marginTop="75dp" />
-
-
-    <EditText
-        android:id="@+id/txtanswer"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:hint="Answer"
-        android:inputType="number"
-        android:layout_marginTop="150dp" />
-
-    <!--    <EditText-->
-<!--        android:id="@+id/txtsecond"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginLeft="200dp" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/txtanswer"-->
-<!--        android:layout_width="20dp"-->
-<!--        android:layout_height="20dp"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginLeft="200dp" />-->
+        android:text="Attendance" />
 
 
 

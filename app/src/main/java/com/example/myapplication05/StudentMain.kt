@@ -8,42 +8,81 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.dialog_student.view.*
-import kotlinx.android.synthetic.main.filename.view.*
-import kotlinx.android.synthetic.main.myrecycle.*
+import kotlinx.android.synthetic.main.student_dialog.view.*
+import kotlinx.android.synthetic.main.student_main.*
+
+import kotlinx.android.synthetic.main.util_inputbox.view.*
 import java.io.*
 
 
-class MyRecycle : AppCompatActivity() {
+class StudentMain : AppCompatActivity() {
+    val c:Context = this;
     companion object {
-     var adapter: NewAdapter? = null;
-     var list = arrayListOf<Person>()
- }
+        var adapter: StudentAdapter? = null;
+        var list = arrayListOf<StudentModel>()
+        var cbosection: Spinner?= null ;
+        var cbogroup: Spinner?= null ;
+        var txtsearch: EditText?= null ;
+
+        fun UpdateListContent(context: Context , category:String= "ALL") {
+            val databaseHandler: DatabaseHandler = DatabaseHandler(context)
+            val student: List<StudentModel>
+
+            list.clear()
+            when (category) {
+                "SECTION" -> {
+                    var section = cbosection!!.getSelectedItem().toString();
+                    var group = cbogroup!!.getSelectedItem().toString();
+                    if (group== "NONE")
+                        student = databaseHandler.GetStudentList("SECTION", section)
+                    else
+                        student = databaseHandler.GetStudentList("SECTION", section,group)
+                }
+
+                "NAME" -> {
+                    var section = cbosection!!.getSelectedItem().toString();
+                    var lastname = txtsearch!!.text.toString();
+                    student = databaseHandler.GetStudentList("NAME", section, "", lastname)
+                }
+                else -> student = databaseHandler.GetStudentList(category)
+            }
+
+
+            for (e in student) {
+                list.add(StudentModel(e.studentno,  e.firstname, e.lastname,  e.grp, e.sectioncode))
+            }
+
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.myrecycle)
-        UpdateListContent();
+        setContentView(R.layout.student_main)
+        UpdateListContent(this);
         ViewRecord()
 
+
 //        cboGroupSearch.setSelection(0)
-//        cboGroupSearcval arrGroup:Array<String> = this.getResources().getStringArray(R.array.grpNumber)
-//        val arrSection:Array<String> =  this.getResources().getStringArray(R.array.section_choice)
-//
-//
-//        var  groupAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrGroup)
-//        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        cboGroupSearch.setAdapter(groupAdapter);
-//
-//        var  sectionAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.spinner_choice,arrSection)
-//        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        cboSectionSearch.setAdapter(sectionAdapter);h.setSelection(spinnerArrayAdapter.getCount()); //set the hint the default selection so it appears on launch.
+//        cboGroupSearcval //
+      val arrGroup:Array<String> = this.getResources().getStringArray(R.array.grpNumber)
+       val arrSection:Array<String> =  this.getResources().getStringArray(R.array.section_choice)
+        var  groupAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.util_spinner,arrGroup)
+        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cboGroupSearch.setAdapter(groupAdapter);
+
+        var  sectionAdapter:ArrayAdapter<String>  = ArrayAdapter<String>(this,R.layout.util_spinner,arrSection)
+        sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cboSectionSearch.setAdapter(sectionAdapter);
+
+        cbosection= findViewById(R.id.cboSectionSearch) as Spinner
+        cbogroup = findViewById(R.id.cboGroupSearch) as Spinner
+        txtsearch = findViewById(R.id.txtSearch) as EditText
+//        h.setSelection(spinnerArrayAdapter.getCount()); //set the hint the default selection so it appears on launch.
 
 
 
@@ -56,34 +95,10 @@ class MyRecycle : AppCompatActivity() {
 
 
         btnExport.setOnClickListener {
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.filename, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-                .setTitle("Filename to be imported")
-            val mAlertDialog = mBuilder.show()
-
-            mDialogView.btnDialogOK.setOnClickListener {
-                val filename = mDialogView.txtDialogFileName.text.toString() + ".csv"
-                mAlertDialog.dismiss()
-                WriteCSV(filename)
-            }
-
-
+            ImportExportFile("exported")
         }
-
         btnImport.setOnClickListener {
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.filename, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-                .setTitle("Filename to be imported")
-            val mAlertDialog = mBuilder.show()
-
-            mDialogView.btnDialogOK.setOnClickListener {
-                val filename = mDialogView.txtDialogFileName.text.toString()
-                mAlertDialog.dismiss()
-                ReadCSV(filename)
-
-            }
+            ImportExportFile("imported")
         }
 
         cboSectionSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -91,7 +106,7 @@ class MyRecycle : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                UpdateListContent("SECTION")
+                UpdateListContent(c, "SECTION")
                 adapter!!.notifyDataSetChanged()
             }
 
@@ -99,50 +114,57 @@ class MyRecycle : AppCompatActivity() {
 
 
         cboGroupSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                UpdateListContent("SECTION")
+                UpdateListContent(c, "SECTION")
                 adapter!!.notifyDataSetChanged()
             }
         }
 
         txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-//
-
-
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                UpdateListContent("NAME")
+                UpdateListContent(c, "NAME")
                 adapter!!.notifyDataSetChanged()
             }
-        })
 
+    })
         txtSearch.setOnFocusChangeListener(OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 var group = cboGroupSearch.getSelectedItem().toString();
                 if (group != "NONE")
                     cboGroupSearch.setSelection(0)
 
-            } else {
-
-            }
+            } else { }
         })
+    }  //OnCreate
 
 
+    fun ImportExportFile(type:String){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.util_inputbox, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("Filename to be $type")
+        val mAlertDialog = mBuilder.show()
 
+        mDialogView.btnOK.setOnClickListener {
+            val filename = mDialogView.txtdata.text.toString() + ".csv"
+            mAlertDialog.dismiss()
+            if (type=="exported")
+                WriteCSV(filename)
+           else if(type=="imported")
+                ReadCSV(filename)
+        }
+
+        mDialogView.btnCancel.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
 
 
     }
-
 
     fun WriteCSV(filename:String) {
         val FILENAME = filename
@@ -180,7 +202,7 @@ class MyRecycle : AppCompatActivity() {
 
         var inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
         val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
-       var text: String = ""
+        var text: String = ""
         var line = bufferedReader.readLine()
         while (line != null) {
             text = line.toString()
@@ -214,7 +236,7 @@ class MyRecycle : AppCompatActivity() {
                     token[4]
                 )
                 if (status == true)
-                    list.add(Person(token[0], token[1], token[2], token[3],  token[4]))
+                    list.add(StudentModel(token[0], token[1], token[2], token[3],  token[4]))
 
 
             }
@@ -225,57 +247,20 @@ class MyRecycle : AppCompatActivity() {
         adapter!!.notifyDataSetChanged()
         Toast.makeText(this, "SUCESS",   Toast.LENGTH_SHORT).show();
 
-      }
-
-    fun UpdateListContent(category:String= "ALL") {
-        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-        val student: List<Person>
-
- list.clear()
-        when (category) {
-           "SECTION" -> {
-                var section = cboSectionSearch.getSelectedItem().toString();
-                var group = cboGroupSearch.getSelectedItem().toString();
-                if (group== "NONE")
-                    student = databaseHandler.GetStudentList("SECTION", section)
-                else
-                    student = databaseHandler.GetStudentList("SECTION", section,group)
-
-                Toast.makeText(getBaseContext(),"$section $group",   Toast.LENGTH_SHORT).show();
-            }
-
-            "NAME" -> {
-                var section = cboSectionSearch.getSelectedItem().toString();
-                var lastname = txtSearch.text.toString();
-
-                student = databaseHandler.GetStudentList("NAME", section, "", lastname)
-
-               // Toast.makeText(getBaseContext(),"$section $lastname",   Toast.LENGTH_SHORT).show();
-            }
-
-
-
-            else -> student = databaseHandler.GetStudentList(category)
-        }
-
-
-        for (e in student) {
-            list.add(Person(e.studentno,  e.firstname, e.lastname,  e.grp, e.sectioncode))
-        }
-
     }
+
 
     fun ViewRecord(){
         val layoutmanager = LinearLayoutManager(this)
         layoutmanager.orientation = LinearLayoutManager.VERTICAL;
-        recPerson.layoutManager = layoutmanager
+        listStudent.layoutManager = layoutmanager
 
-        adapter = NewAdapter(this, list)
-        recPerson.adapter = adapter
+        adapter = StudentAdapter(this, list)
+        listStudent.adapter = adapter
     }
 
-    fun ShowDialog(status:String, context: Context,  person:Person?=null, position:Int=-1) {
-        val dlgstudent = LayoutInflater.from(context).inflate(R.layout.dialog_student, null)
+    fun ShowDialog(status:String, context: Context, student:StudentModel?=null, position:Int=-1) {
+        val dlgstudent = LayoutInflater.from(context).inflate(R.layout.student_dialog, null)
         val mBuilder = AlertDialog.Builder(context)
             .setView(dlgstudent)
             .setTitle("Manage Student")
@@ -289,11 +274,11 @@ class MyRecycle : AppCompatActivity() {
             dlgstudent.txtlastname.setText("")
             StatusTextBox(true, dlgstudent)
         } else if (status == "VIEW") {
-            dlgstudent.txtstudentnumber.setText(person!!.studentno)
-          dlgstudent.txtfirstname.setText(person!!.firstname)
-            dlgstudent.txtlastname.setText(person!!.lastname)
-            dlgstudent.cbogroup.setSelection(GetGroupIndex(person!!.grp, context))
-            dlgstudent.cbosection.setSelection(GetSectionIndex(person!!.sectioncode, context))
+            dlgstudent.txtstudentnumber.setText(student!!.studentno)
+            dlgstudent.txtfirstname.setText(student!!.firstname)
+            dlgstudent.txtlastname.setText(student!!.lastname)
+            dlgstudent.cbogroup.setSelection(GetGroupIndex(student!!.grp, context))
+            dlgstudent.cbosection.setSelection(GetSectionIndex(student!!.sectioncode, context))
             dlgstudent.btnSaveRecord.setText("EDIT")
         }
 
@@ -311,7 +296,7 @@ class MyRecycle : AppCompatActivity() {
                     var status = db.ManageStudent("ADD", studentNumber, firstName, lastName, grpNumber,  section)
                     studentDialog.dismiss()
                     if (status == true) {
-                        list.add(Person(studentNumber, firstName, lastName, grpNumber,  section))
+                        list.add(StudentModel(studentNumber, firstName, lastName, grpNumber,  section))
                         adapter!!.notifyDataSetChanged()
                     }
                 }

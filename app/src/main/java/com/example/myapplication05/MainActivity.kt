@@ -1,5 +1,6 @@
 package com.example.myapplication05
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,40 +15,20 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        btnCompute.setOnClickListener {
-
-
-                       txtfirst.isEnabled = false;
-            txtsecond.isEnabled = false;
-            txtanswer.isEnabled = false;
-            var num1:String  =  txtfirst.text.toString()
-             var num2: String = txtsecond.text.toString()
-            var answer =0;
-            answer = num1.toInt() + num2.toInt()
-          txtanswer.setText(answer.toString())
-//
-            Toast.makeText(this, "$num1 $num2  200",Toast.LENGTH_SHORT).show();
-//            Toast.makeText(this, answer,Toast.LENGTH_SHORT).show()
-
-//            var msg = txtfirst.text
-//            txtsecond.setText("")
-//            txtanswer.setText("")
+        btnStudent.setOnClickListener {
+            val intent = Intent(this, StudentMain::class.java)
+            startActivity(intent)
         }
 
 
-        btnClear.setOnClickListener {
-
-
-         //   Toast.makeText(this, "Second Button",Toast.LENGTH_SHORT).show()
-            txtfirst.isEnabled = true;
-            txtsecond.isEnabled = true;
-            txtanswer.isEnabled = false;
-        txtfirst.setText("")
-        txtsecond.setText("")
-        txtanswer.setText("")
-    }
+        btnAttendance.setOnClickListener {
+            val intent = Intent(this, SchedMain::class.java)
+            startActivity(intent)
+        }
 
 
 
-    }
-}
+
+
+    } //oncreate
+} //class

@@ -63,6 +63,7 @@ class StudentAdapter (val context:Context, val person:List<StudentModel>):Recycl
                     val db: DatabaseHandler = DatabaseHandler(context)
                     var status = db.ManageStudent("DELETE", studentNumber)
                     StudentMain.UpdateListContent(context, "SECTION")
+
                     notifyDataSetChanged()
                     confirmDialog.dismiss()
                 }
@@ -88,6 +89,7 @@ class StudentAdapter (val context:Context, val person:List<StudentModel>):Recycl
             itemView.txtLastName.text =pp!!.lastname
             itemView.txtSectionCode.text =pp!!.sectioncode
             itemView.txtGroup.text =pp!!.grp
+            itemView.txtGender.text =pp!!.gender
             this.currentStudent= pp;
             this.currentPosition = pos
         }

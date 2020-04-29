@@ -25,23 +25,10 @@
             android:layout_alignParentStart="true" />
 
 
+
+
         <TextView
-            android:id="@+id/rowtxtRemark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="25dp"
-            android:textSize="12dp"
-            android:text="5678"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-
-
-
-        <Button
-            android:id="@+id/rowBtnPresent"
+            android:id="@+id/rowtxtPrssentCount"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
@@ -49,10 +36,10 @@
             android:textSize="15sp"
             android:visibility="visible"
             android:layout_marginLeft="180dp"
-        android:text="P"/>
+            android:text="P"/>
 
-        <Button
-            android:id="@+id/rowBtnLate"
+        <TextView
+            android:id="@+id/rowtxtLateCount"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
@@ -62,8 +49,8 @@
             android:layout_marginLeft="220dp"
             android:text="L" />
 
-        <Button
-            android:id="@+id/rowBtnAbsent"
+        <TextView
+            android:id="@+id/rowtxtAbsentCount"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
@@ -73,8 +60,8 @@
             android:layout_marginLeft="260dp"
             android:text="A" />
 
-        <Button
-            android:id="@+id/rowBtnExcuse"
+        <TextView
+            android:id="@+id/rowtxtExcuseCount"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
@@ -83,12 +70,6 @@
             android:visibility="visible"
             android:layout_marginLeft="300dp"
             android:text="E" />
-
-
-
-
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

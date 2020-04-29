@@ -34,5 +34,11 @@ class Util {
             db.ShowField(tableName)
         }
 
+        fun GetSectionIndex(search:String, context:Context):Int{
+            val arrSection:Array<String> =  context.getResources().getStringArray(R.array.section_choice)
+            val index = arrSection.indexOf(search)
+            return index
+        }
+
     }
 }

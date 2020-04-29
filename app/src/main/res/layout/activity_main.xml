@@ -1,34 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
     <Button
         android:id="@+id/btnStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="30dp"
         android:text="Student" />
 
     <Button
         android:id="@+id/btnAttendance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="200dp"
+
         android:text="Attendance" />
 
+    <Button
+    android:id="@+id/btnSummary"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:text="Summary" />
+
+    <Button
+        android:id="@+id/btnActivity"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="Activity" />
 
 
 
-</RelativeLayout>
+
+
+</LinearLayout>

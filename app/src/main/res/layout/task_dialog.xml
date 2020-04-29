@@ -9,80 +9,40 @@
 
 
     <EditText
-        android:id="@+id/txtstudentnumber"
+        android:id="@+id/txtActivityCode"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:hint="Student Nuumber"
+        android:hint="Activity Code"
         android:enabled="false"
         android:layout_marginTop="20dp" />'
 
 
     <EditText
-        android:id="@+id/txtfirstname"
+        android:id="@+id/txtDescription"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:hint="First Nanme"
+        android:hint="Description"
         android:enabled="false"
         android:layout_marginTop="70dp" />
 
 
     <EditText
-        android:id="@+id/txtlastname"
+        android:id="@+id/txtItem"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:hint="Last Name"
+        android:hint="Item"
         android:enabled="false"
+        android:inputType="number"
         android:layout_marginTop="120dp" />
-
-    <Spinner
-        android:id="@+id/cbogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/grpNumber"
-        android:spinnerMode="dialog"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="190dp"
-        android:clickable="false"
-        android:prompt="@string/student_prompt" />
-
-    <Spinner
-        android:id="@+id/cbosection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/section_choice"
-        android:spinnerMode="dialog"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="240dp"
-        android:clickable="false"
-        android:prompt="@string/section_prompt" />
-
-
-    <Spinner
-        android:id="@+id/cboGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/gender_choice"
-        android:spinnerMode="dialog"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="290dp"
-        android:clickable="false"
-        android:prompt="@string/gender_prompt" />
-
 
     <Button
         android:id="@+id/btnSaveRecord"
@@ -90,11 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="180dp"
         android:layout_marginLeft="15dp"
         android:text="SAVE RECORD" />
-
-
 
     <Button
         android:id="@+id/btnClose"
@@ -102,9 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="250dp"
-        android:textSize="10sp"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="200dp"
+        android:textSize="15sp"
         android:visibility="visible"
         android:text="CLOSE" />
 </RelativeLayout>

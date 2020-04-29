@@ -18,7 +18,6 @@
 
 
     <string name="section_prompt">Choose a Section</string>
-
     <string-array name="section_choice">
         <item>11-PROG-1</item>
         <item>12-PROG-1</item>
@@ -26,4 +25,14 @@
         <item>CADORES</item>
         <item>RIVERA</item>
     </string-array>
+
+    <string name="gender_prompt">Choose a Section</string>
+    <string-array name="gender_choice">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+
+
+
 </resources>

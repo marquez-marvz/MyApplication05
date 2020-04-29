@@ -20,6 +20,7 @@ import kotlin.text.Typography.section
 
 
 class SchedMain : AppCompatActivity() {
+    val db: DatabaseHandler = DatabaseHandler(this);
     companion object {
         var adapter: ScheduleAdapter? = null;
         var  scheduleList = arrayListOf<ScheduleModel>()
@@ -27,10 +28,10 @@ class SchedMain : AppCompatActivity() {
         fun UpdateListContent(context: Context) {
             var section: String = Util.CURRENT_SECTION
             var myDate: String = Util.CURRENT_DATE
-            val databaseHandler: DatabaseHandler = DatabaseHandler(context)
             val monthname = myDate.substring(0, 3)
             val schedlist: List<ScheduleModel>
-            schedlist = databaseHandler.GetScheduleList(section, monthname)
+            val db1: DatabaseHandler = DatabaseHandler(context);
+            schedlist = db1.GetScheduleList(section, monthname)
 
             scheduleList.clear()
 
@@ -47,26 +48,28 @@ class SchedMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sched_main)
 
-       Util.DatabaseUpGrade(this)
-      Util.ShowTableField(this, "TBATTENDANCE_QUERY")
+
         SetDate()
 
         ViewRecord()
-
-
-        val db: DatabaseHandler = DatabaseHandler(this);
         db.ShowAllRecord("TBATTENDANCE_QUERY")
 
 
         //DatabaseUtility(this)
         val arrSection: Array<String> = this.getResources().getStringArray(R.array.section_choice)
-
         var sectionAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.util_spinner, arrSection)
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cboSectionSched.setAdapter(sectionAdapter);
 
         var mycontext = this;
         //mDisplayDate = findViewById(R.id.txtdate) as TextView
+        var currentSection = db.GetCurrentSection();
+        var index = Util.GetSectionIndex(currentSection, this)
+       cboSectionSched.setSelection(index)
+        Util.Msgbox(this, index.toString() +  " " + currentSection)
+
+
+
         txtDate.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 val cal = Calendar.getInstance()
@@ -104,7 +107,7 @@ class SchedMain : AppCompatActivity() {
             val myDate = txtDate.text.toString()
             val ampm = btnAmPm.getText().toString();
             val section = cboSectionSched.getSelectedItem().toString();
-            val db: DatabaseHandler = DatabaseHandler(this);
+
             var status = db.ManageSched("ADD", ampm, myDate, section)
             db.AddStudetAttendance(myDate, ampm, section)
             UpdateListContent( this);
@@ -129,6 +132,9 @@ class SchedMain : AppCompatActivity() {
                 val myDate = txtDate.text.toString()
                 UpdateListContent(mycontext);
                 adapter!!.notifyDataSetChanged()
+                db.SetCurrentSection(section)
+
+
 
             }
         }

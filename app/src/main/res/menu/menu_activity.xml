@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuDuplicate"
+        android:title="Duplicate Activity" />
+
+    <item
+        android:id="@+id/menuDuplicateWithScore"
+        android:title="Duplicate With Score" />
+
+
+    <item
+        android:id="@+id/menuCount"
+        android:title="Show Submission Count" />
+
+    <item
+        android:id="@+id/mnuShowDialog"
+        android:title="Show Dialog Activity" />
+
+    <item
+        android:id="@+id/menuDeleteActivity"
+        android:title="Delete Activity" />
+
+</menu>

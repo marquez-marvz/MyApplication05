@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtStudent"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:text="AAA"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnShowRubric"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:text="SHOW RUBRIC"
+            android:textSize="14dp"
+            android:visibility="visible" />
+
+
+
+        <Spinner
+            android:id="@+id/cboDriveActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+
+        <EditText
+            android:id="@+id/txtDriveScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="40dp"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="45dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="45dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
+
+
+        <Button
+            android:id="@+id/btnDriveRemark"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="40dp"
+            android:text="0"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnGotoScore"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="280dp"
+            android:layout_marginTop="5dp"
+            android:text="GO T0 SCORE"
+            android:textSize="8dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnCriteria"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="110dp"
+            android:text="-"
+            android:textSize="15dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnCriteriaScore"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="110dp"
+            android:text="-"
+            android:textSize="15dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnDriveNext"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="75dp"
+            android:text="NEXT"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnDrivePrev"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="75dp"
+            android:text="PREV"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnDriveRemarkSearch"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="75dp"
+            android:text="ALL"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnDriveRubric"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="75dp"
+            android:text="RUBRI"
+            android:textSize="8dp"
+            android:visibility="visible" />
+
+
+
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="135dp" />
+    </RelativeLayout>
+</LinearLayout>

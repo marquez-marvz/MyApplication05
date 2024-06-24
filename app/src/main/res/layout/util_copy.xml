@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">'
+
+    <Button
+        android:id="@+id/btnCopyNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        android:text="Copy No Submission" />
+
+    <Button
+        android:id="@+id/btnCopyYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        android:text="Copy With Submission" />
+
+
+    <Button
+        android:id="@+id/btnNameOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        android:text="Name Only" />
+
+    <Button
+        android:id="@+id/btnNameStudentNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        android:text="Name and Student Number" />
+
+    <Button
+        android:id="@+id/btnNameStudentScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:visibility="visible"
+        android:text="Name and Score" />
+
+
+</LinearLayout>

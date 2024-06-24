@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication05.R
 import kotlinx.android.synthetic.main.attendance_main.view.*
 import kotlinx.android.synthetic.main.attendance_row.view.*
 import kotlinx.android.synthetic.main.attendance_main.*
-import kotlinx.android.synthetic.main.attendance_row.view.rowtxtName
-import kotlinx.android.synthetic.main.individual.view.*
 import kotlinx.android.synthetic.main.summary_main.*
 import kotlinx.android.synthetic.main.summary_row.view.*
 import kotlinx.android.synthetic.main.util_inputbox.view.*
@@ -52,22 +51,22 @@ class SummaryAdapter(val context: Context, val summary: List<SummaryModel>) :
 
         init {
             itemView.setOnLongClickListener {
-                val completeName = currentSummary!!.completeName
-                val studentNo = currentSummary!!.studentNo
-                val dlgindividual = LayoutInflater.from(context).inflate(R.layout.individual, null)
-                val mBuilder = AlertDialog.Builder(context).setView(dlgindividual).setTitle("$completeName")
-                val individualDialog = mBuilder.show()
-                individualDialog.setCanceledOnTouchOutside(false);
-
-                val db: DatabaseHandler = DatabaseHandler(context)
-                var mymonth = SummaryMain.GetMonth()
-                var individualList: List<IndividualModel> = db.GetIndividuaList(mymonth, studentNo)
-                Util.Msgbox(context, "${individualList.size.toString()}")
-                val layoutmanager = LinearLayoutManager(context)
-                layoutmanager.orientation = LinearLayoutManager.VERTICAL;
-                dlgindividual.listIndividual.layoutManager = layoutmanager
-                var adapter = IndividualAdapter(context, individualList)
-                dlgindividual.listIndividual.adapter = adapter
+//                val completeName = currentSummary!!.completeName
+//                val studentNo = currentSummary!!.studentNo
+//               // val dlgindividual = LayoutInflater.from(context).inflate(R.layout.individual, null)
+//                val mBuilder = AlertDialog.Builder(context).setView(dlgindividual).setTitle("$completeName")
+//                val individualDialog = mBuilder.show()
+//                individualDialog.setCanceledOnTouchOutside(false);
+//
+//                val db: TableAttendance= TableAttendance(context)
+//                var mymonth = SummaryMain.GetMonth()
+//                var individualList: List<IndividualModel> = db.GetIndividuaList(mymonth, studentNo)
+//                Util.Msgbox(context, "${individualList.size.toString()}")
+//                val layoutmanager = LinearLayoutManager(context)
+//                layoutmanager.orientation = LinearLayoutManager.VERTICAL;
+//                dlgindividual.listIndividual.layoutManager = layoutmanager
+//                var adapter = IndividualAdapter(context, individualList)
+//                dlgindividual.listIndividual.adapter = adapter
 
                 true
             } //long
@@ -75,7 +74,9 @@ class SummaryAdapter(val context: Context, val summary: List<SummaryModel>) :
 
 
         fun setData(myatt: SummaryModel?, pos: Int) {
-            itemView.rowtxtName.text = myatt!!.completeName
+
+            itemView.txtFirstName.text = myatt!!.firstName
+            itemView.txtLastName.text = myatt!!.lastName
             itemView.rowtxtPrssentCount.text = myatt!!.prsentCount.toString()
             itemView.rowtxtLateCount.text = myatt!!.lateCount.toString()
             itemView.rowtxtAbsentCount.text = myatt!!.absentCount.toString()

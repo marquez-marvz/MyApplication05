@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/rowtxtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:text="1234"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnGroup"
+            android:layout_width="45dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="20dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="G-A"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <!--        <Spinner-->
+        <!--            android:id="@+id/cboIndividualGroup"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:spinnerMode="dialog"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="50dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:entries="@array/grpNumber"-->
+        <!--            android:prompt="@string/section_prompt" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnIndividualGroup"-->
+        <!--            android:layout_width="30dp"-->
+        <!--            android:layout_height="20dp"-->
+        <!--            android:layout_marginLeft="50dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:background="#D3D3D3"-->
+        <!--            android:padding="0dp"-->
+        <!--            android:text="YES"-->
+        <!--            android:textSize="10dp"-->
+        <!--            android:visibility="visible" />-->
+
+        <Button
+            android:id="@+id/btnScoreRemark"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="G-A"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/rowtxtRemark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"
+            android:text="5678"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnByFive"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="0dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="0"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnRubricsScore"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="0dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="0"
+            android:textSize="12dp"
+            android:visibility="visible" />
+<!--        <Button-->
+<!--            android:id="@+id/btnAdjustedScore"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginLeft="250dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="#D3D3D3"-->
+<!--            android:padding="0dp"-->
+<!--            android:text="YES"-->
+<!--            android:textSize="8dp"-->
+<!--            android:visibility="visible" />-->
+
+
+
+
+        <Button
+            android:id="@+id/btnActivityScore"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="0dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="0"
+            android:textSize="14dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/rowBtnEdit"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/rowBtnSave"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="246dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/rowBtnOpenFolder"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/open"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnRubrics"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="400dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/rubric"
+            android:text=""
+            android:visibility="visible" />
+
+
+
+        <Button
+            android:id="@+id/btnGrr"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="0dp"
+            android:background="#D3D3D3"
+            android:padding="0dp"
+            android:text="G-A"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

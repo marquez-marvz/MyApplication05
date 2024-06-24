@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/txtSectionCode"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="School" />
+
+
+    <EditText
+        android:id="@+id/txtSection"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:hint="Section Name"
+        android:layout_marginTop="90dp" />
+
+
+    <Spinner
+        android:id="@+id/cboSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/school"
+        android:spinnerMode="dialog"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="160dp"
+        android:prompt="@string/school_prompt" />
+
+    <Spinner
+        android:id="@+id/cboAddSchoolYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="210dp"
+        android:entries="@array/schoolyear_choice"
+        android:prompt="@string/section_prompt" />
+
+
+    <Spinner
+        android:id="@+id/cboAddSemester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="260dp"
+        android:entries="@array/semester_choice"
+        android:prompt="@string/section_prompt" />
+
+
+    <Spinner
+        android:id="@+id/cboSubjectDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="310dp"
+        android:prompt="@string/description_prompt"
+        android:spinnerMode="dialog" />
+
+
+    <Spinner
+        android:id="@+id/cboRealSectionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="360dp"
+        android:entries="@array/camhiSection"
+        android:prompt="@string/section1_prompt"
+        android:spinnerMode="dialog" />
+
+
+
+
+    <EditText
+        android:id="@+id/txtFolderLink"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:hint="Link"
+        android:layout_marginTop="380dp" />
+
+
+
+
+    <Button
+        android:id="@+id/btnSaveRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="450dp"
+        android:text="SAVE RECORD" />
+
+
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="250dp"
+        android:textSize="10sp"
+        android:visibility="visible"
+        android:text="CLOSE" />
+</RelativeLayout>

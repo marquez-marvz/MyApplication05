@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/enrolleSortbyFirstName"
+        android:title="Sort by FirstName" />
+
+    <item
+        android:id="@+id/enrolleSortbyLastName"
+        android:title="Sort by LastName" />
+
+    <item
+        android:id="@+id/enrolleSortbyGender"
+        android:title="Sort by Gender" />
+
+    <item
+        android:id="@+id/enrolleSortbyGroup"
+        android:title="Sort by Group" />
+
+    <item
+        android:id="@+id/enrolleSortbyStudNo"
+        android:title="Sort by StudNo" />
+
+
+</menu>

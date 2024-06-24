@@ -1,48 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnStudent"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:text="Student" />
+        <Spinner
+            android:id="@+id/cboSchoolYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:entries="@array/schoolyear_choice"
+            android:prompt="@string/section_prompt" />
 
-    <Button
-        android:id="@+id/btnAttendance"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-
-        android:text="Attendance" />
-
-    <Button
-    android:id="@+id/btnSummary"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:text="Summary" />
-
-    <Button
-        android:id="@+id/btnActivity"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:text="Activity" />
+        <Button
+            android:id="@+id/btnSemester"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:text="FIRST" />
 
 
+
+        <Button
+            android:id="@+id/btnSubject"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="10dp"
+            android:text="sSUBJECT" />
+
+        <Button
+            android:id="@+id/btnSection"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="10dp"
+            android:text="SECTION" />
+
+
+        <Button
+            android:id="@+id/btnStudent"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="70dp"
+            android:text="STUDENT" />
+
+        <Button
+            android:id="@+id/btnEnrolled"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="70dp"
+            android:text="ENROLL" />
+
+
+        <Button
+            android:id="@+id/btnAttendance"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="130dp"
+            android:text="ATTENDANCE" />
+
+
+        <!--        -->
+<!--                <Button-->
+<!--                    android:id="@+id/btnSection"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:layout_alignParentLeft="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:text="Section" />-->
+
+        <!--    <Button-->
+        <!--        android:id="@+id/btnStudent"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="60dp"-->
+        <!--        android:layout_alignParentLeft="true"-->
+        <!--        android:layout_alignParentTop="true"-->
+        <!--        android:layout_marginLeft="10dp"-->
+        <!--        android:layout_marginTop="70dp"-->
+        <!--        android:text="Student" />-->
+
+        <Button
+            android:id="@+id/btnSchedule"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="202dp"
+            android:layout_marginTop="130dp"
+            android:text="Schedule" />
+
+        <Button
+            android:id="@+id/btnSummary"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="499dp"
+            android:layout_marginTop="322dp"
+            android:text="Summary" />
+
+
+        <Button
+            android:id="@+id/btnSummary2"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="499dp"
+            android:layout_marginTop="450dp"
+            android:text="Summary" />
+
+
+        <Button
+            android:id="@+id/btnNotes"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="190dp"
+            android:text="NOTES" />
+
+        <Button
+            android:id="@+id/btnGrouping"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="190dp"
+            android:text="GROUPING" />
+
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnGrouping"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="190dp"-->
+        <!--            android:text="GROUPING" />-->
+
+        <Button
+            android:id="@+id/btnActivity"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="250dp"
+            android:text="Activity" />
+
+        <Button
+            android:id="@+id/btnRecitation"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="250dp"
+            android:text="RECITATION" />
+
+        <Button
+            android:id="@+id/btnScore"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="500dp"
+            android:layout_marginTop="250dp"
+            android:text="SCORE" />
+
+
+        <Button
+            android:id="@+id/btnIndividual"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="310dp"
+            android:text="INDIVIDUAL" />
+
+        <Button
+            android:id="@+id/btnGrade"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="310dp"
+            android:text="GRADES" />
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnGrade"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="310dp"-->
+        <!--            android:text="GRADES" />-->
+
+
+        <Button
+            android:id="@+id/btnMissing"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="370dp"
+            android:text="MISSING" />
+
+        <Button
+            android:id="@+id/btnMisc"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="430dp"
+            android:text="Misc" />
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnSearch"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="490dp"-->
+        <!--            android:text="Search" />-->
+
+        <Button
+            android:id="@+id/btnCheckQuiz"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="490dp"
+            android:text="CHECK QUIZ" />
+
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnIndividual"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="550dp"-->
+        <!--            android:text="INDIVIDUAL" />-->
+
+        <Button
+            android:id="@+id/btnGeneral"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="550dp"
+            android:text="GENERAL PIC" />
+
+        <Button
+            android:id="@+id/btnCheckTestPaper"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="550dp"
+            android:text="CHECK TEST PAPER" />
+
+        <Button
+            android:id="@+id/btnOpenPDF"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="610dp"
+            android:text="Open PDF" />
+
+        <Button
+            android:id="@+id/btnBackUp"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="610dp"
+            android:text="BACK UP DATABASE" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listSectionControl"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp" />
+
+    </RelativeLayout>
 
 
 

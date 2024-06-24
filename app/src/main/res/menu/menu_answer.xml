@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuMakePart"
+        android:title="Make Part" />
+
+    <item
+        android:id="@+id/menuUpAnswer"
+        android:title="Move Up Answer" />
+
+
+    <item
+        android:id="@+id/menuDownAnswer"
+        android:title="Move Down Answer" />
+</menu>

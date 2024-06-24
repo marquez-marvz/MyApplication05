@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:id="@+id/hview"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtSectionScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Hello"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtScoreActivityCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="170dp"
+            android:text="ACT-01"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/txtSectionActivityDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="170dp"
+            android:text="Quiz 1"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnScoreItem"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="170dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnScoreEdit"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop="175dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnScoreSave"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop="175dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
+
+
+
+        <Button
+            android:id="@+id/btnCopyNoActivity"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="110dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/copy"
+            android:text=""
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnScoreMenu"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="120dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/menu"
+            android:onClick="showPopMenu"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnAscending"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="120dp"
+            android:drawableLeft="@drawable/down"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnDescending"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="120dp"
+            android:drawableLeft="@drawable/up"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+
+
+        <Button
+            android:id="@+id/btnSearchFirst"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="70dp"
+            android:text="A-C"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchSecond"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="70dp"
+            android:text="D-J"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchThird"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="70dp"
+            android:text="K-O"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFourth"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="205dp"
+            android:layout_marginTop="70dp"
+            android:text="P-R"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFifth"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="70dp"
+            android:text="S-Z"
+            android:textSize="12dp" />
+
+
+
+        <Button
+            android:id="@+id/btnViewListView"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:text="LIST"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btnHorizontalView"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="30dp"
+            android:text="HR YES"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btnImportCsv"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="110dp"
+            android:text="IMPORT"
+            android:textSize="12dp" />
+
+
+
+
+        <Button
+            android:id="@+id/btnRubric"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="110dp"
+            android:text="RUBRIC"
+            android:textSize="12dp" />
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartActivity"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginLeft="460dp"
+            android:layout_marginTop="0dp"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btnActivityOrGroup"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="210dp"
+            android:text="ACTIVITY"
+            android:textSize="12dp" />
+
+
+        <Button
+            android:id="@+id/btnAddGroup"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="210dp"
+            android:text="ADD GROUP"
+            android:visibility="invisible"
+            android:textSize="12dp" />
+
+
+
+
+
+
+
+
+        <!--        <Button-->
+<!--            android:id="@+id/btnCountPresent"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:textSize="12sp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginLeft="180dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="20"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnCountLate"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:textSize="12sp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginLeft="220dp"-->
+<!--            android:text="30" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnCountAbsent"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:textSize="12sp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginLeft="260dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="A" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnCountExcuse"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:textSize="15sp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginLeft="300dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="E" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="250dp"
+            android:id="@+id/listScore"
+            android:layout_width="700dp"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="250dp"
+            android:id="@+id/listScoreCard"
+            android:layout_width="700dp"
+            android:visibility="invisible"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listActiviity"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            android:layout_marginTop="250dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listGrouping"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:visibility="invisible"
+            android:layout_marginTop="250dp" />
+    </RelativeLayout>
+    </HorizontalScrollView>
+
+
+</LinearLayout>

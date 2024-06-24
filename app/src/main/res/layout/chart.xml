@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+
+    <Button
+        android:id="@+id/btnChartActivity"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="CLASS ACT"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/btnDepedGrade"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="5dp"
+        android:text="DEPED GRADE"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/btnBiscastGrade"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="5dp"
+        android:text="BISCAST GRADE"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/btnCSPCGrade"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="5dp"
+        android:text="CSPC GRADE"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/btnChartTerm"
+        android:layout_width="75dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="5dp"
+        android:text="FIRST"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/txtSection"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="400dp"
+        android:layout_marginTop="10dp"
+        android:text="-"
+        android:background="#dddddd"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="400dp"
+        android:layout_marginTop="70dp"
+        android:text="-"
+        android:background="#dddddd"
+        android:textSize="15dp" />
+
+
+
+    <TextView
+        android:id="@+id/txtRemarkChart"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="550dp"
+        android:layout_marginTop="70dp"
+        android:text="-"
+        android:background="#dddddd"
+        android:textSize="15dp" />
+
+
+
+
+
+    <ScrollView
+
+        android:layout_width="350dp"
+        android:layout_height="2000dp"
+        android:layout_marginTop="100dp"
+        android:scrollbars="none"
+        android:layout_weight="1">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content">-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="75dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart2"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart3"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart4"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart5"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart6"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart7"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart8"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart9"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+
+            <TableRow>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart10"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    tools:ignore="MissingConstraints" />
+            </TableRow>
+        </TableLayout>
+        </RelativeLayout>
+    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listGradebracket"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="350dp"
+            android:visibility="invisible"
+            android:layout_height="match_parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listActivityChart"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="100dp"
+        android:layout_width="350dp"
+        android:visibility="invisible"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

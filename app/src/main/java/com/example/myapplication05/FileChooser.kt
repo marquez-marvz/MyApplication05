@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication05.R
 import kotlinx.android.synthetic.main.attendance_main.*
 import kotlinx.android.synthetic.main.file_chooser.*
 
@@ -29,7 +30,7 @@ class FileChooser: AppCompatActivity() {
 
 
 
-        btnImport.setOnClickListener {
+        btnImportNew.setOnClickListener {
           // override fun onClick(v: View) {
 
                 fileIntent = Intent(Intent.ACTION_GET_CONTENT)

@@ -39,30 +39,102 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:hint="Item"
+        android:layout_marginTop="120dp"
         android:enabled="false"
-        android:inputType="number"
-        android:layout_marginTop="120dp" />
+        android:hint="Item"
+        android:inputType="number" />
+
+    <Spinner
+        android:id="@+id/cboCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="180dp"
+        android:entries="@array/category_choice"
+        android:prompt="@string/category_prompt"
+        android:spinnerMode="dialog" />'
+
+    <Spinner
+        android:id="@+id/cboGradingPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"
+        android:entries="@array/gradingperiod_choice"
+        android:prompt="@string/gradingperiod_prompt"
+        android:spinnerMode="dialog" />
+
+    <Spinner
+        android:id="@+id/cboTaskCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="260dp"
+        />
+
 
     <Button
         android:id="@+id/btnSaveRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="180dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="300dp"
         android:text="SAVE RECORD" />
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="300dp"
+        android:text="CLOSE"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+    <Spinner
+        android:id="@+id/cboSectionCopy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="350dp"
+        android:prompt="@string/section_prompt"
+        android:spinnerMode="dialog" />'
+
+    <Spinner
+        android:id="@+id/cboActivityCopy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="400dp"
+        android:prompt="@string/section_prompt"
+        android:spinnerMode="dialog" />'
+
+
+    <Button
+        android:id="@+id/btnCopyActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="350dp"
         android:layout_marginLeft="200dp"
-        android:textSize="15sp"
-        android:visibility="visible"
-        android:text="CLOSE" />
+        android:text="COPY ACTIVITY" />
+
+
+
 </RelativeLayout>

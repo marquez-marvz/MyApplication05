@@ -1,23 +1,29 @@
-package com.example.myapplication05
+package com.example.myapplication05/*
+SHORCUT KEY:
 
 
+
+
+   ctrl + - Fold all
+ */
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Environment
 import android.util.Log
 import android.widget.Toast
-import java.io.File
-import java.io.FileOutputStream
+import kotlinx.android.synthetic.main.student_row.view.*
+import java.lang.Exception
 
-
-open class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstudent", null, 24) {
+open class DatabaseHandler(context: Context) :
+    SQLiteOpenHelper(context, "dbstudentnew", null, 132) {
 
     companion object {
-        val DATABASE_VERSION = 1
+        private val TBINFO_CURRENTSECTION = "CurrentSection"
+
+        //val DATABASE_VERSION = 1
         val TABLE_NAME = "tbstudent"
         val TBSTUDENT_STUDENTNO = "StudentNo"
         val TBSTUDENT_FIRST = "FirstName"
@@ -25,33 +31,10 @@ open class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstud
         val TBSTUDENT_GRP = "GrpNumber"
         val TBSTUDENT_SECTION = "Section"
         val TBSTUDENT_GENDER = "Gender"
+        val TBSTUDENT_CONTACT = "ContactNumber"
 
-
-        private val TBSCHED_TIME = "SchedTime"
-        private val TBSCHED_DATE = "SchedDate"
-        private val TBSCHED_SECTION = "SectionCode"
-        private val TBSCHED_REMARK = "Remark"
-
-        private val TBATTENDANCE_TIME = "SchedTime"
-        private val TBATTENDANCE_DATE = "SchedDate"
-        private val TBATTENDANCE_SECTION = "SectionCode"
-        private val TBATTENDANCE_STUDENTNO = "StudentNumber"
-        private val TBATTENDANCE_STATUS = "AttendanceStatus"
-        private val TBATTENDANCE_REMARK = "Remark"
-
-        private val QRATTENDANCE_TIME = "SchedTime"
-        private val QRATTENDANCE_DATE = "SchedDate"
-        private val QRATTENDANCE_SECTION = "SectionCode"
-        private val QRATTENDANCE_STUDENTNO = "StudentNumber"
-        private val QRATTENDANCE_STATUS = "AttendanceStatus"
-        private val QRATTENDANCE_REMARK = "Remark"
-        private val QRATTENDANCE_FIRST = "FirstName"
-        private val QRATTENDANCE_LAST = "LastName"
-        private val QRATTENDANCE_GRP = "GrpNumber"
-        private val QRATTENDANCE_GENDER = "Gender"
-
-
-        private val TBINFO_CURRENTSECTION = "CurrentSection"
+        val TBSECTION_CODE = "SectionCode"
+        val TBSECTION_NAME = "SectionName"
 
 
     }
@@ -61,549 +44,423 @@ open class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstud
 
     init {
         this.context = context
+    }
+
+    fun StudentInfo(db: SQLiteDatabase?) {
+        val sql = """
+          CREATE TABLE  IF NOT EXISTS  TBSTUDENT  (
+             StudentNo  INTEGER,
+             FirstName  text,
+             LastName  text,
+             GrpNumber  text,
+             Section  text,
+             Gender  text,
+             ContactNumber text, 
+            PRIMARY KEY ( StudentNo )
+          );
+      """.trimIndent()
+        db?.execSQL(sql);
+    }
+
+    fun SectionTableStructure(db: SQLiteDatabase?) {
+        val sql = """
+            CREATE TABLE  IF NOT EXISTS TBSECTION (
+              SectionCode text,
+              SectionName text
+            )
+        """
+
+        db?.execSQL(sql);
+    }
+
+    fun LogTableStructure(db: SQLiteDatabase?) {
+        val sql = """
+            CREATE TABLE  IF NOT EXISTS  tblog  (
+               LogID  TEXT,
+               DateTime  text,
+               Description  text,
+              PRIMARY KEY ( LogID )
+            );
+
+        """
+        db?.execSQL(sql);
+    }
+
+
+    fun TbinfoStructure(db: SQLiteDatabase?) {
+        val sql = """
+            CREATE TABLE IF NOT EXISTS  tbinfo (
+              CurrentSection text
+            );
+        """
+        db?.execSQL(sql);
 
     }
 
-    fun ShowField(tableName: String): String {
-        var db: SQLiteDatabase;
-        db = getReadableDatabase();
-        var cursor: Cursor? = db.query(tableName, null, null, null, null, null, null);
-        val col: Array<String> = cursor!!.getColumnNames()
-        //var field: String = ""
-        var field = ArrayList<String>()
-        //adding String elements in the list
-        //arraylist.add("Geeks")
+    fun TbactivityStructure(db: SQLiteDatabase?) {
+        val sql = """
+          CREATE TABLE  tbactivity  (
+           ActivityCode  TEXT,
+           SectionCode  text,
+           Description  text,
+           Item  INTEGER,
+           Status  text,
+           Category text,
+            PRIfMARY KEY ( ActivityCode ,  SectionCode )
+         )
 
-        for (c in col) {
-            field.add(c)
-        }
-        val fields = arrayOfNulls<String>(field.size)
-        field.toArray(fields)
-        Toast.makeText(this.context, fields.joinToString(), Toast.LENGTH_LONG).show();
-        return fields.joinToString()
+        """
+        db?.execSQL(sql);
     }
+
+    fun TbScoreStructure(db: SQLiteDatabase?) {
+        val sql = """
+            CREATE TABLE  tbscore  (
+               ActivityCode  TEXT,
+               SectionCode  text,
+               StudentNo  text,
+               Score  INTEGER,
+               Remark  text,
+               SubmissionStatus  text,
+              PRIMARY KEY ( ActivityCode ,  SectionCode ,  StudentNo )
+        );
+        """
+        db?.execSQL(sql);
+    }
+
+    fun ScoreQuery(db: SQLiteDatabase?) {
+        val sql = """
+
+      CREATE VIEW IF NOT EXISTS tbscore_query AS
+      SELECT
+                tbscore.ActivityCode,
+                tbscore.SectionCode,
+                tbscore.StudentNo,
+                tbscore.Score,
+                tbscore.Remark,
+                tbscore.SubmissionStatus,
+                tbstudent.FirstName,
+                tbstudent.LastName,
+                tbstudent.GrpNumber,
+                tbstudent.Gender
+            FROM
+                tbscore
+                INNER JOIN tbstudent
+            ON
+                 tbscore.StudentNo = tbstudent.StudentNo            
+        """.trimIndent()
+        db?.execSQL(sql);
+    }
+
+
+    fun TbinfoRecord(db: SQLiteDatabase?) { //        val sql = """
+        //           INSERT INTO tbinfo VALUES ('11-PROG-1, "FIRST");
+        //        """
+        //        db?.execSQL(sql);
+    }
+
+    fun TableSectionRecord(db: SQLiteDatabase?) {
+        val sql = """
+            INSERT INTO "TBSECTION" VALUES ('SEC-03', '11-PROG-1'),
+        ('SEC-04', '11-PROG-2'),
+        ('SEC-05', '12-PROG-1'),
+        ('SEC-06', 'POLLUX')
+        """.trimIndent()
+        db?.execSQL(sql);
+
+    }
+
+    fun StudentRecord(db: SQLiteDatabase?) {
+        val sql = """
+        """.trimIndent()
+        db?.execSQL(sql);
+    }
+
+    fun StudentData(db: SQLiteDatabase?) {
+
+    }
+
+
+    fun ShowField(tableName: String): String { //        var db: SQLiteDatabase;
+        //        db = getReadableDatabase();
+        //        var cursor: Cursor? = db.query(tableName, null, null, null, null, null, null);
+        //        val col: Array<String> = cursor!!.getColumnNames()
+        //        //var field: String = ""
+        //        var field = ArrayList<String>()
+        //        //adding String elements in the list
+        //        //arraylist.add("Geeks")
+        //
+        //        for (c in col) {
+        //            field.add(c)
+        //        }
+        //        val fields = arrayOfNulls<String>(field.size)
+        //        field.toArray(fields)
+        //        Toast.makeText(this.context, fields.joinToString(), Toast.LENGTH_LONG).show();
+        //        return fields.joinToString()
+        return "";
+    }
+
 
     override fun onCreate(db: SQLiteDatabase?) {
 
-        val sql =
-            ("CREATE TABLE tbstudent (StudentNo INTEGER PRIMARY KEY,FirstName text, Lastname text,GrpNumber text, Section text))")
-        db?.execSQL(sql)
-        Log.d("myTag", "This is my delete");
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        //      //  var sql = """
-        //            CREATE VIEW IF NOT EXISTS  tbattendance_query AS SELECT
-        //                            tbattendance.SchedTime,
-        //                            tbattendance.SchedDate,
-        //                            tbattendance.SectionCode,
-        //                            tbattendance.StudentNumber,
-        //                            tbattendance.AttendanceStatus,
-        //                            tbattendance.Remark,
-        //                            tbstudent.FirstName,
-        //                            tbstudent.LastName,
-        //                            tbstudent.GrpNumber,
-        //                            tbstudent.Gender
-        //                FROM
-        //                tbattendance
-        //                INNER JOIN
-        //                        tbstudent
-        //                ON
-        //                tbattendance.StudentNumber = tbstudent.StudentNo
-        //        """
-        //      // var sql = ("create table  IF NOT EXISTS tbinfo (CurrentSection text)")
-        // db?.execSQL(sql)
-
-        //var  sql = ("drop table tbsched")
 
 
-        //("create table tbsched (SchedTime text,	SchedDate text,	SectionCode text, Remark text,   PRIMARY KEY (SchedTime, SchedDate, SectionCode))")
-        //  var sql = "ALTER TABLE tbstudent ADD Gender text"
-        //       var sql= "drop view if exists TBATTENDANCE_QUERY"
-        //        db?.execSQL(sql)
-        //
+    }
 
-        //      var    sql =  "DROP TABLE tbstudent";
-        //                sql= ("CREATE TABLE tbstudent (StudentNo INTEGER PRIMARY KEY,FirstName text, LastName text,GrpNumber text, Section text )")
-        //
-        //       db?.execSQL(sql)
+    fun CreateStudentMiscTable(db: SQLiteDatabase?, stat: String = "") {
 
-        var sql =
-            ("CREATE TABLE IF NOT EXISTS  tbactivity (ActivityCode TEXT,SectionCode text, Description text,Item INTEGER, Status text ,  PRIMARY KEY (ActivityCode,SectionCode))")
+        val tbname = "TBMISC_STUDENT"
+        var sql = ""
+        if (stat == "DEL") {
+            sql = "DROP TABLE IF EXISTS $tbname"
+        } else {
+            sql = """
+             CREATE TABLE IF NOT EXISTS $tbname (  StudentNo text,    OptionNumber  text,  SectionCode text, 
+             PRIMARY KEY (OptionNumber,StudentNo))   
+             """
+        }
+        ExecuteSQL(sql, db, tbname, stat)
+    }
+
+
+    fun CreateMiscTable(db: SQLiteDatabase?, stat: String = "") {
+        val tbname = "TBMISC"
+        var sql = ""
+        if (stat == "DEL") {
+            sql = "DROP TABLE IF EXISTS $tbname"
+        } else {
+            sql = """
+             CREATE TABLE IF NOT EXISTS $tbname (  MiscCode text, MiscDescription text,  OptionNumber text,  OptionDescription text,  SectionCode text, 
+             PRIMARY KEY (OptionNumber, SectionCode))   
+             """
+        }
+        ExecuteSQL(sql, db, tbname, stat)
+    }
+
+    fun CreateRecitationable(db: SQLiteDatabase?, stat: String = "") {
+        val tbname = "TBRECITATION"
+        var sql = ""
+        if (stat == "DEL") {
+            sql = "DROP TABLE IF EXISTS $tbname"
+        } else {
+            sql = """
+             CREATE TABLE IF NOT EXISTS $tbname (RandomCode Text, StudentNo text, RecitationDate text,  Points Int,SectionCode text,  
+             PRIMARY KEY (RandomCode, StudentNo))   
+             """
+        }
+        ExecuteSQL(sql, db, tbname)
+    }
+
+
+    fun CreateSectionTable(db: SQLiteDatabase?, stat: String = "") {
+        val tbname = "TBSECTION"
+        var sql = ""
+        if (stat == "DEL") {
+            sql = "DROP TABLE IF EXISTS $tbname"
+        } else {
+            sql = """
+             CREATE TABLE IF NOT EXISTS $tbname (SectionCode text, SectionName text)   
+             """
+        }
+        ExecuteSQL(sql, db, tbname)
+    }
+
+    fun ExecuteSQL(sql: String, db: SQLiteDatabase?, entity: String, mode: String = "") {
+        try {
+            db?.execSQL(sql)
+            if (mode == "DEL") {
+                Util.Msgbox(context, "The $entity was deleted")
+            } else {
+                Util.Msgbox(context, "The $entity was created")
+            }
+        } catch (e: SQLiteException) {
+            Util.Msgbox(context, "Error in UpGraded")
+            Log.e("SQLER", sql + " " + e.toString())
+        }
+    }
+
+
+    fun CreateRandomTable(db: SQLiteDatabase?) {
+        var sql = """
+             CREATE TABLE IF NOT EXISTS  tbrandom (RandomCode Text, SequenceNumber TEXT,StudentNo text, SectionCode text,  Remark text,  
+             PRIMARY KEY (StudentNo, SectionCode))   
+             """
         db?.execSQL(sql)
 
 
+        //ShowField("tbscore")
     }
 
-    fun ManageStudent(crudStatus: String, studentno: String, fnanme: String = "", lastname: String = "", grpnumber: String = "", section: String = "", gender: String = ""): Boolean {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(TBSTUDENT_STUDENTNO, studentno)
-        contentValues.put(TBSTUDENT_FIRST, fnanme) // EmpModelClass Name
-        contentValues.put(TBSTUDENT_LAST, lastname) // EmpModelClass Phone
-        contentValues.put(TBSTUDENT_GRP, grpnumber) // EmpModelClass Phone
-        contentValues.put(TBSTUDENT_SECTION, section) // EmpModelClass Phone
-        contentValues.put(TBSTUDENT_GENDER, gender) // EmpModelClass Phone
-        var status: Boolean = false;
-        when (crudStatus) {
-            "ADD" -> {
-                val success = db.insert("tbstudent", null, contentValues)
-                if (success < 0) status = false
-                else status = true
-            } //add
-
-            "EDIT" -> {
-                val editstat =
-                    db.update(TABLE_NAME, contentValues, TBSTUDENT_STUDENTNO + "=" + studentno, null)
-                if (editstat < 0) status = false
-                else status = true
-            } //edit
-
-            "DELETE" -> {
-                val success = db.delete(TABLE_NAME, TBSTUDENT_STUDENTNO + "=" + studentno, null)
-                db.delete("TBATTENDANCE", TBATTENDANCE_STUDENTNO + "=" + studentno, null)
-                if (success < 0) status = false
-                else status = true
-            } //edit
-
-        } //when
-        return true;
-        db.close()
-    }
-
-    fun ManageSched(crudStatus: String, ampm: String, myDate: String, sectionCode: String, remark: String = "-"
-    ): Boolean {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(TBSCHED_TIME, ampm)
-        contentValues.put(TBSCHED_DATE, myDate) // EmpModelClass Name
-        contentValues.put(TBSCHED_SECTION, sectionCode) // EmpModelClass Phone
-        contentValues.put(TBSCHED_REMARK, remark) // EmpModelClass Phone
-        var status: Boolean = false;
-        when (crudStatus) {
-            "ADD" -> {
-                val success = db.insert("tbsched", null, contentValues)
-                if (success < 0) status = false
-                else status = true
-            } //add
-
-            "EDIT" -> {
-                var where =
-                    "$TBSCHED_DATE='$myDate' and $TBSCHED_SECTION='$sectionCode' and $TBSCHED_TIME='$ampm'"
-                val editstat = db.update("TBSCHED", contentValues, where, null)
-                Util.Msgbox(context, where)
-                if (editstat < 0) status = false
-                else status = true
-            } //edit
-
-
-            "DELETE" -> {
-
-                var where =
-                    "$TBSCHED_DATE='$myDate' and $TBSCHED_SECTION='$sectionCode' and $TBSCHED_TIME='$ampm'"
-                val success = db.delete("TBSCHED", where, null)
-
-                where =
-                    "$TBATTENDANCE_DATE='$myDate' and $TBATTENDANCE_SECTION='$sectionCode' and $TBATTENDANCE_TIME='$ampm'"
-                db.delete("TBATTENDANCE", where, null)
-
-                Toast.makeText(this.context, where, Toast.LENGTH_LONG).show();
-                //                if (success<0)
-                //                    status = false
-                //                else
-                //                    status = true
-            } //edit
-
-        } //when
-        return status
-        db.close()
-    }
-
-
-    fun GetStudentList(category: String, section: String = "", grp: String = "", lastname: String = ""
-    ): ArrayList<StudentModel> {
-
-        val studentList: ArrayList<StudentModel> = ArrayList<StudentModel>()
-
-        var sql: String = ""
-        when (category) {
-            "ALL" -> sql = "SELECT  * FROM $TABLE_NAME"
-            "SECTION" -> sql = """
-                SELECT  * FROM $TABLE_NAME 
-                where $TBSTUDENT_SECTION='$section' ORDER BY $TBSTUDENT_GENDER DESC, $TBSTUDENT_LAST
-                """
-            "GROUP" -> sql = """
-                SELECT  * FROM $TABLE_NAME 
-                where $TBSTUDENT_SECTION='$section' 
-                and $TBSTUDENT_GRP like '$grp%'  ORDER BY $TBSTUDENT_GENDER DESC, $TBSTUDENT_LAST
-                """
-            "NAME" -> sql = """
-                    SELECT  * FROM $TABLE_NAME where $TBSTUDENT_SECTION='$section' 
-                    and $TBSTUDENT_LAST like '$lastname%'
-                     ORDER BY $TBSTUDENT_GENDER DESC, $TBSTUDENT_LAST
-                   """
-        }
-        // Toast.makeText(this.context,  sql,  Toast.LENGTH_LONG).show();
-        Log.e("ETO", "$category, $section, $grp, $sql")
-
-        val db = this.readableDatabase
-        var cursor: Cursor? = null
-        try {
-            cursor = db.rawQuery(sql, null)
-        } catch (e: SQLiteException) {
-            db.execSQL(sql)
-            return ArrayList()
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-                var sn = cursor.getString(cursor.getColumnIndex(TBSTUDENT_STUDENTNO))
-                var fname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_FIRST))
-                var lname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
-                var grp = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
-                var section = cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
-                var gender = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GENDER))
-                val emp = StudentModel(sn, fname, lname, grp, section, gender)
-                studentList.add(emp)
-            } while (cursor.moveToNext())
-        }
-        return studentList
-    }
-
-    fun GetScheduleList(sectioncode: String, monthname: String): List<ScheduleModel> {
-
-        val schedList: ArrayList<ScheduleModel> = ArrayList<ScheduleModel>()
-        var sql: String = "SELECT  * FROM TBSCHED where $TBSCHED_SECTION='$sectioncode'"
-        sql = sql + " and $TBSCHED_DATE like '$monthname%' order by $TBSCHED_DATE DESC"
-
-
-
-        Log.e("SQL", sql)
-        val db = this.readableDatabase
-        var cursor: Cursor? = null
-        try {
-            cursor = db.rawQuery(sql, null)
-        } catch (e: SQLiteException) {
-            db.execSQL(sql)
-            return ArrayList()
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-                var ampm = cursor.getString(cursor.getColumnIndex(TBSCHED_TIME))
-                var myDate = cursor.getString(cursor.getColumnIndex(TBSCHED_DATE))
-                var sectioncode = cursor.getString(cursor.getColumnIndex(TBSCHED_SECTION))
-                var remark = cursor.getString(cursor.getColumnIndex(TBSCHED_REMARK))
-                val sched = ScheduleModel(ampm, myDate, sectioncode, remark)
-                schedList.add(sched)
-            } while (cursor.moveToNext())
-        }
-
-        return schedList
-    }
-
-
-    fun CountAttendance(attStatus: String): String {
-        var mydate: String = Util.ATT_CURRENT_DATE
-        var ampm: String = Util.ATT_CURRENT_AMPM
-        var section: String = Util.ATT_CURRENT_SECTION
+    fun CreateLogTable(db: SQLiteDatabase?) {
         var sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $TBATTENDANCE_DATE='$mydate' 
-                and $TBATTENDANCE_TIME='$ampm' 
-                and $TBATTENDANCE_SECTION='$section'
-                and $TBATTENDANCE_STATUS='$attStatus'
-            """
-
-        val db = this.readableDatabase
-        val cursor = db.rawQuery(sql, null)
-        val count = cursor.count
-        cursor.close()
-        Util.Msgbox(context, count.toString())
-        return count.toString()
+             CREATE TABLE IF NOT EXISTS  tblog (LogID TEXT,DateTime text,
+             Description text, 
+             PRIMARY KEY (LogID))   
+             """
+        db?.execSQL(sql) //ShowField("tbscore")
 
     }
 
-    fun GetAttendanceList(category: String = "ALL", str: String = ""): ArrayList<AttendanceModel> {
-        var mydate: String = Util.ATT_CURRENT_DATE
-        var ampm: String = Util.ATT_CURRENT_AMPM
-        var section: String = Util.ATT_CURRENT_SECTION
-        val attendanceList: ArrayList<AttendanceModel> = ArrayList<AttendanceModel>()
-        val sql: String
+
+    fun CreateScoreTable(db: SQLiteDatabase?) {
+        var sql = """
+             CREATE TABLE IF NOT EXISTS  tbscore (ActivityCode TEXT,SectionCode text,
+             StudentNo text,Score INTEGER, Remark text,  
+             PRIMARY KEY (ActivityCode,SectionCode, StudentNo))   
+             """
+        db?.execSQL(sql) //ShowField("tbscore")
+    }
+
+    fun CreateStudentTable(db: SQLiteDatabase?) {
+        var sql =
+            ("CREATE TABLE tbstudent (StudentNo INTEGER PRIMARY KEY,FirstName text, LastName text,GrpNumber text, Section text, Gender Text )")
+        db?.execSQL(sql)
+        ShowField("tbscore")
+    }
+
+    fun CreateSchedTable(db: SQLiteDatabase?) {
+        var sql =
+            ("create table tbsched (SchedTime text,	SchedDate text,	SectionCode text, Remark text,   PRIMARY KEY (SchedTime, SchedDate, SectionCode))")
+        db?.execSQL(sql)
+        ShowField("tbscore")
+    }
+
+    fun CreateAttendanceTable(db: SQLiteDatabase?) {
+        var sql =
+            ("create table tbsched (SchedDate text,	SectionCode text,	StudentNumber text, Remark text, AttendanceStatus text  PRIMARY KEY (SchedTime, SchedDate, SectionCode, StudentNumber))")
+        db?.execSQL(sql)
+        ShowField("tbscore")
+    }
 
 
+    fun CreateInfoTable(db: SQLiteDatabase?) {
+        var sql = ("create table  IF NOT EXISTS tbinfo (CurrentSection text)")
+        db?.execSQL(sql)
+    }
 
-        when (category) {
-            "GROUP" -> {
-                sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $QRATTENDANCE_DATE='$mydate' 
-                and $QRATTENDANCE_TIME='$ampm' 
-                and $QRATTENDANCE_SECTION='$section'
-                and $QRATTENDANCE_GRP like'$str%'
-                ORDER BY $QRATTENDANCE_GENDER DESC, $QRATTENDANCE_LAST
-                """
+    fun CreateAttendanceView(db: SQLiteDatabase?) {
+        var sql = """
+            CREATE VIEW IF NOT EXISTS tbattendance_query AS SELECT tbattendance.SchedTime,
+                tbattendance.SchedDate,
+                tbattendance.SectionCode,
+                tbattendance.StudentNumber,
+                tbattendance.AttendanceStatus,
+                tbattendance.Remark,
+                tbstudent.FirstName,
+                tbstudent.LastName,
+                tbstudent.GrpNumber,
+                tbstudent.Gender
+            FROM
+                tbattendance
+                INNER JOIN tbstudent
+            ON
+                 tbattendance.StudentNumber = tbstudent.StudentNo
+            """
+        db?.execSQL(sql)
+    }
 
-            } //group
+    fun CreateScoreView(db: SQLiteDatabase?) {
+        var sql = "DROP VIEW IF EXISTS tbscore_query"
+        db?.execSQL(sql)
+        sql = """
+            CREATE VIEW IF NOT EXISTS tbscore_query AS SELECT
+                tbscore.ActivityCode,
+                tbscore.SectionCode,
+                tbscore.StudentNo,
+                tbscore.Score,
+                tbscore.Remark,
+                tbscore.SubmissionStatus,
+                tbstudent.FirstName,
+                tbstudent.LastName,
+                tbstudent.GrpNumber,
+                tbstudent.Gender
+            FROM
+                tbscore
+                INNER JOIN tbstudent
+            ON
+                 tbscore.StudentNo = tbstudent.StudentNo
+            """
+        db?.execSQL(sql)
+        Log.e("OKOK", "The tbscore_query is created ver 1")
+    }
 
-            "NAME" -> {
-                sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $QRATTENDANCE_DATE='$mydate' 
-                and $QRATTENDANCE_TIME='$ampm' 
-                and $QRATTENDANCE_SECTION='$section'
-                and $QRATTENDANCE_LAST like'$str%'
-                ORDER BY $QRATTENDANCE_GENDER DESC, $QRATTENDANCE_LAST
-                """
-            } //group
+    fun CreateRandomView(db: SQLiteDatabase?) {
+        var sql = "DROP VIEW IF EXISTS tbrandom_query"
+        db?.execSQL(sql)
+        sql = """
+            CREATE VIEW IF NOT EXISTS tbrandom_query AS SELECT 
+                tbrandom.RandomCode,
+                tbrandom.SequenceNumber,
+                tbrandom.Remark,
+                tbrandom.StudentNo,
+                tbrandom.SectionCode,
+                tbstudent.FirstName,
+                tbstudent.LastName,
+                tbstudent.GrpNumber,
+                tbstudent.Gender
+            FROM
+                tbrandom
+                INNER JOIN tbstudent
+            ON
+                 tbrandom.StudentNo = tbstudent.StudentNo
+            """
+        db?.execSQL(sql)
+        Util.Msgbox(context, "The tbscore_query is created")
+    }
 
-            "ATTENDANCE" -> {
-                sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $QRATTENDANCE_DATE='$mydate' 
-                and $QRATTENDANCE_TIME='$ampm' 
-                and $QRATTENDANCE_SECTION='$section'
-                and $QRATTENDANCE_STATUS ='$str'
-                ORDER BY $QRATTENDANCE_GENDER DESC, $QRATTENDANCE_LAST
-                """
-            } //group
+    fun CreateRecitationView(db: SQLiteDatabase?) {
+        var sql = "DROP VIEW IF EXISTS tbrecitation_query"
+        db?.execSQL(sql)
+        sql = """
+            CREATE VIEW IF NOT EXISTS tbrecitation_query AS SELECT 
+                tbrecitation.RandomCode,
+                tbrecitation.StudentNo,
+                tbrecitation.SectionCode,
+                tbstudent.FirstName,
+                tbstudent.LastName
+            FROM
+                tbrecitation
+                INNER JOIN tbstudent
+            ON
+                 tbrecitation.StudentNo = tbstudent.StudentNo
+            """
+        ExecuteSQL(sql, db, "tbrecitation_quety")
 
+    }
 
-            else -> {
-                sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $TBATTENDANCE_DATE='$mydate' 
-                and $TBATTENDANCE_TIME='$ampm' 
-                and $TBATTENDANCE_SECTION='$section'
-                ORDER BY $QRATTENDANCE_GENDER DESC, $QRATTENDANCE_LAST
-                """
-            } //else
-        } //when
-
-        //Util.Msgbox(context, sql)
-
-        val db = this.readableDatabase
-        var cursor: Cursor? = null
+    fun CreateMiscView(db: SQLiteDatabase?) {
+        var sql = "DROP VIEW IF EXISTS tbmisc_query"
+        db?.execSQL(sql)
         try {
-            cursor = db.rawQuery(sql, null)
+            sql = """  CREATE VIEW IF NOT EXISTS tbmisc_query AS  SELECT
+        tbmisc_student.StudentNo,
+        tbmisc_student.OptionNumber,
+        tbmisc_student.SectionCode,
+        tbstudent.FirstName,
+        tbstudent.LastName,
+        tbstudent.GrpNumber,
+        tbstudent.Gender,
+        tbstudent.Section,
+        tbmisc.OptionNumber,
+        tbmisc.OptionDescription,
+        tbmisc.MiscDescription,
+        tbmisc.MiscCode
+        FROM
+        tbmisc_student
+        INNER JOIN tbmisc ON tbmisc.OptionNumber = tbmisc_student.OptionNumber
+        INNER JOIN tbstudent ON tbmisc_student.StudentNo = tbstudent.StudentNo """
+            db?.execSQL(sql)
+            Util.Msgbox(context, "tbmisc_query11 was created")
         } catch (e: SQLiteException) {
-            db.execSQL(sql)
-            return ArrayList()
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-                var ampm = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_TIME))
-                var myDate = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_DATE))
-                var sectionCode = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_SECTION))
-                var remark = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_REMARK))
-                var studentNo = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STUDENTNO))
-                var attendanceStatus = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
-                var fname = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_FIRST))
-                var lname = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_LAST))
-                var grp = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_GRP))
-                var completeName = lname + "," + fname
-                val att =
-                    AttendanceModel(ampm, myDate, sectionCode, studentNo, completeName, grp, attendanceStatus, remark)
-                Log.e("stud", "$completeName $attendanceStatus $category")
-                attendanceList.add(att)
-            } while (cursor.moveToNext())
-        }
-        //        Util.Msgbox(context, sql)
-        Log.e("RECORD", sql)
-        Log.e("RECORD", attendanceList.size.toString())
-
-        return attendanceList
-    }
-
-    fun UpdateStudentAttendance(attStatus: String, studentNo: String = "", remark: String = "-") {
-        var myDate: String = Util.ATT_CURRENT_DATE
-        var ampm: String = Util.ATT_CURRENT_AMPM
-        var section: String = Util.ATT_CURRENT_SECTION
-
-        var sql: String
-        if (studentNo == "") {
-            sql = """
-              update tbattendance set $TBATTENDANCE_STATUS = '$attStatus'
-              where $TBATTENDANCE_DATE='$myDate' 
-              and $TBATTENDANCE_TIME='$ampm' 
-              and $TBATTENDANCE_SECTION ='$section'
-              """
-        } else {
-            sql = """
-              update tbattendance set $TBATTENDANCE_STATUS = '$attStatus',
-              $TBATTENDANCE_REMARK = '$remark'
-              where $TBATTENDANCE_DATE='$myDate' 
-              and $TBATTENDANCE_TIME='$ampm' 
-              and $TBATTENDANCE_SECTION ='$section'
-              and $TBATTENDANCE_STUDENTNO ='$studentNo'
-              """
-        }
-        val db = this.writableDatabase
-        db.execSQL(sql)
-    }
-
-
-    fun AddStudetAttendance(mydate: String, mytime: String, section: String) {
-        val db = this.writableDatabase
-        var sql = """
-            INSERT INTO TBATTENDANCE (SchedTime, SchedDate, SectionCode , StudentNumber , AttendanceStatus ,Remark)
-            SELECT '$mytime', '$mydate', '$section', studentno, '-' , '-'
-            FROM   tbstudent where section = '$section'
-            """
-        Util.Msgbox(context, sql)
-        db.execSQL(sql);
-    }
-
-    // fun  DeleteStudetAttendance(mydate:String, ampm:String, section:String){
-    fun DeleteStudetAttendance() {
-        val db = this.writableDatabase
-        var sql = "DELETE FROM  TBATTENDANCE"
-        db.execSQL(sql)
-    }
-
-
-    fun ShowAllRecord(tableName: String) {
-        var sql: String = "SELECT  * FROM $tableName"
-        val db = this.readableDatabase
-        var cursor: Cursor? = null
-        cursor = db.rawQuery(sql, null)
-
-        val FILENAME = tableName + ".csv"
-        val heading = ShowField(tableName)
-
-
-        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val myFile = File(folder, FILENAME)
-        val fstream = FileOutputStream(myFile)
-        fstream.write(heading.toByteArray())
-        fstream.write("\n".toByteArray())
-        //        for (mylist in MyRecycle.list) {
-        //            var myData = mylist.studentno + "," + mylist.firstname + "," + mylist.lastname
-        //            myData = myData + "," + mylist.sectioncode + "," + mylist.grp
-        //        }
-
-
-        var p: String = ""
-        if (cursor.moveToFirst()) {
-            do {
-                when (tableName) {
-                    "TBSTUDENT" -> {
-                        p =
-                            cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_STUDENTNO))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_FIRST))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_LAST))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_GRP))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSTUDENT_SECTION))
-                    }
-
-                    "TBSCHED" -> {
-                        p = cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_TIME))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_DATE))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_SECTION))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBSCHED_REMARK))
-                    }
-
-                    "TBATTENDANCE" -> {
-                        p =
-                            cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_TIME))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_DATE))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_SECTION))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STUDENTNO))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_STATUS))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(DatabaseHandler.TBATTENDANCE_REMARK))
-                    }
-
-                    "TBATTENDANCE_QUERY" -> {
-
-                        p = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_TIME))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_DATE))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_SECTION))
-                        p =
-                            p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STUDENTNO))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_REMARK))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_FIRST))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_LAST))
-                        p = p + "," + cursor.getString(cursor.getColumnIndex(QRATTENDANCE_GRP))
-                    }
-                }
-
-                Util.Msgbox(context, p)    // val emp = Person(sn, fname, lname, grp, section)
-                fstream.write(p.toByteArray())
-                fstream.write("\n".toByteArray())
-                Log.e("RECORD", p)
-            } while (cursor.moveToNext())
-
-        }
-        fstream.close()
-    }
-
-
-    fun GetCountAttendanceList(myMonth: String, section: String, category: String = "SECTION", search_string: String = ""): List<SummaryModel> {
-
-        val studentList: List<StudentModel>
-
-        // Util.Msgbox(context, "$myMonth" )
-        val attendanceCount: ArrayList<SummaryModel> = ArrayList<SummaryModel>()
-        when (category) {
-            "GROUP" -> studentList = GetStudentList(category, section, search_string)
-            "NAME" -> studentList = GetStudentList(category, section, "", search_string)
-            else -> studentList = GetStudentList("SECTION", section)
+            Util.Msgbox(context, "SQL error")
         }
 
 
-        //  Util.Msgbox(context, "$myMonth" )
-        for (student in studentList) {
-            val studentname = student.lastname + "," + student.firstname
-            var studentNo = student.studentno
-            var presentCount = GetIndividualCouunt(studentNo, myMonth, "P")
-            var lateCount = GetIndividualCouunt(studentNo, myMonth, "L")
-            var absentCount = GetIndividualCouunt(studentNo, myMonth, "A")
-            var excuseCount = GetIndividualCouunt(studentNo, myMonth, "E")
-            val sum =
-                SummaryModel(studentNo, studentname, presentCount, lateCount, absentCount, excuseCount)
-            attendanceCount.add(sum)
-
-            Log.e("ATT", "$studentname  $presentCount $lateCount, $absentCount, $excuseCount")
-        }
-
-        return attendanceCount
     }
 
-    private fun GetIndividualCouunt(studentNo: String, monthName: String, attendanceStatus: String): Int {
-        //        var mydate: String = Util.ATT_CURRENT_DATE
-        //        var ampm: String = Util.ATT_CURRENT_AMPM
-        //        var section: String = Util.ATT_CURRENT_SECTION
-        var sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $TBATTENDANCE_DATE LIKE'$monthName%' 
-                and $TBATTENDANCE_STUDENTNO='$studentNo'
-                and $TBATTENDANCE_STATUS='$attendanceStatus'
-            """
-
-        val db = this.readableDatabase
-        Log.e("ATT", "$sql")
-
-        val cursor = db.rawQuery(sql, null)
-
-        val count = cursor.count
-        cursor.close()
-        //Util.Msgbox(context, count.toString())
-        return count
-    }
 
     fun CountTableRecord(tableName: String) {
         var sql = "select * from  $tableName"
@@ -613,11 +470,6 @@ open class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstud
         cursor.close()
     }
 
-    fun SetCurrentSection(section: String) {
-        var sql = "update tbinfo set  $TBINFO_CURRENTSECTION ='$section'"
-        val db = this.writableDatabase
-        db.execSQL(sql)
-    }
 
     fun GetCurrentSection(): String {
         var sql = "select * from  tbinfo"
@@ -630,158 +482,610 @@ open class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "dbstud
     }
 
 
+    fun GetCurrentOriginalSection(): String {
+        var sql = "select * from  tbinfo"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(sql, null)
+        cursor.moveToFirst()
+        var section = cursor.getString(cursor.getColumnIndex("CurrentOriginslSEction"))
+        return section
+        cursor.close()
+    }
+
     fun DatabaseUtil(sql: String) {
         val db = this.writableDatabase
         db.execSQL(sql)
     }
 
+    fun ManageStudent(crudStatus: String, studentno: String, fnanme: String = "", lastname: String = "", middle: String = "", section: String = "", gender: String = "", contact: String = "", parentContact: String = "", address: String = "", email: String = "", schoolStudentNo: String = ""): Boolean {
+        Log.e("@@@536", "HEllooooo")
 
-    fun GetIndividuaList(monthname: String, studentno: String): List<IndividualModel> {
-
-        val individualList: ArrayList<IndividualModel> = ArrayList<IndividualModel>()
-        val sql: String
-        sql = """
-                SELECT * FROM TBATTENDANCE_QUERY 
-                WHERE $QRATTENDANCE_DATE like '$monthname%' 
-                and $QRATTENDANCE_STUDENTNO='$studentno' 
-                order by  $QRATTENDANCE_DATE 
-                """
-        val db = this.readableDatabase
-        var cursor: Cursor? = null
         try {
-            cursor = db.rawQuery(sql, null)
-        } catch (e: SQLiteException) {
-            db.execSQL(sql)
-            return ArrayList()
+            val db = this.writableDatabase
+            val contentValues = ContentValues()
+            contentValues.put("StudentID", studentno)
+            contentValues.put("FirstName", fnanme)
+            contentValues.put("LastName", lastname)
+            contentValues.put("MIddleName", middle)
+            contentValues.put("OriginalSection", section)
+            contentValues.put("Gender", gender)
+            contentValues.put("ContactNumber", contact)
+            contentValues.put("ParentContact", parentContact)
+            contentValues.put("Address", address)
+            contentValues.put("emailAddress", email)
+            contentValues.put("SchoolStudentNumber", schoolStudentNo)
+
+
+            var status: Boolean = false;
+            when (crudStatus) {
+                "ADD" -> {
+                    val success = db.insert("tbstudent_info", null, contentValues)
+                    if (success < 0) status = false
+                    else status = true
+                } //add
+
+                "EDIT" -> {
+                    var sql = """
+                          update tbstudent_info 
+                          set FirstName='$fnanme'
+                          ,  LastName='$lastname'
+                          ,  MIddleName='$middle'
+                          ,  OriginalSection='$section'
+                          ,  Gender='$gender'
+                          ,  ContactNumber='$contact'
+                          ,  ParentContact='$parentContact'
+                          ,  Address='$address'
+                          ,  emailAddress='$email'
+                          ,  SchoolStudentNumber='$schoolStudentNo'
+                          where  StudentID ='$studentno'
+                         """.trimIndent()
+                    db.execSQL(sql)
+                    Log.e("@@@536", sql)
+                } //edit
+
+                "DELETE" -> {
+                    db.delete("TBSCORE", TBSTUDENT_STUDENTNO + "=" + studentno, null) //   db.delete("TBATTENDANCE", "StudentNumber=" + studentno, null)
+                    val success = db.delete(TABLE_NAME, TBSTUDENT_STUDENTNO + "=" + studentno, null)
+
+                    if (success < 0) status = false
+                    else status = true
+                } //edit
+
+            } //when
+            return true;
+            db.close()
+        } catch (e: Exception) {
+            Log.e("Err", e.toString())
+            return true;
         }
 
-        if (cursor.moveToFirst()) {
-            do {
-                var ampm = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_TIME))
-                var myDate = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_DATE))
-                var remark = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_REMARK))
-                var attendanceStatus = cursor.getString(cursor.getColumnIndex(QRATTENDANCE_STATUS))
-                val individual = IndividualModel(ampm, myDate, attendanceStatus, remark)
-                individualList.add(individual)
-            } while (cursor.moveToNext())
-        }
-        //        Util.Msgbox(context, sql)
-        //              Log.e("RECORD", sql)
-        //        Log.e("RECORD", attendanceList.size.toString())
-
-        return individualList
     }
 
-
-}
-
-class TableActivity(context: Context) : DatabaseHandler(context) {
-    private val TBACTIVITY_CODE = "ActivityCode"
-    private val TBACTIVITY_SECTION = "SectionCode"
-    private val TBACTIVITY_DESCRIPTION = "Description"
-    private val TBACTIVITY_ITEM = "Item"
-    private val TBACTIVITY_STATUS = "Status"
-
-    // ("CREATE TABLE IF NOT EXISTS  tbactivity ( TEXT, text,  text, INTEGER, text ,  PRIMARY KEY (ActivityCode,SectionCode))")
-
-
-    fun ManageActivity(crudStatus: String, activityCode: String, sectionCode: String = "", description: String = "", item: String= "0", actStatus: String =""): Boolean {
-
+    fun UpdateDroppedStudent(section: String, studentNo: String) {
         val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(TBACTIVITY_CODE, activityCode)
-        contentValues.put(TBACTIVITY_SECTION, sectionCode)
-        contentValues.put(TBACTIVITY_DESCRIPTION, description)
-        contentValues.put(TBACTIVITY_ITEM, item.toInt())
-        contentValues.put(TBACTIVITY_STATUS, actStatus)
-        var status: Boolean = false;
-        Util.Msgbox(context, actStatus)
-        if (crudStatus == "ADD") {
 
-            val success = db.insert("tbactivity", null, contentValues)
-            Util.Msgbox(context, success.toString())
-            if (success < 0) status = false
-            else status = true
+        var sql = """
+             update tbscore set SubmissionStatus='DR'
+                          where SectionCode   ='$section'
+                          and  StudentNo ='$studentNo'
+        """.trimIndent()
 
-        } else if (crudStatus == "EDIT") {
-            var where = "$TBACTIVITY_CODE='$activityCode' and $TBACTIVITY_SECTION='$sectionCode'"
-            val editstat =  db.update("TBACTIVITY", contentValues, where,  null)
-            if (editstat < 0) status = false
-            else status = true
-            Log.e("XXX", editstat.toString() + "$actStatus   $where")
-        } else if (crudStatus == "DELETE") {
-            var where = "$TBACTIVITY_CODE='$activityCode' and $TBACTIVITY_SECTION='$sectionCode'"
-            Log.e("XXX", where)
-            var success = db.delete("TBACTIVITY",  where,  null)
-            if (success < 0) status = false
-            else status = true
+        var sql2 = """
+             update tbgrades set Remark='DROPPED'
+                          where SectionCode   ='$section'
+                          and  StudentNo ='$studentNo'
+        """.trimIndent()
+
+
+        Log.e("@@@", sql)
+        Log.e("@@@", sql2)
+        db.execSQL(sql)
+        db.execSQL(sql2)
+    }
+
+    fun GetStudentList(category: String, section: String, searchString: String = ""): ArrayList<StudentInfoModel> {
+
+        val studentList: ArrayList<StudentInfoModel> = ArrayList<StudentInfoModel>()
+
+        var sql: String = """ SELECT  * FROM tbstudent_info
+                                where OriginalSection='$section'  """
+
+        Log.e("B210", category)
+
+        if (category == "GROUP_SEARCH") {
+            sql = sql + " and $TBSTUDENT_GRP like '$searchString%' order by lastName"
+        } else if (category == "NAME_SEARCH") {
+            sql = sql + " and $TBSTUDENT_LAST like '$searchString%' order by lastName"
+        } else if (category == "GENDER_ORDER") {
+            sql = sql + "ORDER BY $TBSTUDENT_GENDER DESC, $TBSTUDENT_LAST"
+        } else if (category == "LAST_ORDER") {
+            sql = sql + "order by lastName"
+        } else if (category == "FIRST_ORDER") {
+            sql = sql + "order by firstName"
+        } else if (category == "ENROLL_ORDER") {
+            sql = sql + "order by enrollmentstatus, lastname"
+        } else if (category == "ID_ORDER") {
+            sql = sql + "order by studentID"
+        } else if (category == "BYLETTER") {
+            sql =
+                sql + "and LASTNAME LIKE '$searchString%' and status ='ACTIVE' order by lastname"
+        } else if (category == "A-C") {
+            sql =
+                sql + "and (LASTNAME LIKE 'A%' OR LASTNAME LIKE 'B%' OR LASTNAME LIKE 'C%' ) order by lastname"
+        } else if (category == "D-J") {
+            sql =
+                sql + "and (LASTNAME LIKE 'F%' OR LASTNAME LIKE 'G%' OR LASTNAME LIKE 'H%' OR LASTNAME LIKE 'I%'  OR LASTNAME LIKE 'J%' OR LASTNAME LIKE 'D%'  OR LASTNAME LIKE 'E%') order by lastname"
+        } else if (category == "K-O") {
+            sql =
+                sql + "and (LASTNAME LIKE 'K%' OR LASTNAME LIKE 'L%' OR LASTNAME LIKE 'M%' OR LASTNAME LIKE 'N%'  OR LASTNAME LIKE 'O%') order by lastname"
+        } else if (category == "P-R") {
+            sql =
+                sql + "and (LASTNAME LIKE 'P%' OR LASTNAME LIKE 'Q%' OR LASTNAME LIKE 'R%' ) order by lastname"
+        } else if (category == "S-Z") {
+            sql =
+                sql + "and (LASTNAME LIKE 'U%' OR LASTNAME LIKE 'V%' OR LASTNAME LIKE 'W%' OR LASTNAME LIKE 'X%'  OR LASTNAME LIKE 'Y%' OR LASTNAME LIKE 'Z%' OR LASTNAME LIKE 'S%'  OR LASTNAME LIKE 'T%') order by lastname"
         }
-        return true;
-        db.close()
-     }
-
-    fun GetActivityList(sectioncode:String): ArrayList<ActivityModel> {
-        val activityList: ArrayList<ActivityModel> = ArrayList<ActivityModel>()
-        val sql: String
-                sql = """
-                SELECT * FROM TBACTIVITY 
-                WHERE $TBACTIVITY_SECTION='$sectioncode' 
-                ORDER BY $TBACTIVITY_CODE DESC
-                """
-
-
-        //Util.Msgbox(context, sql)
+        Log.e("SQL200", sql + category)
 
         val db = this.readableDatabase
         var cursor: Cursor? = null
-        try {
-            cursor = db.rawQuery(sql, null)
-        } catch (e: SQLiteException) {
-            db.execSQL(sql)
-            return ArrayList()
-        }
-
+        cursor = db.rawQuery(sql, null)
+        Log.e("B21", cursor.count.toString())
+        var num = 1;
         if (cursor.moveToFirst()) {
             do {
-                var activityCode = cursor.getString(cursor.getColumnIndex(TBACTIVITY_CODE))
-                var sectionCode = cursor.getString(cursor.getColumnIndex(TBACTIVITY_SECTION))
-                var description = cursor.getString(cursor.getColumnIndex(TBACTIVITY_DESCRIPTION))
-                var item = cursor.getString(cursor.getColumnIndex(TBACTIVITY_ITEM)).toInt()
-                var status = cursor.getString(cursor.getColumnIndex(TBACTIVITY_STATUS))
-                Log.e("XXX", status)
-                val att = ActivityModel(activityCode,  sectionCode, description, item, status)
-                activityList.add(att)
+                Log.e("SQL", "hELLO124")
+                var sn = cursor.getString(cursor.getColumnIndex("StudentID"))
+                var fname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_FIRST))
+                var lname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
+
+                var section = cursor.getString(cursor.getColumnIndex("OriginalSection"))
+                var gender = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GENDER))
+                var extension = cursor.getString(cursor.getColumnIndex("Extension"))
+                var contactNumber = cursor.getString(cursor.getColumnIndex("ContactNumber"))
+                var parentContact = cursor.getString(cursor.getColumnIndex("ParentContact"))
+
+                var address = cursor.getString(cursor.getColumnIndex("Address"))
+                var emailAddress = cursor.getString(cursor.getColumnIndex("emailAddress"))
+                var schoolStudentNumber =
+                    cursor.getString(cursor.getColumnIndex("SchoolStudentNumber"))
+                var middleName = cursor.getString(cursor.getColumnIndex("MIddleName"))
+
+                val emp =
+                    StudentInfoModel(sn, fname, lname, section, gender, extension, contactNumber, parentContact, address, emailAddress, schoolStudentNumber, middleName, num)
+
+                //                var studentno:String ,
+                //                var firstname:String,
+                //                var lastname:String,
+                //                var originalSection:String,
+                //                var gender:String,
+                //                var extension:String,
+                //                var contactNumber:String,
+                //                var parentcontact:String,
+                //                var address:String,
+                //                var emailAddress:String,
+                //                var orderNumm: Int,
+                //                var schoolStudentNumber:String,
+                //                var expand:String,
+                //                var middleName: String
+
+
+                num++;
+                Log.e("AAA", extension + "  " + contactNumber) //val emp = StudentModel(sn, fname, lname, grp, section, gender, extension, contactNumber)
+                studentList.add(emp)
+                Log.e("SQL", fname + " " + lname)
             } while (cursor.moveToNext())
         }
-        return activityList
+        return studentList
     }
 
-    fun GetNewActivityCode(sectioncode:String): String  {
-            val activityList: ArrayList<ActivityModel> = ArrayList<ActivityModel>()
-            val sql: String
-            sql = """
-                SELECT * FROM TBACTIVITY 
-                WHERE $TBACTIVITY_SECTION='$sectioncode' 
-                ORDER BY $TBACTIVITY_CODE DESC
-                """
+    fun GetEnrolleList(category: String, section: String, searchString: String = ""): ArrayList<EnrolleModel> {
 
+        val studentList: ArrayList<EnrolleModel> = ArrayList<EnrolleModel>()
 
+        var sql: String = """ SELECT  * FROM tbstudent_query
+                                where Section='$section'  """
+
+        Log.e("B210", category)
+
+        if (category == "GROUP_SEARCH") {
+            sql = sql + " and $TBSTUDENT_GRP like '$searchString%' order by lastName"
+        } else if (category == "NAME_SEARCH") {
+            sql = sql + " and $TBSTUDENT_LAST like '$searchString%' order by lastName"
+        } else if (category == "GENDER_ORDER") {
+            sql = sql + "ORDER BY $TBSTUDENT_GENDER DESC, $TBSTUDENT_LAST"
+        } else if (category == "LAST_ORDER") {
+            sql = sql + "order by lastName"
+        } else if (category == "FIRST_ORDER") {
+            sql = sql + "order by firstName"
+        } else if (category == "ENROLL_ORDER") {
+            sql = sql + "order by enrollmentstatus, lastname"
+        } else if (category == "GRP_ORDER") {
+            sql = sql + "order by grpnumber"
+        } else if (category == "RANDOM_ORDER") {
+            sql = sql + "order by number"
+        } else if (category == "A-C") {
+            sql =
+                sql + "and (LASTNAME LIKE 'A%' OR LASTNAME LIKE 'B%' OR LASTNAME LIKE 'C%' ) order by lastname"
+        } else if (category == "D-J") {
+            sql =
+                sql + "and (LASTNAME LIKE 'F%' OR LASTNAME LIKE 'G%' OR LASTNAME LIKE 'H%' OR LASTNAME LIKE 'I%'  OR LASTNAME LIKE 'J%' OR LASTNAME LIKE 'D%'  OR LASTNAME LIKE 'E%') order by lastname"
+        } else if (category == "K-O") {
+            sql =
+                sql + "and (LASTNAME LIKE 'K%' OR LASTNAME LIKE 'L%' OR LASTNAME LIKE 'M%' OR LASTNAME LIKE 'N%'  OR LASTNAME LIKE 'O%') order by lastname"
+        } else if (category == "P-R") {
+            sql =
+                sql + "and (LASTNAME LIKE 'P%' OR LASTNAME LIKE 'Q%' OR LASTNAME LIKE 'R%' ) order by lastname"
+        } else if (category == "S-Z") {
+            sql =
+                sql + "and (LASTNAME LIKE 'U%' OR LASTNAME LIKE 'V%' OR LASTNAME LIKE 'W%' OR LASTNAME LIKE 'X%'  OR LASTNAME LIKE 'Y%' OR LASTNAME LIKE 'Z%' OR LASTNAME LIKE 'S%'  OR LASTNAME LIKE 'T%') order by lastname"
+        }
+        Log.e("SQL200", sql + category)
 
         val db = this.readableDatabase
+        var cursor: Cursor? = null
+        cursor = db.rawQuery(sql, null)
+        Log.e("B21", cursor.count.toString())
+        var num = 1;
+        if (cursor.moveToFirst()) {
+            do {
+
+                var sn = cursor.getString(cursor.getColumnIndex("StudentNo"))
+                var fname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_FIRST))
+                var lname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
+                var section = cursor.getString(cursor.getColumnIndex(TBSTUDENT_SECTION))
+                var gender = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GENDER))
+                var enrollmentStatus = cursor.getString(cursor.getColumnIndex("EnrollmentStatus"))
+                var studentID = cursor.getString(cursor.getColumnIndex("StudentID"))
+                var grpNumber = cursor.getString(cursor.getColumnIndex("GrpNumber"))
+                var link = cursor.getString(cursor.getColumnIndex("FolderLink"))
+                var rnd = cursor.getString(cursor.getColumnIndex("Number")).toInt()
+                var status = cursor.getString(cursor.getColumnIndex("Status"))
+                val emp =
+                    EnrolleModel(num, sn, fname, lname, section, gender, enrollmentStatus, studentID, grpNumber, link, rnd, status)
+
+                //      var studentno:String ,
+                //                var firstname:String,
+                //                var lastname:String,
+                //                var Section:String,
+                //                var gender:String,
+                //                var enrollmentStatus:String,
+                //                var studentID:String,
+                //                var grpNumber:String,
+                num++; //val emp = StudentModel(sn, fname, lname, grp, section, gender, extension, contactNumber)
+                studentList.add(emp)
+                Log.e("SQL", fname + " " + link)
+            } while (cursor.moveToNext())
+        }
+        return studentList
+    }
+
+
+    fun ShowAll(tableName: String, filter: String = "") {
+        var sql = "select * from $tableName"
+        if (filter != "") sql = sql + filter
+        try {
+            val db = this.readableDatabase
+            var cursor: Cursor? = null
+            cursor = db.rawQuery(sql, null)
+
+            var tableField = ""
+            for (x in 0..cursor.columnCount - 1) tableField =
+                tableField + "\t" + cursor.columnNames[x].toString()
+            Log.e("TBREC", tableField)
+            Util.Msgbox(context, tableField)
+
+
+            if (cursor.moveToFirst()) {
+                do {
+                    var str = ""
+                    for (x in 0..cursor.columnCount - 1) {
+                        var field = cursor.columnNames[x].toString()
+                        var value = cursor.getString(cursor.getColumnIndex(field))
+                        str = str + "\t" + value
+
+                    }
+                    Log.e("TBREC", str)
+                } while (cursor.moveToNext())
+            }
+        } catch (e: SQLiteException) {
+            Log.e("SQLER", sql + " " + e.toString())
+
+        }
+
+
+    }
+
+    fun GetSubjectStudentNo(studentID: String, section: String): String {
+        var sql = """
+                SELECT * FROM tbenroll
+                   where Section='$section'  
+                   and  StudentID='$studentID'  
+                  """
+        Log.e("sss", sql)
+        val db = this.writableDatabase
         val cursor = db.rawQuery(sql, null)
         if (cursor.moveToFirst()) {
-            var  actCode= cursor.getString(cursor.getColumnIndex(TBACTIVITY_CODE))
-            var num = actCode.takeLast(2).toInt() + 1// Grade>>>
-            Util.Msgbox(context, num.toString())
-           return  "ACT-" + Util.ZeroPad(num, 2)
+            return cursor.getString(cursor.getColumnIndex("StudentNo"))
+        } else {
+            return "NONE"
         }
-        else{
-           // Util.Msgbox(context, "ACT-01" )
-            return  "ACT-01"
-        }
-       //  return  "helo"
     }
+
+
+    //region 1
+    fun GetNewSectionCode(): String {
+        var sql = """
+                SELECT * FROM TBsection
+                ORDER BY $TBSECTION_CODE DESC
+                  """
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(sql, null)
+        if (cursor.moveToFirst()) {
+            var sectionCode = cursor.getString(cursor.getColumnIndex(TBSECTION_CODE))
+            Log.e("SECTIONCODE", sectionCode)
+            var num = sectionCode.takeLast(2).toInt() + 1 // Grade>>>
+            Util.Msgbox(context, num.toString())
+            return "SEC-" + Util.ZeroPad(num, 2)
+        } else {
+            return "SEC-10"
+        }
+
+    }
+
+    fun SaveNewSection() {
+
+    } //end region 1
+
+
+    fun SearchStudent(lastname: String = ""): ArrayList<StudentModel> {
+
+        val studentList: ArrayList<StudentModel> = ArrayList<StudentModel>()
+
+        var sql: String = """ SELECT  * FROM TBSTUDENT
+                          where LastName like '$lastname%' order by LastName, FirstName
+                          """
+
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery(sql, null)
+        } catch (e: SQLiteException) {
+            db.execSQL(sql)
+            return ArrayList()
+        }
+        var num = 1;
+
+        if (cursor.moveToFirst()) {
+            do {
+                var studentID = cursor.getString(cursor.getColumnIndex(TBSTUDENT_STUDENTNO))
+                var fname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_FIRST))
+                var lname = cursor.getString(cursor.getColumnIndex(TBSTUDENT_LAST))
+                var grp = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GRP))
+                var orig_section = cursor.getString(cursor.getColumnIndex("OriginslSection"))
+                var gender = cursor.getString(cursor.getColumnIndex(TBSTUDENT_GENDER))
+                var extension = cursor.getString(cursor.getColumnIndex("Extension"))
+                var contactNumber = cursor.getString(cursor.getColumnIndex("ContactNumber"))
+                var parentContcact = cursor.getString(cursor.getColumnIndex("ParentContact"))
+                var enrollmentStatus = cursor.getString(cursor.getColumnIndex("EnrollmentStatus"))
+                var address = cursor.getString(cursor.getColumnIndex("Address"))
+                var emailAddress = cursor.getString(cursor.getColumnIndex("Address"))
+                var schoolStudentNumber =
+                    cursor.getString(cursor.getColumnIndex("SchoolStudentNumber"))
+                var middleName = cursor.getString(cursor.getColumnIndex("MIddleName"))
+                val emp =
+                    StudentModel(studentID, fname, lname, grp, orig_section, gender, extension, contactNumber, parentContcact, enrollmentStatus, address, emailAddress, num, schoolStudentNumber, "NO", middleName)
+                num++;
+                studentList.add(emp)
+            } while (cursor.moveToNext())
+        }
+        return studentList
+    }
+
+
+    fun SetCurrentSection(section: String) {
+        var sql = "update tbinfo set CurrentSection ='$section'"
+        Log.e("DDD", sql)
+        val db = this.writableDatabase
+        db.execSQL(sql)
+    }
+
+
+    fun SetOriginalSection(section: String) {
+        var sql = "update tbinfo set CurrentOriginslSEction ='$section'"
+        val db = this.writableDatabase
+        db.execSQL(sql)
+    }
+
+
+    fun UpdateGroupNumber(studentNo: String, grpNumber: String) {
+        var sql = "update tbstudent set GrpNumber   ='$grpNumber' where StudentNo  ='$studentNo'"
+        Log.e("eeee", sql)
+        val db = this.writableDatabase
+        db.execSQL(sql)
+    }
+
+
+    fun CheckStudent(studnum: String, section: String): String {
+        var sql: String = """ SELECT  * FROM TBSTUDENT_INFO
+                          where StudentID   = '$studnum'
+                          and OriginalSection   = '$section'
+                          """
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        cursor = db.rawQuery(sql, null)
+        Log.e("OLLLD", sql + "   " + cursor.count)
+        if (cursor.moveToFirst()) return "OLD"
+        else return "NEW"
+    }
+
+    fun CheckStudenNumber(studnum: String): String {
+        var sql: String = """ SELECT  * FROM TBSTUDENT_INFO
+                          where StudentID   = '$studnum'
+                          """
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        cursor = db.rawQuery(sql, null)
+
+        if (cursor.moveToFirst()) return "EXIST"
+        else return "MISSING"
+    }
+
+
+    fun ManageStudentRecord(studnumm: String, firstName: String, lastName: String, middleName: String, extension: String, section: String, gender: String, contactNumber: String, parentContcact: String, address: String, emailAddress: String, schoolStudentNumber: String, mode: String) {
+
+        var sql = ""
+        var sql2 = ""
+        var sql3 = ""
+        val db = this.writableDatabase
+        if (mode == "EDIT") {
+            sql = """
+             update tbstudent_info set FirstName ='$firstName'
+                          ,  LastName ='$lastName'
+                          ,  middleName = ''
+                          ,  Gender ='$gender'
+                          ,  Extension ='$extension'
+                          ,  ContactNumber ='$contactNumber'
+                          ,  ParentContact ='$parentContcact'
+                            ,Address ='$address'
+                            ,emailAddress ='$emailAddress'
+                            ,SchoolStudentNumber ='$schoolStudentNumber',
+                            OriginalSection ='$section'
+                          WHERE  StudentID ='$studnumm'
+        """.trimIndent()
+            Log.e("SQL", sql)
+            db.execSQL(sql)
+
+        } else if (mode == "ADD") {
+            sql = """
+             insert into tbstudent_info (StudentID,FirstName,LastName,Extension,MIddleName, 
+                       OriginalSection,Gender,ContactNumber,ParentContact,address, emailAddress,SchoolStudentNumber)
+             values('$studnumm', '$firstName','$lastName','$extension' , '$middleName', '$section', '$gender', '$contactNumber',  
+                    '$parentContcact', '$address', '$emailAddress', '$schoolStudentNumber') 
+            """
+
+            //            sql2= """
+            //           insert into tbgrades values('$section', '$studnumm', 0.0, 0.0, 0.0, 0.0, 0.0, "-", 0.0, 0.0, 0.0, 1, "-", "-")
+            //            """
+
+            //            sql3= """
+            //                INSERT INTO tbscore (ActivityCode, SectionCode, StudentNo,Score, Remark,SubmissionStatus, AdjustedScore, GradingPeriod )
+            //                    SELECT ActivityCode, '$section', $studnumm, 0, "-", 'NO', 0, GradingPeriod
+            //                    FROM tbactivity
+            //                    WHERE sectionCode='$section';
+            //                """
+            Log.e("1234", sql)
+            db.execSQL(sql) //            db.execSQL(sql2)
+            //            db.execSQL(sql3)
+
+        }
+        Log.e("0", sql)
+        Log.e("2", sql2)
+        Log.e("3", sql3)
+
+
+        db.close()
+    }
+
+
+    fun DeleteStudentRecord(studnumm: String, section: String) {
+        val db = this.writableDatabase
+        var sql = """
+             delete from  tbgrades 
+                          where  SectionCode ='$section'
+                          and  StudentNo ='$studnumm'
+                   """
+        db.execSQL(sql)
+
+
+
+
+        sql = """
+             delete from  tbscore 
+                          where  SectionCode ='$section'
+                          and  StudentNo ='$studnumm'
+                   """
+        db.execSQL(sql)
+
+        sql = """
+             delete from  tbattendance
+                          where  SectionCode ='$section'
+                          and  StudentNumber ='$studnumm'
+                   """
+        db.execSQL(sql)
+
+        sql = """
+             delete from tbenroll
+                          where  Section ='$section'
+                          and  StudentNo ='$studnumm'
+                   """
+        db.execSQL(sql)
+
+    }
+
+    fun UpdateEnrollmentStatus(studnumm: String, section: String, enrollmentStatus: String) {
+        val db = this.writableDatabase
+        var submissionStatus = ""
+        if (enrollmentStatus == "DROPPED") submissionStatus = "DRP"
+        else submissionStatus = "NO"
+
+        var sql = """
+             update   tbstudent 
+                          set   EnrollmentStatus ='$enrollmentStatus'
+                          where  Section ='$section'
+                          and  StudentNo ='$studnumm'
+                   """
+        db.execSQL(sql)
+
+        sql = """
+             update   tbscore
+                          set   SubmissionStatus  ='$submissionStatus'
+                          where  SectionCode ='$section'
+                          and  StudentNo ='$studnumm'
+                   """
+        db.execSQL(sql)
+    }
+
+
+    fun CountStudentRecord(section: String, category: String): Int {
+
+        var sql = ""
+        if (category == "MALE") {
+            sql = "select * from  tbstudent_query where gender ='MALE' and section ='$section'"
+        } else if (category == "FEMALE") {
+            sql = "select * from  tbstudent_query where gender ='FEMALE' and section ='$section'"
+        } else if (category == "TOTAL") {
+            sql = "select * from  tbstudent_query where section ='$section'"
+        } else if (category == "ENROLLED") {
+            sql =
+                "select * from  tbstudent_query where enrollmentStatus ='ENROLLED' and section ='$section'"
+        } else if (category == "DROPPED") {
+            sql =
+                "select * from  tbstudent_query where enrollmentStatus ='DROPPED' and section ='$section'"
+        }
+
+        Log.e("CCC", sql)
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(sql, null)
+        return cursor.count
+    }
+
+    fun GetStudentNumberViaEmail(section: String, email: String): Int {
+
+        val sql = "select * from  tbstudent where  emailAddress ='$email' and section ='$section'"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(sql, null)
+        Log.e("Emm", sql)
+        if (cursor.moveToFirst()) return cursor.getString(cursor.getColumnIndex(TBSTUDENT_STUDENTNO))
+            .toInt()
+        else return 0
+    }
+
+
 }
+
+
+
 
 
 

@@ -1,5 +1,8 @@
 package com.example.myapplication05
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication05.R
 import kotlinx.android.synthetic.main.attendance_main.*
 import kotlinx.android.synthetic.main.sched_main.*
 import kotlinx.android.synthetic.main.student_dialog.view.*
@@ -17,7 +21,7 @@ import kotlinx.android.synthetic.main.summary_main.*
 import java.util.*
 
 class SummaryMain : AppCompatActivity() {
-    val db: DatabaseHandler = DatabaseHandler(this)
+    val db: TableAttendance = TableAttendance(this)
     var GRP_STATUS: Boolean = false;
     var MONTH_STATUS: Boolean = false;
 
@@ -40,6 +44,7 @@ class SummaryMain : AppCompatActivity() {
         SummaryUpdateListContent("SECTION")
         SummaryViewRecord()
         cboMonth = findViewById(R.id.cboMonthSummary) as Spinner
+        SetDefaultSection()
 
 
         cboSectionSummary.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -49,7 +54,7 @@ class SummaryMain : AppCompatActivity() {
                 SummaryUpdateListContent("SECTION")
                 var section = cboSectionSummary.getSelectedItem().toString();
                 summaryAdapter!!.notifyDataSetChanged()
-                db.SetCurrentSection(section)
+                //db.SetCurrentSection(section)
                 cboGroupSummary.setSelection(0)
                 txtSummarySearch.setText("")
                 SetCurrentMonth()
@@ -63,6 +68,29 @@ class SummaryMain : AppCompatActivity() {
                 return false
             }
         })
+
+
+        btnCoppyMonthlySummary.setOnClickListener {
+            var mySummaryList: List<SummaryModel>
+            var section = cboSectionSummary.getSelectedItem().toString();
+            var myMonth = cboMonthSummary.getSelectedItem().toString();
+
+
+
+            mySummaryList = db.GetCountAttendanceList(myMonth, section)
+
+            var att = "MONTHLY SUMMARY ATTEBNDANCE for $myMonth  \n"
+            var  tab = "\t"
+            att = att + "NAME $tab PRESENT $tab LATE  $tab ABSENT $tab EXCUSE\n"
+
+            for (sm in mySummaryList) {
+              att =  att +  sm.completeName +   tab  + sm.prsentCount + tab +   sm.lateCount + tab  + sm.absentCount + tab  +  sm.excuseCount + "\n"
+            }
+            CopyText(att)
+
+        }
+
+
 
         cboGroupSummary.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -120,6 +148,13 @@ class SummaryMain : AppCompatActivity() {
         listSummary.adapter = summaryAdapter
     }
 
+    fun CopyText(copyString: String) {
+        val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("text", copyString)
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+    }
+
 
     fun SummaryUpdateListContent(category: String) {
 
@@ -146,8 +181,7 @@ class SummaryMain : AppCompatActivity() {
         summaryList.clear()
 
         for (sm in mySummaryList) {
-            summaryList.add(SummaryModel(sm.studentNo, sm.completeName, sm.prsentCount, sm.lateCount, sm.absentCount, sm.excuseCount))
-
+            summaryList.add(SummaryModel(sm.studentNo, sm.completeName, sm.prsentCount, sm.lateCount, sm.absentCount, sm.excuseCount, sm.firstName, sm.lastName))
         }
 
         //   Util.Msgbox(this, summaryList.size.toString())
@@ -155,15 +189,16 @@ class SummaryMain : AppCompatActivity() {
     }
 
 
+
     fun SetSpinnerAdapter() {
-        val arrSection: Array<String> = this.getResources().getStringArray(R.array.section_choice)
+        val arrSection: Array<String> = Util.GetSectionList(this)
         var sectionAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, R.layout.util_spinner, arrSection)
         sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cboSectionSummary.setAdapter(sectionAdapter);
 
         val arrMonth =
-            arrayOf("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+            arrayOf("ALL", "FIRST","SECOND" ,"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
         var monthAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, R.layout.util_spinner, arrMonth)
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -182,5 +217,12 @@ class SummaryMain : AppCompatActivity() {
         val cal = Calendar.getInstance()
         var myMonth = cal.get(Calendar.MONTH)
         cboMonthSummary.setSelection(myMonth)
+    }
+
+    private fun SetDefaultSection() {
+        var mycontext = this;
+        var currentSection = db.GetCurrentSection();
+        var index = Util.GetSectionIndex(currentSection, this)
+        cboSectionSummary.setSelection(index)
     }
 } //class

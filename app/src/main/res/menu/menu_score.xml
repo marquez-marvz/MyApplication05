@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuOpenFolder"
+        android:title="Show Open Folder" />
+
+    <item
+        android:id="@+id/menuRubric"
+        android:title="Show Rubric" />
+
+
+    <item
+        android:id="@+id/menuHideAll"
+        android:title="Hide All" />
+
+
+</menu>

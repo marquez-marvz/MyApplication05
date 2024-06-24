@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/cboSectionMissing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:prompt="@string/section_prompt" />
+
+
+        <Button
+            android:id="@+id/btnSortData"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:text="ACTIVITYCODE"
+            android:textSize="10sp"
+            android:visibility="visible" />
+
+
+
+        <Button
+            android:id="@+id/btnCategory"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="5dp"
+            android:text="NO"
+            android:textSize="10sp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="5dp"
+            android:text="REFRESH"
+            android:textSize="10sp"
+            android:visibility="visible" />
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listMissing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

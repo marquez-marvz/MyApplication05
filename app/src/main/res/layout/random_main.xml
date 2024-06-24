@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Spinner
+            android:id="@+id/cboSectionRandom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:padding="0dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+        <EditText
+            android:id="@+id/txtSearch"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:textSize="15dp"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:text=""
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="10sp"
+            android:visibility="visible"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/refresh"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="10sp"
+            android:visibility="visible"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/delete"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+<!--        <Button-->
+<!--            android:id="@+id/btnReset"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginLeft="235dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:text="RESET"-->
+<!--            android:textSize="15dp" />-->
+
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listRandom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

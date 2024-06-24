@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtCsvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:text="1234"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/txtRemark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="-"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <Button
+            android:id="@+id/btnCsvTaskNew"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="10sp"
+            android:visibility="visible"
+            android:layout_marginLeft="190dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/txtCsvAttendance"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="15sp"
+            android:visibility="visible"
+            android:layout_marginLeft="240dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:text="-"/>
+
+        <TextView
+            android:id="@+id/txtCsvTime"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="10sp"
+            android:visibility="visible"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="20dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:text="PP"/>
+
+
+
+
+
+        <Button
+            android:id="@+id/btnCsvPress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="10sp"
+            android:visibility="visible"
+            android:layout_marginLeft="270dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:text="-"/>
+
+        <Button
+            android:id="@+id/btnCsvAttendanceSave"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnCsvAttendanceCheck"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/check01"
+            android:text=""
+            android:visibility="invisible" />
+
+
+
+
+
+
+        <!--        <Button-->
+        <!--            android:id="@+id/rowBtnLate"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:textSize="10sp"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:layout_marginLeft="230dp"-->
+        <!--            android:text="L" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/rowBtnAbsent"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:textSize="10sp"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:layout_marginLeft="270dp"-->
+        <!--            android:text="A" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/rowBtnExcuse"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="310dp"-->
+        <!--            android:text="E"-->
+        <!--            android:textSize="10sp"-->
+        <!--            android:visibility="visible" />-->
+
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

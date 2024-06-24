@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtStudentNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="SN"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtOriginslGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:text="OG"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtAdjustedGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="10dp"
+            android:text="AG"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtAdjustedGradeDecimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="10dp"
+            android:text="AG"
+            android:textSize="15dp" />
+
+
+
+        <TextView
+            android:id="@+id/txtSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:text="FN"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnCopyText"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/copy"
+            android:text=""
+            android:visibility="visible" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/rowtxtTarget2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginLeft="100dp"-->
+<!--            android:layout_marginTop="75dp"-->
+<!--            android:text="AG"-->
+<!--            android:textSize="15dp" />-->
+
+        <Button
+            android:id="@+id/btnTarget"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:text="0"
+            android:textSize="12dp" />
+
+
+
+
+        <Button
+            android:id="@+id/btnPlus"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="50dp"
+            android:text="0"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnMessage"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="50dp"
+            android:text="MSG"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="100dp"
+            android:text="NEXT"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnEditAll"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="visible" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:text="FN"
+            android:textSize="20dp" />
+
+
+
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listIndividualScore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

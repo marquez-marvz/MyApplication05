@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width= "wrap_content"
+        android:layout_height = "wrap_content">
+
+
+
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="COPY 111" />
+
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:text="EXPORT" />
+
+
+        <TextView
+            android:id="@+id/txtComputation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="75dp"
+            android:textSize="15dp"
+            android:text="M=26"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:scrollbars = "vertical"/>
+    </RelativeLayout>
+</LinearLayout>
+
+
+

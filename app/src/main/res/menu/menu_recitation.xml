@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuNoAns"
+        android:title="NO ANS" />
+
+    <item
+        android:id="@+id/menuEffort"
+        android:title="EFFORT" />
+
+    <item
+        android:id="@+id/menuCorrect"
+        android:title="CORRECT" />
+
+    <item
+        android:id="@+id/menuAbsent"
+        android:title="ABSENT" />
+
+</menu>

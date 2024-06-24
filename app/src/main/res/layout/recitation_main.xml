@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Spinner
+            android:id="@+id/cboSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="0dp"
+
+            android:padding="0dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="400dp"
+            android:layout_marginTop="10dp"
+            android:text="Hello"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnStudentorDate"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="201dp"
+            android:layout_marginTop="90dp"
+            android:text="STUDENT"
+            android:textSize="15dp" />
+
+
+
+
+        <Button
+            android:id="@+id/btnOrderView"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="40dp"
+            android:text="LAST NAME ORDER"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="90dp"
+            android:text="COPY"
+            android:textSize="15dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listRecitation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="200dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listRecitationDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="150dp"
+            android:visibility="gone"
+            android:layout_marginTop="200dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listIndividualRecitation"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="450dp" />
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/imgRecitationPicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            android:src="@drawable/marvin" />
+
+        <TextView
+            android:id="@+id/txtFirstName"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="160dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtLasttName"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="180dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/txtStudentNo"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="140dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="15dp" />
+
+        <Button
+        android:id="@+id/btnRecNoAns"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="220dp"
+        android:text="NO ANSWER"
+        android:textSize="12dp" />
+
+
+        <Button
+            android:id="@+id/btnRecEffort"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="260dp"
+            android:text="EFFORT"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnRecCorrect"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="300dp"
+            android:text="CORRECT"
+            android:textSize="12dp" />
+
+
+
+        <Button
+            android:id="@+id/btnRecAbsent"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="340dp"
+            android:text="ABSENT"
+            android:textSize="12dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartRecitation"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="460dp"
+            android:layout_marginTop="0dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

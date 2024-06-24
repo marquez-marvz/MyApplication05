@@ -6,128 +6,317 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtAttendanceSection"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Hello"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/txtAttendanceDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="125dp"
-            android:layout_marginTop="20dp"
-            android:text="Hello"
-            android:textSize="15dp" />
-
-        <Button
-            android:id="@+id/btnAttendanceAmPm"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="185dp"
-            android:layout_marginTop="15dp"
-            android:text="AM"
-            android:textSize="15dp" />
-
-        <Button
-            android:id="@+id/btnSetAllPresent"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="15dp"
-            android:text="SET ALL PRESENT"
-            android:textSize="10dp" />
-
-        <Spinner
-            android:id="@+id/cboGroupAttendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="40dp"
-            android:prompt="@string/section_prompt" />
-
-        <EditText
-            android:id="@+id/txtAttendanceSearch"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="40dp" />
+            android:layout_height="wrap_content">
 
 
-        <Button
-            android:id="@+id/btnCountPresent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="12sp"
-            android:visibility="visible"
-            android:layout_marginLeft="180dp"
-            android:layout_marginTop="50dp"
-            android:text="20"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnCountLate"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="50dp"
-            android:textSize="12sp"
-            android:visibility="visible"
-            android:layout_marginLeft="220dp"
-            android:text="30" />
+                <Button
+                    android:id="@+id/btnAddNewsched"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="0dp"
+                    android:text="ADD"
+                    android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/btnCountAbsent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="12sp"
-            android:visibility="visible"
-            android:layout_marginLeft="260dp"
-            android:layout_marginTop="50dp"
-            android:text="A" />
+                <Button
+                    android:id="@+id/btnViewStatus"
+                    android:layout_width="120dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+                    android:text="SCHED"
+                    android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/btnCountExcuse"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="15sp"
-            android:visibility="visible"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="50dp"
-            android:text="E" />
 
-    </RelativeLayout>
+                <!--            <Button-->
+                <!--                android:id="@+id/btnShowSched"-->
+                <!--                android:layout_width="100dp"-->
+                <!--                android:layout_height="45dp"-->
+                <!--                android:layout_alignParentLeft="true"-->
+                <!--                android:layout_alignParentTop="true"-->
+                <!--                android:layout_marginLeft="0dp"-->
+                <!--                android:layout_marginTop="50dp"-->
+                <!--                android:text="DATE"-->
+                <!--                android:textSize="16dp" />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listAttendance"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+                <TextView
+                    android:id="@+id/txtAttendanceSection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="19dp"
+                    android:text="Hello"
+                    android:textSize="15dp" />
+
+
+                <TextView
+                    android:id="@+id/txtAttendanceDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="155dp"
+                    android:layout_marginTop="100dp"
+                    android:text="JUN 15"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txtAttendanceDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="100dp"
+                    android:text="Hello"
+                    android:textSize="20dp" />
+
+
+                <EditText
+                    android:id="@+id/txtAttendanceRemark"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="156dp"
+                    android:layout_marginTop="145dp"
+                    android:text="Hello"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txtNewStudName"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="100dp"
+                    android:text="Hello"
+                    android:textSize="20dp"
+                    android:visibility="invisible" />
+
+                <com.ortiz.touchview.TouchImageView
+                    android:id="@+id/imgAttendancePicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="130dp"
+                    android:visibility="visible"
+                    android:src="@drawable/marvin" />
+
+                <TextView
+                    android:id="@+id/btnAttendanceTime"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="100dp"
+                    android:text="AM"
+                    android:textSize="20dp" />
+
+                <!--            <Button-->
+                <!--            android:id="@+id/btnSortData"-->
+                <!--            android:layout_width="40dp"-->
+                <!--            android:layout_height="40dp"-->
+                <!--            android:layout_marginLeft="400dp"-->
+                <!--            android:layout_marginTop="100dp"-->
+                <!--            android:text="GE"-->
+                <!--            android:textSize="10dp" />-->
+
+
+                <Button
+                    android:id="@+id/btnSetAllPresent"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="360dp"
+                    android:layout_marginTop="100dp"
+                    android:text="ALL P"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/btnCurrentPresent"
+                    android:layout_width="80dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="200dp"
+                    android:text="PRESENT"
+                    android:textSize="12dp" />
+
+
+                <Button
+                    android:id="@+id/btnCurrentlate"
+                    android:layout_width="80dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="235dp"
+                    android:layout_marginTop="200dp"
+                    android:text="lATE"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/btnCurrentAbsent"
+                    android:layout_width="80dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="320dp"
+                    android:layout_marginTop="200dp"
+                    android:text="ABSENT"
+                    android:textSize="10dp" />
+
+                <Spinner
+                    android:id="@+id/cboAttandanceSesrch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:entries="@array/attendance_choice"
+                    android:prompt="@string/attendance_prompt"
+                    android:spinnerMode="dialog" />
+
+
+                <Button
+                    android:id="@+id/btnCurrentExcuse"
+                    android:layout_width="80dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="405dp"
+                    android:layout_marginTop="200dp"
+                    android:text="EXCUSE"
+                    android:textSize="10dp" />
+
+
+                <Button
+                    android:id="@+id/btnCopyAttendance"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+
+                    android:layout_marginLeft="400dp"
+                    android:layout_marginTop="150dp"
+                    android:padding="0dp"
+                    android:text="COPY"
+                    android:textSize="10dp"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btnSearchFirst"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="50dp"
+                    android:text="A-C"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnSearchSecond"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="221dp"
+                    android:layout_marginTop="49dp"
+                    android:text="D-J"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnSearchThird"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="281dp"
+                    android:layout_marginTop="51dp"
+                    android:text="K-O"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnSearchFourth"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="346dp"
+                    android:layout_marginTop="51dp"
+                    android:text="P-R"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnSearchFifth"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+
+                    android:layout_marginLeft="405dp"
+                    android:layout_marginTop="50dp"
+                    android:text="S-Z"
+                    android:textSize="12dp" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="465dp"
+                    android:layout_marginTop="0dp"
+                    tools:ignore="MissingConstraints" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listViewDate"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginRight="100dp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listViewIndividual"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="240dp"
+                    android:layout_marginRight="100dp"
+                    android:visibility="invisible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listAttendance"
+                    android:layout_width="575dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="250dp"
+                    android:layout_marginRight="100dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </HorizontalScrollView>
 </LinearLayout>

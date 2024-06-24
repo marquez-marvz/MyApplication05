@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtStudentNumberImport"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="5678"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtNameImport"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="5dp"
+            android:text="Name"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtScoreImport"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="225dp"
+            android:layout_marginTop="5dp"
+            android:text="40"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnEditImport"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btnSaveImport"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/txtQuizImport"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="345dp"
+            android:layout_marginTop="5dp"
+            android:text="Name"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/txtActivityCodeRowImport"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="345dp"
+            android:layout_marginTop="25dp"
+            android:text="Name"
+            android:textSize="12dp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Spinner
+            android:id="@+id/cboSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:id="@+id/txtScoreVersion"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp" />
+
+
+        <Button
+            android:id="@+id/btnExportGrades"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="380dp"
+            android:layout_marginTop="10dp"
+            android:text="EXPORT GRADES"
+            android:textSize="8dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnComputeGrades"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="10dp"
+            android:text="COMPUTE"
+            android:textSize="8dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnFirst"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="50dp"
+            android:text="FIRST"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSecond"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="50dp"
+            android:text="SECOND"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnAverage"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="50dp"
+            android:text="AVG"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSpeak"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="380dp"
+            android:layout_marginTop="50dp"
+            android:text="SPEAK"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnAscending"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/down"
+            android:text=""
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btnDescending"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/up"
+            android:text=""
+            android:visibility="invisible" />
+
+
+        <Button
+            android:id="@+id/btnAlphabet"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/abc"
+            android:text=""
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnGender"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="55dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/gender"
+            android:text=""
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn60to69"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="10dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn70to74"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn75to79"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btn80to89"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="185dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn90to94"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="245dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="12dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn95to99"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="305dp"
+            android:layout_marginTop="90dp"
+            android:text="60-69&#10;4"
+            android:textSize="11dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnPDF"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="140dp"
+            android:text="PRINT"
+            android:textSize="11dp"
+            android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnPDFGrade"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="140dp"
+            android:text="PRINT"
+            android:textSize="11dp"
+            android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnViewChart"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="140dp"
+        android:text="CHART"
+        android:textSize="11dp"
+        android:visibility="visible" />
+
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="140dp"
+            android:text="REFRESH"
+            android:textSize="11dp"
+            android:visibility="visible" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartGrade"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="475dp"
+            android:layout_marginTop="10dp"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listGrade"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listGradeSection"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="250dp"
+            android:layout_width="250dp"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

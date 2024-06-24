@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.GroupFragment">
+
+    <Spinner
+        android:id="@+id/cboGroupSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:prompt="@string/section_prompt"
+        android:visibility="visible"
+        android:spinnerMode="dialog" />
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btnAddGroupNew"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="50dp"
+        android:text="ADD GROUP"
+        android:textSize="12dp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnGroupMode"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="50dp"
+        android:text="MEMBER DETAIL"
+        android:textSize="12dp"
+        android:visibility="visible"/>
+
+    <Spinner
+        android:id="@+id/cboStudent"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="100dp"
+        android:prompt="@string/student_prompt"
+        android:spinnerMode="dialog" />
+
+    <Button
+        android:id="@+id/btnAddNewMember"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="200dp"
+        android:textSize="10dp"
+        android:text="ADD MEMBER" />
+
+    <Button
+        android:id="@+id/btnLoadAll"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="280dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+
+        android:text="LOAD ALL" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listGroup"
+        android:layout_width="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="5dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listMember"
+        android:layout_width="350dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="120dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        />
+
+
+
+
+
+
+</RelativeLayout>

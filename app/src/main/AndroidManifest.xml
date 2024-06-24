@@ -1,28 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication05">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:requestLegacyExternalStorage="true"
+        android:exported="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:windowSoftInputMode="adjustPan"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityMain">
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ortiz.touchview.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+
+
+
+        <activity android:name="com.example.myapplication05.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
     </activity>
-        <activity android:name=".AttendanceMain" />
-        <activity android:name=".StudentMain" />
-        <activity android:name=".SchedMain" />
-        <activity android:name=".SummaryMain" />
-    </application>
+        <activity android:name="com.example.myapplication05.AttendanceMain" />
+        <activity android:name="com.example.myapplication05.Student.StudentMain" />
+        <activity android:name="com.example.myapplication05.SchedMain" />
+        <activity android:name="com.example.myapplication05.SummaryMain" />
+        <activity android:name="com.example.myapplication05.ActivityMain" />
+        <activity android:name="com.example.myapplication05.ScoreMain" />
+        <activity android:name="com.example.myapplication05.RandomMain" />
+        <activity android:name="com.example.myapplication05.SectionMain" />
+        <activity android:name="com.example.myapplication05.MiscMain" />
+        <activity android:name="com.example.myapplication05.MiscStudent" />
+        <activity android:name="com.example.myapplication05.LogActivity" />
+        <activity android:name="com.example.myapplication05.SearchStudent" />
+        <activity android:name="com.example.myapplication05.GradeMain" />
+        <activity android:name="com.example.myapplication05.Sample" />
+        <activity android:name="com.example.myapplication05.OpenNewPDF" />
+
+        <activity android:name="com.example.myapplication05.IndividualStudenht" />
+
+        <activity android:name="com.example.myapplication05.MissingMain" />
+        <activity android:name="com.example.myapplication05.SubjectMain" />
+        <activity android:name="com.example.myapplication05.ScanQRcode" />
+        <activity android:name="com.example.myapplication05.CaptureAct" />
+        <activity android:name="com.example.myapplication05.EnrolleMain" />
+        <activity android:name="com.example.myapplication05.Grouping" />
+        <activity android:name="com.example.myapplication05.RemarkMain" />
+        <activity android:name="com.example.myapplication05.Notes" />
+        <activity android:name="com.example.myapplication05.Chart" />
+        <activity android:name="com.example.myapplication05.Gdrive" />
+        <activity android:name="com.example.myapplication05.ChartList" />
+        <activity android:name="com.example.myapplication05.Link" />
+        <activity android:name="com.example.myapplication05.RecitationMain" />
+        <activity android:name="com.example.myapplication05.PaperPicture" />
+        <activity android:name="com.example.myapplication05.Answer_Main" />
+        <activity android:name="com.example.myapplication05.CheckMain" />
+        <activity android:name="com.example.myapplication05.GeneralPic" />
+        <activity android:name="com.example.myapplication05.SampleTab" />
+        <activity android:name="com.example.myapplication05.AttendanceTab" />
+        <activity android:name="com.example.myapplication05.MainCheckQuiz" />
+        <activity android:name="com.example.myapplication05.ScoreSummary" />
+
+
+
+
+    </application>`
+
+    <queries>
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.ACTION_VIEW" />
+            <data android:scheme="http" />
+        </intent>
+
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<!--   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>-->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+
+<!-- /       tools:ignore="ScopedStorage"-->
 
 </manifest>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtPaperSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Hello"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/PaperKeyWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="10dp"
+            android:text="Hello"
+            android:textSize="15dp" />
+
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="10dp"
+            android:text="ADD SECTION"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnShow"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="10dp"
+            android:text="SHOW"
+            android:textSize="15dp" />
+
+
+        <Button
+            android:id="@+id/btnSearchFirst"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:text="A-C"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchSecond"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="50dp"
+            android:text="D-J"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchThird"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="50dp"
+            android:text="K-O"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFourth"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="205dp"
+            android:layout_marginTop="50dp"
+            android:text="P-R"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFifth"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="50dp"
+            android:text="S-Z"
+            android:textSize="12dp" />
+
+        <Spinner
+            android:id="@+id/cboStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="100dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+
+
+
+
+
+
+
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/imgStudent22"
+            android:layout_width="350dp"
+            android:layout_height="700dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/xxx" />
+
+       <!--        <com.github.chrisbanes.photoview.PhotoView-->
+<!--            android:id="@+id/photo_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

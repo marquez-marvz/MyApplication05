@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/cboGeneralActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:prompt="@string/section_prompt" />
+        <EditText
+            android:id="@+id/txtGeneralKeyword"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="45dp"
+            android:text=""
+            android:textSize="20dp" />
+
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/PaperKeyWord"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="125dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:text="Quiz3"-->
+        <!--            android:textSize="15dp" />-->
+
+        <Button
+            android:id="@+id/btnRotate"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/refresh"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnDeletePic"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/delete"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+        <!--        <Spinner-->
+        <!--            android:id="@+id/cboStudent"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginLeft="80dp"-->
+        <!--            android:layout_marginTop="100dp"-->
+        <!--            android:prompt="@string/section_prompt"-->
+        <!--            android:spinnerMode="dialog" />-->
+
+
+        <Button
+            android:id="@+id/btnCapture"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="229dp"
+            android:layout_marginTop="50dp"
+            android:text="CAPTURE"
+            android:textSize="15dp" />
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/imgStudent200"
+            android:layout_width="350dp"
+            android:layout_height="700dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="110dp"
+            android:src="@drawable/xxx" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lstGeneralFile"
+            android:layout_width="100dp"
+            android:layout_marginTop="100dp"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

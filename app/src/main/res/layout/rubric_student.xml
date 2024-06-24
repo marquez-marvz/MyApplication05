@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btnEquivalentGrade"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="257dp"
+            android:layout_marginTop="87dp"
+            android:hint="1"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnTotalScore"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="254dp"
+            android:layout_marginTop="29dp"
+            android:hint="1"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txtRubricStudetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="1234"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textSize="15dp" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtRubricfirst"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="1234"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:textSize="15dp" />-->
+
+        <Button
+            android:id="@+id/btnRubricfirst"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"
+            android:hint="1"
+            android:textSize="12dp" />
+
+
+        <Button
+            android:id="@+id/btnPointFirst"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="25dp"
+            android:hint="1"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnRubricSecond"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="85dp"
+            android:hint="1"
+            android:textSize="12dp" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtRubricSecond"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="85dp"-->
+<!--            android:text="1234"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:textSize="15dp" />-->
+
+
+<!--        <Button-->
+<!--            android:id="@+id/btnPointSecond"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_alignPa5rentLeft="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginLeft="175dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:hint="1"-->
+<!--            android:textSize="20sp" />-->
+
+        <Button
+            android:id="@+id/btnPointSecond"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="85dp"
+            android:hint="1"
+            android:textSize="20sp" />
+
+<!--        <EditText-->
+<!--            android:id="@+id/txtRubricThird"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="150dp"-->
+<!--            android:text="1234"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:textSize="15dp" />-->
+
+        <Button
+            android:id="@+id/btnRubricThird"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="145dp"
+            android:hint="1"
+            android:textSize="12dp" />
+
+
+
+        <Button
+            android:id="@+id/btnPointThird"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="145dp"
+            android:hint="1"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnRubricFourth"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="205dp"
+            android:hint="1"
+            android:textSize="12dp" />
+
+
+
+
+        <Button
+            android:id="@+id/btnPointFourth"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="205dp"
+            android:hint="1"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnRubricFifth"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="265dp"
+            android:hint="1"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnPointFifth"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="265dp"
+            android:hint="1"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/btnRubricNext"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="320dp"
+            android:hint="NEXT"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnRubricPrev"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="320dp"
+            android:hint="PREV"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnRubricRemark"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="320dp"
+            android:hint="REMARK"
+            android:textSize="12sp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

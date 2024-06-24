@@ -14,61 +14,165 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/rowActivityCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:text="1234" />
-
-        <TextView
-            android:id="@+id/rowDescription"
+            android:id="@+id/rowActivityCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
-            android:textSize="20sp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
-            android:text="DESCRIPTION"/>
+            android:text="QUIZ"
+            android:visibility="invisible"
+            android:textSize="14sp" />
+
+<!--        <TextView-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:id="@+id/rowActivityCode"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:textSize="15sp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="1234" />-->
 
 
-        <TextView
-            android:id="@+id/rowItem"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:text="TextView"/>
+<!--        <TextView-->
+<!--            android:id="@+id/rowActivityCategory"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="QUIZ"-->
+<!--            android:textSize="10sp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnActivityCategory"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="15dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:textSize="10sp"-->
+<!--            android:background="#FFB74D"-->
+<!--            android:text="QUIZ" />-->
+<!--        -->
+<!--        //0620-->
 
         <Button
-            android:id="@+id/rowBtnStatus"
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
+            android:id="@+id/btnActivityCategory"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:textSize="12sp"
-            android:visibility="visible"
-            android:layout_marginLeft="230dp"
-            android:text="INACTIVE" />
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="317dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFB74D"
+            android:text="QUIZ"
+            android:textSize="10sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnActivityCode"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:text="QUIZ"
+            android:textSize="10sp"
+            android:visibility="visible" />
 
 
+
+        <EditText
+            android:id="@+id/rowDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="89dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="DESCRIPTION"
+            android:enabled="false"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/rowItem"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="276dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/edit"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
 
 
         <Button
             android:id="@+id/rowBtnDelete"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-
-            android:visibility="visible"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="320dp"
             android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/delete"
             android:background="@android:color/transparent"
-            android:text="" />
+            android:drawableLeft="@drawable/delete"
+            android:text=""
+            android:visibility="invisible" />
+
+
+        <Button
+            android:id="@+id/rowBtnMenu"
+            android:layout_width="42dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="520dp"
+            android:layout_marginTop="2dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/menu"
+            android:text=""
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnGradingPeriod"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="410dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="FIRST"
+            android:textSize="15sp" />
 
 
         <!--        <TextView-->

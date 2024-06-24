@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/cboSectionActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+        <Spinner
+            android:id="@+id/cboActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="5dp"
+            android:prompt="@string/section_prompt" />
+
+        <Button
+            android:id="@+id/btnSearchFirst"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:text="A-C"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchSecond"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"
+            android:text="D-J"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchThird"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="40dp"
+            android:text="K-O"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFourth"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="40dp"
+            android:text="P-R"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchFifth"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="205dp"
+            android:layout_marginTop="40dp"
+            android:text="S-Z"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnSearchNo"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="40dp"
+            android:text="ZERO"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnCategory"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="40dp"
+            android:text="ACT"
+            android:textSize="12dp" />
+
+
+        <Button
+            android:id="@+id/btnOpen"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/open"
+            android:textSize="12dp" />
+
+        <Spinner
+            android:id="@+id/cboStudent"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="80dp"
+            android:textSize="20dp"
+            android:prompt="@string/section_prompt" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/txtPages"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="315dp"
+            android:layout_marginTop="80dp"
+            android:text="100/1590"
+            android:textSize="15dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pdfStudentScore"
+            android:layout_width="300dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            />
+
+
+
+
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfview"
+            android:layout_width="350dp"
+            android:layout_height="600dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="120dp"
+            android:visibility="visible"></com.github.barteksc.pdfviewer.PDFView>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

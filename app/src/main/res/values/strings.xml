@@ -1,38 +1,149 @@
 <resources>
     <string name="app_name">Student Record</string>
-    <string name="student_prompt">Choose a Group</string>
+    <string name="school_prompt">Choose a Group</string>
+    <string name="visibility_prompt">Choose a Group</string>
+    <string name="description_prompt">Choose Description</string>
+    <string name="section1_prompt">Choose Section</string>
+
 
     <string-array name="grpNumber">
         <item>NONE</item>
-        <item>G-1</item>
-        <item>G-2</item>
-        <item>G-3</item>
-        <item>G-4</item>
-        <item>G-5</item>
-        <item>G-6</item>
-        <item>G-7</item>
-        <item>G-8</item>
-        <item>G-9</item>
+        <item>G-A</item>
+        <item>G-B</item>
+        <item>G-C</item>
+        <item>G-D</item>
+        <item>G-E</item>
+        <item>G-F</item>
+        <item>G-G</item>
+        <item>G-H</item>
+        <item>G-I</item>
+        <item>G-J</item>
+        <item>G-K</item>
+        <item>G-L</item>
+        <item>G-M</item>
+        <item>G-N</item>
+        <item>G-O</item>
+        <item>G-P</item>
+        <item>G-Q</item>
 
+    </string-array>
+
+    <string-array name="school">
+        <item>DEPED</item>
+        <item>BISCAST</item>
+        <item>CSPC</item>
+        <item>UNC</item>
+    </string-array>
+
+    <string-array name="camhiSection">
+        <item>11-PROG-1</item>
+        <item>11-PROG-2</item>
+        <item>12-PROG-1</item>
+        <item>12-PROG-2</item>
+        <item>NONE</item>
     </string-array>
 
 
     <string name="section_prompt">Choose a Section</string>
-    <string-array name="section_choice">
-        <item>11-PROG-1</item>
-        <item>12-PROG-1</item>
-        <item>MANZANERO</item>
-        <item>CADORES</item>
-        <item>RIVERA</item>
-    </string-array>
+    <string name="student_prompt">Choose Student</string>
+    <string name="activity_prompt">Choose Activity</string>
+
 
     <string name="gender_prompt">Choose a Section</string>
     <string-array name="gender_choice">
-        <item>Male</item>
-        <item>Female</item>
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
+
+    <string name="year_prompt">Choose a Section</string>
+    <string-array name="year_choice">
+        <item>CAMHI-2023</item>
+        <item>BISCAST-2023</item>
+        <item>UNC-2023</item>
+        <item>CAMHI-2024</item>
+        <item>BISCAST-2024</item>
+        <item>UNC-2024</item>
+    </string-array>
+
+    <string name="month_prompt">Choose a Month</string>
+    <string-array name="month_choice">
+        <item>JAN</item>
+        <item>FEB</item>
+        <item>MAR</item>
+        <item>APR</item>
+        <item>MAY</item>
+        <item>JUN</item>
+        <item>JUL</item>
+        <item>AUG</item>
+        <item>SEP</item>
+        <item>OCT</item>
+        <item>NOV</item>
+        <item>DEC</item>
+    </string-array>
+
+    <string name="attendance_prompt">Choose Category</string>
+    <string-array name="attendance_choice">
+        <item>ALL</item>
+        <item>FIRST</item>
+        <item>SECOND</item>
+        <item>FEB</item>
+        <item>MAR</item>
+        <item>APR</item>
+        <item>MAY</item>
+        <item>JUN</item>
+        <item>JUL</item>
+        <item>AUG</item>
+        <item>SEP</item>
+        <item>OCT</item>
+        <item>NOV</item>
+        <item>DEC</item>
     </string-array>
 
 
+    <string name="schoolyear_prompt">Choose a School Year</string>
+    <string-array name="schoolyear_choice">
+        <item>2022-2023</item>
+        <item>2023-2024</item>
+        <item>2024-2025</item>
+    </string-array>
+
+    <string name="semester_prompt">Choose a School Year</string>
+    <string-array name="semester_choice">
+        <item>FIRST</item>
+        <item>SECOND</item>
+        <item>THIRD</item>
+    </string-array>
+
+
+
+
+    <string-array name="enrollment_choice">
+        <item>ENROLLED</item>
+        <item>DROPPED</item>
+    </string-array>
+
+
+    <string name="category_prompt">Choose a Category</string>
+    <string-array name="category_choice">
+        <item>Select Activity</item>
+        <item>QUIZ</item>
+        <item>PT</item>
+        <item>PARTICIPATION</item>
+        <item>PROJECT</item>
+        <item>EXAM</item>
+        <item>NONE</item>
+    </string-array>
+
+    <string name="gradingperiod_prompt">Choose a Category</string>
+    <string-array name="gradingperiod_choice">
+        <item>Select Grading Period</item>
+        <item>FIRST</item>
+        <item>SECOND</item>
+        <item>THIRD</item>
+        <item>FOURTH</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

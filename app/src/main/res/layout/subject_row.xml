@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtSubjectCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="code" />
+
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="ddd"
+            android:visibility="visible"
+            android:enabled="false"
+
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/lblPT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="PT"
+            android:visibility="visible"
+            android:enabled="false"
+
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtPT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:enabled="false"
+            android:text="10" />
+
+        <TextView
+            android:id="@+id/lblQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="QUIZ"
+            android:visibility="visible"
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:enabled="false"
+
+            android:text="20" />
+
+        <TextView
+            android:id="@+id/lblExam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="EXAM"
+            android:visibility="visible"
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtExam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:enabled="false"
+
+            android:text="20" />
+
+
+        <TextView
+            android:id="@+id/lblproject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:text="PROJ"
+            android:visibility="visible"
+            android:enabled="false"
+
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="60dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:enabled="false"
+
+            android:text="15" />
+
+        <TextView
+            android:id="@+id/lblParticipation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:text="PART"
+            android:visibility="visible"
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtParticipation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="60dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:enabled="false"
+
+            android:text="20" />
+
+        <TextView
+            android:id="@+id/lblCS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:text="CSA"
+            android:visibility="visible"
+
+
+            android:textSize="14sp" />
+
+        <EditText
+
+            android:id="@+id/txtClassStanding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="60dp"
+            android:enabled="false"
+
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="20" />
+
+
+
+
+
+
+
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="35dp"
+            android:drawableLeft="@drawable/edit"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="35dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

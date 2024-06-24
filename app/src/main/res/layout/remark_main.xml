@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="match_parent">
+
+        <Spinner
+            android:id="@+id/cboRemark"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:prompt="@string/section_prompt"
+            android:textSize="10dp"
+            android:spinnerMode="dialog" />
+
+        <EditText
+            android:id="@+id/txtAddRemark"
+            android:layout_width="125dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnAddRemark"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="45dp"
+            android:drawableLeft="@drawable/plus"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+        <Button
+            android:id="@+id/btnSaveRemark"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="45dp"
+            android:drawableLeft="@drawable/save"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+
+        <Button
+            android:id="@+id/btnRemark1"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="50dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="1" />
+
+
+        <Button
+            android:id="@+id/btnRemark2"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="2"/>
+
+        <Button
+            android:id="@+id/btnRemark3"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="3"/>
+
+
+        <Button
+            android:id="@+id/btnRemark4"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="4"/>
+
+        <Button
+            android:id="@+id/btnRemark5"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="5"/>
+
+        <Button
+            android:id="@+id/btnRemark6"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="350dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="6"/>
+
+        <Button
+            android:id="@+id/btnRemark7"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="7"/>
+
+        <Button
+            android:id="@+id/btnRemark8"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="450dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="8"/>
+
+
+        <Button
+            android:id="@+id/btnRemark9"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="9"/>
+
+        <Button
+            android:id="@+id/btnRemark10"
+            android:layout_width="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="550dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="45dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:text="10"/>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

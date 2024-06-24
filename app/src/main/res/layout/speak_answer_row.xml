@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/txtNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="1234" />
+
+        <EditText
+            android:id="@+id/txtAnswer"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="0dp"
+
+            android:text="DESCRIPTION"
+            android:scrollHorizontally="false"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/btnStatus"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="5dp"
+            android:text="YES"
+            android:textSize="12dp" />
+
+
+
+
+        <Button
+            android:id="@+id/rowBtnEdit"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/edit"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+        <Button
+            android:id="@+id/rowBtnSave"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/save"
+            android:text=""
+            android:visibility="invisible" />
+
+
+        <Button
+            android:id="@+id/rowBtnDelete"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="visible"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/delete"
+            android:background="@android:color/transparent"
+            android:text="" />
+
+
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtLastName"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="15sp"-->
+        <!--            android:text="TextView"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:layout_below="@+id/txtStudentNo"-->
+        <!--            android:layout_alignLeft="@+id/txtStudentNo"-->
+        <!--            android:layout_alignStart="@+id/txtStudentNo" />-->
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtGroup"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="GRP"-->
+        <!--            android:gravity="right"-->
+        <!--            android:layout_alignRight="@+id/txtSectionCode"-->
+        <!--            android:layout_alignEnd="@+id/txtSectionCode"-->
+        <!--            android:layout_alignBottom="@+id/txtFirstName"-->
+        <!--            android:layout_alignLeft="@+id/txtSectionCode"-->
+        <!--            android:layout_alignStart="@+id/txtSectionCode" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtSectionCode"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="SECTION"-->
+        <!--            android:textSize="15sp"-->
+        <!--            android:layout_marginRight="11dp"-->
+        <!--            android:layout_marginEnd="11dp"-->
+        <!--            android:layout_alignTop="@+id/txtLastName"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_alignParentEnd="true" />-->
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

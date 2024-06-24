@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Spinner
+            android:id="@+id/cboSectionSched"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="60dp"
+
+            android:padding="0dp"
+            android:prompt="@string/section_prompt"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="70dp"
+            android:text="Hello"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnAmPm"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="239dp"
+            android:layout_marginTop="55dp"
+            android:text="AM"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:text="ADD"
+            android:textSize="15dp" />
+
+
+        <Button
+            android:id="@+id/btnExportAttendance"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="100dp"
+            android:text="EXPORT"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnShow"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="188dp"
+            android:layout_marginTop="100dp"
+            android:text="MONTH"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnImport"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="273dp"
+            android:layout_marginTop="100dp"
+            android:text="IMPORT"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listSched"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
